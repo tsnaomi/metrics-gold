@@ -1,0 +1,158 @@
+html {
+    color: #333;
+}
+
+body {
+    font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16;
+    padding: 5% 10%;
+}
+
+p {
+    width: 98%;
+    margin: 0 0 10px 2%;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    line-height: 169%;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form {
+    width: 100%;
+    text-align: center;
+}
+
+table {
+    padding: 20px 10px;
+    margin: auto auto;
+}
+
+td {
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+table,
+input[type='submit'] {
+    border: 1px solid #E0E0E0;
+}
+
+input[type='checkbox'] {
+    text-align: center;
+    width: 12px;
+    height: 12px;
+}
+
+input[type='submit'] {
+    font-size: 15px;
+    height: 40px;
+    width: 200px;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #fff;
+}
+
+input[type='submit']:hover {
+    outline: none;
+    border-color: #C7C7C7;
+}
+
+.welp {
+    height: 6px;
+}
+
+.nav {
+    font-size: 26px;
+    margin-bottom: 40px;
+}
+
+.emph {
+    color: #C7C7C7;
+}
+
+.annotated {
+    background-color: #D1EDFF;
+    padding: 4px;
+    margin: -4px;
+}
+
+.annotation-container {
+    width: 100%;
+    overflow: scroll;
+}
+
+.word {
+    padding: 0 10px 10px;
+}
+
+.utterance-break {
+    color: #C7C7C7;
+    letter-spacing: 1px;
+    font-size: 9px;
+}
+
+.bullet {
+    font-family: FontAwesome;
+    display: inline-block;
+    padding-right: 5px;
+}
+
+.arrow {
+    font-family: FontAwesome;
+    font-size: 20px;
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.rating { 
+    border: none;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label { 
+    color: #DDDDDD;
+}
+
+.rating > label:before {
+    font-size: 20px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: '\f00d';
+    margin: 5px;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover, 
+.rating:not(:checked) > label:hover ~ label {
+    color: #1F57B2; /* dark blue */
+  } 
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label,
+.rating:not(:checked) > label:hover ~ input:checked ~ label {
+    color: #5FB6C7; /* light blue */
+}
+
+.flash {
+    font-family: 'Pacifico', Garamond, cursive;
+    text-align: center;
+}
+
+.leave {
+    top: 10px;
+    right: 30px;
+    position: absolute;
+}

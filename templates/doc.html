@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+    
+    <head>
+        <meta charset='utf-8'/>
+        <title>{{ doc }}</title>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/style.css') }}"/>
+        <link rel='stylesheet' href="{{ url_for('static', filename='fonts/font-awesome/css/font-awesome.min.css') }}"/>
+        {% if not config.TESTING %}
+        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon.png') }}">
+        <link rel='apple-touch-icon-precomposed' href="{{ url_for('static', filename='images/favicon.png') }}">
+        {% endif %}
+    </head>
+
+    <body>
+        <div class='leave'><a href="{{ url_for('logout_view') }}">Sign Out</a></div>
+        <div class='nav'>
+            <a href="{{ url_for('main_view') }}">Inaugural Addresses</a>
+            <span class='arrow'>&#xf105;</span>
+            <span class='emph'>{{ doc }}</span>
+        </div>
+        {% for sentence in doc.sentences %}
+        <p>
+            <a href="{{ url_for('annotate_view', title=doc.title, index=sentence.index) }}" class='{% if sentence.has_annotated(session.current_user) %}annotated{% else %}unannotated{% endif %}'>{{ sentence.sentence }}</a>
+        </p>
+        {% endfor %}
+    </body>
+
+</html>

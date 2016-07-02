@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+    
+    <head>
+        <meta charset='utf-8'/>
+        <title>Metric Gold</title>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/entrance.css') }}"/>
+        <link rel='stylesheet' href="{{ url_for('static', filename='fonts/font-awesome/css/font-awesome.min.css') }}"/>
+        {% if not config.TESTING %}
+        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon.png') }}">
+        <link rel='apple-touch-icon-precomposed' href="{{ url_for('static', filename='images/favicon.png') }}">
+        {% endif %}
+    </head>
+
+    <body>
+        <form method='POST'>
+            <input type='hidden' name='_csrf_token' value='{{ csrf_token() }}'>
+            <br>
+            <input type='text' name='username' placeholder='username'>
+            <br>
+            <input type='password' name='password' placeholder='password'>
+            <br>
+            <input type='submit' value='{{ submit }}'>
+        </form>
+        <div class='spinner hide'>
+            <i class='fa fa-cog fa-spin fa-3x fa-fw'></i>
+            <span class='sr-only'>Loading...</span>
+        </div>
+        {% for message in get_flashed_messages() %}
+        <div class='flash'>{{ message }}</div>
+        {% endfor %}
+
+        <script src='https://code.jquery.com/jquery-1.12.4.min.js' integrity='sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=' crossorigin='anonymous'></script>
+        <script src="{{ url_for('static', filename='js/entrance.js') }}"></script>
+    </body>
+
+</html>

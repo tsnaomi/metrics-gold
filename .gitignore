@@ -1,0 +1,5 @@
+*.pyc
+
+restart.sh
+
+node/
