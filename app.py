@@ -251,11 +251,24 @@ class Break(db.Model):
 def generate_peaks(target, value, user):
     assert user.id is not None
 
-    tokens = Token.query.all()
+    count = Token.query.count()
+    start = 0
+    end = x = 1000
 
-    for token in tokens:
-        peak = Peak(token.id, user.id)
-        db.session.add(peak)
+    while start + x < count:
+        for token in Token.query.order_by(Token.id).slice(start, end):
+            peak = Peak(token.id, user.id)
+            db.session.add(peak)
+
+        db.session.commit()
+        start = end
+        end += x
+
+    for token in Token.query.order_by(Token.id).slice(start, end):
+            peak = Peak(token.id, user.id)
+            db.session.add(peak)
+
+    db.session.commit()
 
 
 # Extraction ------------------------------------------------------------------
