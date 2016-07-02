@@ -87,6 +87,29 @@ class User(db.Model):
         self.password = flask_bcrypt.generate_password_hash(password)
         db.session.commit()
 
+    def generate_peaks(self):
+        if not self.peaks:
+            print 'Generating peaks!'
+
+            count = Token.query.count()
+            start = 0
+            end = x = 1000
+
+            while start + x < count:
+                for token in Token.query.order_by(Token.id).slice(start, end):
+                    peak = Peak(token.id, self.id)
+                    db.session.add(peak)
+
+                db.session.commit()
+                start = end
+                end += x
+
+            for token in Token.query.order_by(Token.id).slice(start, end):
+                peak = Peak(token.id, self.id)
+                db.session.add(peak)
+
+            db.session.commit()
+
 
 class Doc(db.Model):
     __tablename__ = 'Doc'
@@ -247,15 +270,15 @@ class Break(db.Model):
         self.sentence = sentence
 
 
-@event.listens_for(User, 'after_insert')
-def generate_peaks(target, value, user):
-    assert user.id is not None
+# @event.listens_for(User, 'after_insert')
+# def generate_peaks(target, value, user):
+#     assert user.id is not None
 
-    tokens = Token.query.all()
+#     tokens = Token.query.all()
 
-    for token in tokens:
-        peak = Peak(token.id, user.id)
-        db.session.add(peak)
+#     for token in tokens:
+#         peak = Peak(token.id, user.id)
+#         db.session.add(peak)
 
 
 # Extraction ------------------------------------------------------------------
@@ -450,6 +473,7 @@ def welcome_view():
             user = User(username, password)
             db.session.add(user)
             db.session.commit()
+            user.generate_peaks()
 
             return redirect(url_for('login_view'))
 
