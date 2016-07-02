@@ -88,7 +88,7 @@ class User(db.Model):
         db.session.commit()
 
     def generate_peaks(self):
-        if not self.peaks:
+        if not self.peaks.count():
             print 'Generating peaks!'
 
             count = Token.query.count()
