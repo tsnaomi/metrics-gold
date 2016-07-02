@@ -13,6 +13,7 @@ alembic==0.8.6
 bcrypt==3.0.0
 cffi==1.7.0
 click==6.6
+gunicorn==19.6.0
 itsdangerous==0.24
 psycopg2==2.6.1
 pycparser==2.14
