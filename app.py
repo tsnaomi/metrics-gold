@@ -262,6 +262,8 @@ def generate_peaks(target, value, user):
 
 @manager.command
 def extract_inaugural_addresses():
+    print 'Extracting inaugural addresses...'
+
     dirpath = 'inaugural'
     filenames = filter(lambda f: f.endswith('.csv'), os.listdir(dirpath))[::-1]
 
