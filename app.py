@@ -21,7 +21,6 @@ from flask_script import Manager
 from flask_bcrypt import Bcrypt
 from functools import wraps
 
-from sqlalchemy import event
 from sqlalchemy.exc import DataError, IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.mutable import MutableDict
@@ -47,7 +46,8 @@ flask_bcrypt = Bcrypt(app)
 # - Import audio/video
 # - Create base.html
 # - Summary pane
-# - Jshintrc
+# - Add .jshintrc
+# - Update Procfile
 
 
 # Models ----------------------------------------------------------------------
@@ -270,17 +270,6 @@ class Break(db.Model):
         self.sentence = sentence
 
 
-# @event.listens_for(User, 'after_insert')
-# def generate_peaks(target, value, user):
-#     assert user.id is not None
-
-#     tokens = Token.query.all()
-
-#     for token in tokens:
-#         peak = Peak(token.id, user.id)
-#         db.session.add(peak)
-
-
 # Extraction ------------------------------------------------------------------
 
 @manager.command
@@ -295,6 +284,10 @@ def extract_inaugural_addresses():
 
         title = re.sub(r'\.csv', '', fn)
         year, author = re.sub(r'([0-9]$)', '', title).split('-')
+
+        # begin with Franklin D. Roosevelt's 1933 inaugural address
+        if int(year) < 1933:
+            continue
 
         doc = Doc(title=title, author=author, year=year)
         db.session.add(doc)
@@ -444,7 +437,7 @@ def login_view():
 
         if user is None or not flask_bcrypt.check_password_hash(
                 user.password,
-                request.form['password']
+                request.form['password'],
                 ):
             flash('Invalid username and/or password.')
 
@@ -459,7 +452,7 @@ def login_view():
     return render_template('entrance.html', submit='Sign In')
 
 
-@app.route('/welcome', methods=['GET', 'POST'])
+# @app.route('/welcome', methods=['GET', 'POST'])
 def welcome_view():
     if session.get('current_user'):
         return redirect(url_for('main_view'))
@@ -480,7 +473,46 @@ def welcome_view():
         except IntegrityError:
             flash('An account with this username already exists.')
 
+        except ValueError:
+            flash('Please supply both a username and password.')
+
     return render_template('entrance.html', submit='Sign Up', )
+
+
+@app.route('/update', methods=['GET', 'POST'])
+def update_view():
+    if session.get('current_user'):
+        return redirect(url_for('main_view'))
+
+    if request.method == 'POST':
+
+        try:
+            username = request.form['username']
+            user = User.query.filter_by(username=username).first()
+
+            if user is None or not flask_bcrypt.check_password_hash(
+                    user.password,
+                    request.form['password'],
+                    ):
+                flash('Invalid username and/or password.')
+
+            username = request.form['new_username']
+            password = request.form['new_password']
+
+            user.username = username
+            user.update_password(password)
+            db.session.add(user)
+            db.session.commit()
+
+            return redirect(url_for('login_view'))
+
+        except IntegrityError:
+            flash('An account with this username already exists.')
+
+        except ValueError:
+            flash('Please supply both a username and password.')
+
+    return render_template('entrance.html', submit='Update', )
 
 
 @app.route('/leave')

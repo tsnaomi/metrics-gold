@@ -21,6 +21,14 @@
             <br>
             <input type='password' name='password' placeholder='password'>
             <br>
+            {% if submit == 'Update' %}
+            <br>
+            <input type='text' name='new_username' placeholder='new username'>
+            <br>
+            <input type='password' name='new_password' placeholder='new password'>
+            <br>
+            <br>
+            {% endif %}
             <input type='submit' value='{{ submit }}'>
         </form>
         <div class='spinner hide'>

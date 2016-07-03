@@ -1,5 +1,6 @@
 *.pyc
 
 restart.sh
+start.py
 
 node/
