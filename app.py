@@ -446,9 +446,6 @@ def login_view():
             session['is_admin'] = user.is_admin
             return redirect(url_for('main_view'))
 
-    else:
-        flash('Welcome! Please sign in.')
-
     return render_template('entrance.html', submit='Sign In')
 
 
@@ -467,6 +464,8 @@ def welcome_view():
             db.session.add(user)
             db.session.commit()
             user.generate_peaks()
+
+            flash('Welcome! Please sign in.')
 
             return redirect(url_for('login_view'))
 
@@ -496,15 +495,18 @@ def update_view():
                     ):
                 flash('Invalid username and/or password.')
 
-            username = request.form['new_username']
-            password = request.form['new_password']
+            else:
+                username = request.form['new_username']
+                password = request.form['new_password']
 
-            user.username = username
-            user.update_password(password)
-            db.session.add(user)
-            db.session.commit()
+                user.username = username
+                user.update_password(password)
+                db.session.add(user)
+                db.session.commit()
 
-            return redirect(url_for('login_view'))
+                flash('Welcome! Please sign in.')
+
+                return redirect(url_for('login_view'))
 
         except IntegrityError:
             flash('An account with this username already exists.')
