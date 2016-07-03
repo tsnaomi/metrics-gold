@@ -2,6 +2,11 @@ html {
     color: #333;
 }
 
+.bullet,
+.arrow {
+    font-family: FontAwesome !important;
+}
+
 body {
     font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 16;
@@ -99,13 +104,11 @@ input[type='submit']:hover {
 }
 
 .bullet {
-    font-family: FontAwesome;
     display: inline-block;
     padding-right: 5px;
 }
 
 .arrow {
-    font-family: FontAwesome;
     font-size: 20px;
     display: inline-block;
     padding: 0 5px;
