@@ -1,32 +1,18 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html lang='en'>
-    
-    <head>
-        <meta charset='utf-8'/>
-        <title>Metric Gold</title>
-        <link rel='stylesheet' href="{{ url_for('static', filename='fonts/font-awesome/css/font-awesome.min.css') }}"/>
-        <link rel='stylesheet' href="{{ url_for('static', filename='css/style.css') }}"/>
-        {% if config.TESTING %}
-        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon-TEST.png') }}">
-        {% else %}
-        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon.png') }}">
-        <link rel='apple-touch-icon-precomposed' href="{{ url_for('static', filename='images/favicon.png') }}">
-        {% endif %}
-    </head>
+{% block title %}
+Metric Gold
+{% endblock %}
 
-    <body>
-        <div class='leave'><a href="{{ url_for('logout_view') }}">Sign Out</a></div>
-        <div class='welp'></div>
-        <div class='nav'>
-            <span class='emph'>Inaugural Addresses</span>
-        </div>
-        {% for doc in docs %}
-        <p>
-            <span class='bullet'>&#xf105;</span> 
-            <a href="{{ url_for('doc_view', title=doc.title) }}" class='{% if doc.has_annotated(session.current_user) %}annotated{% else %}unannotated{% endif %}'> {{ doc }}</a>
-        </p>
-        {% endfor %}
-    </body>
-
-</html>
+{% block body %}
+<div class='welp'></div>
+<div class='nav'>
+    <span class='emph'>Inaugural Addresses</span>
+</div>
+{% for doc in docs %}
+<p>
+    <span class='bullet'>&#xf105;</span> 
+    <a href="{{ url_for('doc_view', title=doc.title) }}" class='{% if doc.has_annotated(session.current_user) %}annotated{% else %}unannotated{% endif %}'> {{ doc }}</a>
+</p>
+{% endfor %}
+{% endblock %}

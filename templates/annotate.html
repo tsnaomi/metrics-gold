@@ -1,78 +1,67 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html lang='en'>
-    
-    <head>
-        <meta charset='utf-8'/>
-        <title>{{ doc }}: {{ sentence.index }}</title>
-        <link rel='stylesheet' href="{{ url_for('static', filename='fonts/font-awesome/css/font-awesome.min.css') }}"/>
-        <link rel='stylesheet' href="{{ url_for('static', filename='css/style.css') }}"/>
-        {% if config.TESTING %}
-        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon-TEST.png') }}">
-        {% else %}
-        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon.png') }}">
-        <link rel='apple-touch-icon-precomposed' href="{{ url_for('static', filename='images/favicon.png') }}">
-        {% endif %}
-    </head>
+{% block title %}
+{{ doc }}: {{ sentence.index }}
+{% endblock %}
 
-    <body>
-        <div class='leave'><a href="{{ url_for('logout_view') }}">Sign Out</a></div>
-        <div class='nav'>
-            <a href="{{ url_for('main_view') }}">Inaugural Addresses</a>
-            <span class='arrow'>&#xf105;</span>
-            <a href="{{ url_for('doc_view', title=doc.title) }}">{{ doc }}</a>
-            <span class='arrow'>&#xf105;</span>
-            <span class='emph'>Sentence {{ sentence.index }}</span>
-        </div>
-        <form method='POST' class='annotate'>
-            <div class='annotation-container'>
-                <table>
-                    <tr>
-                    {% for item in pb %}
-                        {% if isPeak(item) %}
-                            <td>
-                                {% if not item.p_token.punctuation %}
-                                    <fieldset class='rating'>
-                                    {% for i in range(9) %}
-                                        <input type='radio' {% if loop.last %}style='display:none;'{% endif %} id='{{ item.id }}-{{ loop.revindex0 }}'name='{{ item.id }}' value='{{ loop.revindex0 }}' {% if loop.revindex0 == item.prom or (loop.revindex0 == 0 and not item.prom) %}checked{% endif %}/>
-                                        {% if not loop.last %}
-                                             <label title='{{ loop.revindex0 }}' for='{{ item.id }}-{{ loop.revindex0 }}'></label>
-                                             <br>
-                                        {% endif %}
-                                    {% endfor %}
-                                    </fieldset>
+{% block body %}
+<div class='nav'>
+    <a href="{{ url_for('main_view') }}">Inaugural Addresses</a>
+    <span class='arrow'>&#xf105;</span>
+    <a href="{{ url_for('doc_view', title=doc.title) }}">{{ doc }}</a>
+    <span class='arrow'>&#xf105;</span>
+    <span class='emph'>Sentence {{ sentence.index }}</span>
+</div>
+<form method='POST' class='annotate'>
+    <input type='hidden' name='_csrf_token' value='{{ csrf_token() }}'>
+    <div class='annotation-container'>
+        <table>
+            <tr>
+            {% for item in pb %}
+                {% if isPeak(item) %}
+                    <td>
+                        {% if not item.p_token.punctuation %}
+                            <fieldset class='rating'>
+                            {% for i in range(9) %}
+                                <input type='radio' {% if loop.last %}style='display:none;'{% endif %} id='{{ item.id }}-{{ loop.revindex0 }}'name='{{ item.id }}' value='{{ loop.revindex0 }}' {% if loop.revindex0 == item.prom or (loop.revindex0 == 0 and not item.prom) %}checked{% endif %}/>
+                                {% if not loop.last %}
+                                     <label title='{{ loop.revindex0 }}' for='{{ item.id }}-{{ loop.revindex0 }}'></label>
+                                     <br>
                                 {% endif %}
-                                <div class='word'>{{ item.p_token.word }}</div>
-                                <!-- <br> -->
-                            </td>
-                            {% if not loop.last and not item.p_token.punctuation and loop.length != loop.index + 1 and isPeak(pb[loop.index]) %}
-                            {% set UB = item.p_token.index + 0.5 %}
-                            <td title='Utterance Break'>
-                                <input type='checkbox' name='break-{{ UB }}' value='{{ UB }}' title='Utterance Break'/> 
-                                <div class='utterance-break'>UB</div>
-                            </td>
-                            {% endif %}
-                        {% else %}
-                            <td title='Utterance Break'>
-                                <input type='checkbox' name='break-{{ item.index }}' value='{{ item.index }}' checked/>
-                                <div class='utterance-break' >UB</div>
-                            </td>
+                            {% endfor %}
+                            </fieldset>
                         {% endif %}
-                    {% endfor %}
-                    </tr>
-                </table> 
-            </div>
-            <br>
-            <br>
-            <input type='submit' value='Save!'/>
-            <br>
-            <br>
-            {% for message in get_flashed_messages() %}
-            <div class='flash'>{{ message }}</div>
+                        <div class='word'>{{ item.p_token.word }}</div>
+                    </td>
+                    {% if not loop.last and not item.p_token.punctuation and loop.length != loop.index + 1 and isPeak(pb[loop.index]) %}
+                    {% set UB = item.p_token.index + 0.5 %}
+                    <td title='Utterance Break'>
+                        <input type='checkbox' name='break-{{ UB }}' value='{{ UB }}' title='Utterance Break'/> 
+                        <div class='utterance-break'>UB</div>
+                    </td>
+                    {% endif %}
+                {% else %}
+                    <td title='Utterance Break'>
+                        <input type='checkbox' name='break-{{ item.index }}' value='{{ item.index }}' checked/>
+                        <div class='utterance-break' >UB</div>
+                    </td>
+                {% endif %}
             {% endfor %}
-        </form>
-        <script src="{{ url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/annotate.js') }}"></script>
-    </body>
+            </tr>
+        </table> 
+    </div>
+    <br>
+    <br>
+    <input type='submit' value='Save!'/>
+    <br>
+    <br>
+    {% for message in get_flashed_messages() %}
+    <div class='flash'>{{ message }}</div>
+    {% endfor %}
+</form>
+{% endblock %}
 
-</html>
+{% block footer %}
+<script src="{{ url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/annotate.js') }}"></script>
+{% endblock %}
