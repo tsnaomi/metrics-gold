@@ -44,10 +44,8 @@ flask_bcrypt = Bcrypt(app)
 # TODO:
 # - Import annotations
 # - Import audio/video
-# - Create base.html
 # - Summary pane
 # - Add .jshintrc
-# - Update Procfile
 
 
 # Models ----------------------------------------------------------------------
@@ -392,6 +390,7 @@ def annotate_view(title, index):
     if request.method == 'POST':
         # delete all breaks (break reset)
         sentence.delete_breaks(user.id)
+        print request.form
 
         for key, val in request.form.iteritems():
             try:
