@@ -390,7 +390,6 @@ def annotate_view(title, index):
     if request.method == 'POST':
         # delete all breaks (break reset)
         sentence.delete_breaks(user.id)
-        print request.form
 
         for key, val in request.form.iteritems():
             try:
@@ -401,9 +400,11 @@ def annotate_view(title, index):
                 db.session.add(peak)
 
             except ValueError:
-                # update breaks
-                br = Break(float(val), sentence.id, user.id)
-                db.session.add(br)
+
+                if key != '_csrf_token':
+                    # update breaks
+                    br = Break(float(val), sentence.id, user.id)
+                    db.session.add(br)
 
         doc.annotators[int(user.id)] = None
         db.session.add(doc)
