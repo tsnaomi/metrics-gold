@@ -7,22 +7,23 @@
 
     // deselect checked radio buttons on click
     function deselectRadio() {
+        $(':checked').addClass('selected');
+
         $(':checked').on('load', function() {
             $(this).addClass('selected');
         });
 
-        $(':checked').addClass('selected');
-
         $('input:radio').on('click', function(event) {
             var $input = $(this);
+            var thisName = $input.prop('name');
             var selector;
 
             if ($input.is('.selected')) {
                 $input.prop('checked', false).removeClass('selected');
-                selector = 'input[value="0"][name="' + $input.prop('name') + '"].theone';
-                $(selector).prop('checked', true);
+                selector = 'input[value=0][name=' + thisName + ']';
+                $(selector).prop('checked', true).addClass('selected');
             } else {
-                selector = 'input:radio[name="' + $input.prop('name') + '"].theone';
+                selector = 'input:radio[name=' + thisName + '].selected';
                 $(selector).removeClass('selected');
                 $input.addClass('selected');
             }
