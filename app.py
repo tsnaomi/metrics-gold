@@ -115,6 +115,7 @@ class Doc(db.Model):
     title = db.Column(db.String, unique=True, nullable=False)
     author = db.Column(db.String)
     year = db.Column(db.String)
+    # youtube_url = db.Column(db.String)
     annotators = db.Column(MutableDict.as_mutable(db.PickleType), default={})
 
     # many Sentences per Doc
@@ -480,12 +481,10 @@ def welcome_view():
 
 @app.route('/update', methods=['GET', 'POST'])
 def update_view():
-    if session.get('current_user'):
-        return redirect(url_for('main_view'))
-
     if request.method == 'POST':
 
         try:
+            current_user = session.get('current_user')
             username = request.form['username']
             user = User.query.filter_by(username=username).first()
 
@@ -494,6 +493,9 @@ def update_view():
                     request.form['password'],
                     ):
                 flash('Invalid username and/or password.')
+
+            elif current_user and int(current_user) != user.id:
+                flash('You do not have permission to update this account.')
 
             else:
                 username = request.form['new_username']
