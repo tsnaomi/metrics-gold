@@ -30,7 +30,15 @@
         });
     }
 
+    // track which button submitted the form
+    function trackSubmit() {
+        $('form').on('submit', function(event) {
+            $('input[name=_submit]').val($('input[type=submit]:focus').val());
+        });
+    }
+
     fadeFlash();
     deselectRadio();
+    trackSubmit();
 
 })(); 

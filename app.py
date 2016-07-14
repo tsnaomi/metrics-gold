@@ -4,6 +4,7 @@ import csv
 import os
 import re
 
+from collections import Counter
 from flask import (
     abort,
     flash,
@@ -144,6 +145,19 @@ class Doc(db.Model):
     def has_annotated(self, user_id):
         return int(user_id) in self.annotators
 
+    def annotation_status(self, user_id):
+        statuses = [s.annotation_status(user_id) for s in self.sentences]
+        statuses = Counter(statuses)
+        count = self.sentences.count()
+
+        if statuses[''] == count:
+            return ''
+
+        if statuses['annotated'] == count:
+            return 'annotated'
+
+        return 'in-progress'
+
 
 class Sentence(db.Model):
     __tablename__ = 'Sentence'
@@ -210,6 +224,14 @@ class Sentence(db.Model):
 
     def has_annotated(self, user_id):
         return int(user_id) in self.annotators
+
+    def annotation_status(self, user_id):
+        return {
+            '': '',
+            None: 'in-progress',
+            False: 'in-progress',
+            True: 'annotated',
+            }.get(self.annotators.get(int(user_id), ''))
 
 
 class Token(db.Model):
@@ -386,11 +408,11 @@ def annotate_view(title, index):
     except (DataError, NoResultFound):
         abort(404)
 
-    user = User.query.get_or_404(session['current_user'])
+    user_id = User.query.get_or_404(session['current_user']).id
 
     if request.method == 'POST':
         # delete all breaks (break reset)
-        sentence.delete_breaks(user.id)
+        sentence.delete_breaks(user_id)
 
         for key, val in request.form.iteritems():
             try:
@@ -402,22 +424,27 @@ def annotate_view(title, index):
 
             except ValueError:
 
-                if key != '_csrf_token':
+                print key, val
+
+                if key == '_submit':
+                    is_complete = sentence.annotators.get(user_id) or val == 'Complete!'  # noqa
+
+                elif key != '_csrf_token':
                     # update breaks
-                    br = Break(float(val), sentence.id, user.id)
+                    br = Break(float(val), sentence.id, user_id)
                     db.session.add(br)
 
-        doc.annotators[int(user.id)] = None
-        db.session.add(doc)
-
-        sentence.annotators[int(user.id)] = None
+        sentence.annotators[user_id] = is_complete
         db.session.add(sentence)
+
+        doc.annotators[user_id] = None
+        db.session.add(doc)
 
         db.session.commit()
 
-        flash('Saved!')
+        flash('Success!')
 
-    pb = sentence.get_peaks_and_breaks(user.id)
+    pb = sentence.get_peaks_and_breaks(user_id)
 
     return render_template(
         'annotate.html',

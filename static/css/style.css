@@ -64,6 +64,14 @@ input[type='submit']:hover {
     border-color: #C7C7C7;
 }
 
+/*input[type='submit'][value='Save!']:hover {
+    background-color: #80FFBF;
+}
+
+input[type='submit'][value='Complete!']:hover {
+    background-color: #D1EDFF;
+}*/
+
 .welp {
     height: 6px;
 }
@@ -75,6 +83,12 @@ input[type='submit']:hover {
 
 .emph {
     color: #C7C7C7;
+}
+
+.in-progress {
+    background-color: #80FFBF;
+    padding: 4px;
+    margin: -4px;
 }
 
 .annotated {

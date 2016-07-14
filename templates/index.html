@@ -12,7 +12,7 @@ Metric Gold
 {% for doc in docs %}
 <p>
     <span class='bullet'>&#xf105;</span> 
-    <a href="{{ url_for('doc_view', title=doc.title) }}" class='{% if doc.has_annotated(session.current_user) %}annotated{% else %}unannotated{% endif %}'> {{ doc }}</a>
+    <a href="{{ url_for('doc_view', title=doc.title) }}" class='{{ doc.annotation_status(session.current_user) }}'> {{ doc }}</a>
 </p>
 {% endfor %}
 {% endblock %}

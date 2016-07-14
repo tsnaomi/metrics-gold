@@ -12,7 +12,7 @@
 </div>
 {% for sentence in doc.sentences %}
 <p>
-    <a href="{{ url_for('annotate_view', title=doc.title, index=sentence.index) }}" class='{% if sentence.has_annotated(session.current_user) %}annotated{% else %}unannotated{% endif %}'>{{ sentence.sentence }}</a>
+    <a href="{{ url_for('annotate_view', title=doc.title, index=sentence.index) }}" class='{{ sentence.annotation_status(session.current_user) }}'>{{ sentence.sentence }}</a>
 </p>
 {% endfor %}
 {% endblock %}
