@@ -36,13 +36,15 @@
                     </td>
                     {% if not loop.last and not item.p_token.punctuation and loop.length != loop.index + 1 and isPeak(pb[loop.index]) %}
                     {% set UB = item.p_token.index + 0.5 %}
-                    <td title='Utterance Break'>
+                    <td class='UB-box' title='Utterance Break'>
+                        <div class='UB-indicator' style='display: none;'></div>
                         <input type='checkbox' name='break-{{ UB }}' value='{{ UB }}' title='Utterance Break'/> 
                         <div class='utterance-break'>UB</div>
                     </td>
                     {% endif %}
                 {% else %}
-                    <td title='Utterance Break'>
+                    <td class='UB-box' title='Utterance Break'>
+                        <div class='UB-indicator'></div>
                         <input type='checkbox' name='break-{{ item.index }}' value='{{ item.index }}' checked/>
                         <div class='utterance-break' >UB</div>
                     </td>
@@ -51,6 +53,10 @@
             </tr>
         </table> 
     </div>
+    <br>
+    <br>
+    <textarea placeholder='Note...' name='note'>{% if note %}{{ note.note }}{% endif %}</textarea>
+    <br>
     <br>
     <br>
     <input type='submit' value='Save!'/>

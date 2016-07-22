@@ -4,7 +4,7 @@ html {
 
 body {
     font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 16;
+    font-size: 16px;
     padding: 5% 10%;
 }
 
@@ -40,7 +40,8 @@ td {
 }
 
 table,
-input[type='submit'] {
+input[type='submit'],
+textarea {
     border: 1px solid #E0E0E0;
 }
 
@@ -59,18 +60,17 @@ input[type='submit'] {
     background-color: #fff;
 }
 
-input[type='submit']:hover {
+input[type='submit']:hover,
+textarea:focus {
     outline: none;
     border-color: #C7C7C7;
 }
 
-/*input[type='submit'][value='Save!']:hover {
-    background-color: #80FFBF;
+textarea {
+    font-size: 14px;
+    height: 80px;
+    width: 50%;
 }
-
-input[type='submit'][value='Complete!']:hover {
-    background-color: #D1EDFF;
-}*/
 
 .welp {
     height: 6px;
@@ -110,6 +110,13 @@ input[type='submit'][value='Complete!']:hover {
     color: #C7C7C7;
     letter-spacing: 1px;
     font-size: 9px;
+}
+
+.UB-indicator {
+    height: 250px;
+    width: 2px;
+    margin: auto;
+    background-color: #DDDDDD;
 }
 
 .bullet {
@@ -169,4 +176,25 @@ input[type='submit'][value='Complete!']:hover {
     top: 10px;
     right: 30px;
     position: absolute;
+}
+
+table.sentences {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+table.sentences td {
+    white-space: normal;
+    text-align: left;
+}
+
+td.index {
+    color: #C7C7C7;
+    font-size: 14px;
+    text-align: right !important;
+    vertical-align: top;
+    width: 40px;
+    padding-top: 6px;
+    padding-right: 20px;
 }

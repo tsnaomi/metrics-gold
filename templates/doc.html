@@ -10,9 +10,21 @@
     <span class='arrow'>&#xf105;</span>
     <span class='emph'>{{ doc }}</span>
 </div>
-{% for sentence in doc.sentences %}
-<p>
-    <a href="{{ url_for('annotate_view', title=doc.title, index=sentence.index) }}" class='{{ sentence.annotation_status(session.current_user) }}'>{{ sentence.sentence }}</a>
-</p>
-{% endfor %}
+<table class='sentences'>
+    {% for sentence in doc.sentences %}
+    <tr>
+        <td class='index'> 
+            <span class='index'>{{ sentence.index }}</span>
+        </td>
+        <td>
+            <a href="{{ url_for('annotate_view', title=doc.title, index=sentence.index) }}" class='{{ sentence.annotation_status(session.current_user) }}'>{{ sentence.sentence }}</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+{% block footer %}
+<script src="{{ url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/doc.js') }}"></script>
 {% endblock %}

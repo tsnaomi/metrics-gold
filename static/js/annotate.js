@@ -13,7 +13,7 @@
             $(this).addClass('selected');
         });
 
-        $('input:radio').on('click', function(event) {
+        $('input:radio').on('click', function() {
             var $input = $(this);
             var thisName = $input.prop('name');
             var selector;
@@ -32,13 +32,31 @@
 
     // track which button submitted the form
     function trackSubmit() {
-        $('form').on('submit', function(event) {
+        $('form').on('submit', function() {
             $('input[name=_submit]').val($('input[type=submit]:focus').val());
+        });
+    }
+
+    // enhance the appearance of utterance breaks
+    function enhanceUB() {
+        var $box = $('.UB-box');
+
+        $box.on('click', function() {
+            var $checkbox = $(this).find('input[type=checkbox]');
+            var $indicator = $(this).find('.UB-indicator');
+
+
+            if ($checkbox.prop('checked')) {
+                $indicator.css('display', '');
+            } else {
+                $indicator.css('display', 'none');
+            }
         });
     }
 
     fadeFlash();
     deselectRadio();
     trackSubmit();
+    enhanceUB();
 
 })(); 

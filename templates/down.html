@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+    
+    <head>
+        <meta charset='utf-8'/>
+        <title>Metric Maintenance</title>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/style.css') }}"/>
+        {% if config.TESTING %}
+        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon-TEST.png') }}">
+        {% else %}
+        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon.png') }}">
+        <link rel='apple-touch-icon-precomposed' href="{{ url_for('static', filename='images/favicon.png') }}">
+        {% endif %}
+    </head>
+
+    <body>
+        Metric Gold is currently under maintenance. Check back after 6AM!
+        <br>
+        <br>
+        - Naomi
+    </body>
+
+</html>
