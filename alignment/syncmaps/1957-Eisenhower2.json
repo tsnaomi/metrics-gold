@@ -1,0 +1,1214 @@
+{
+ "fragments": [
+  {
+   "begin": "0.000", 
+   "children": [], 
+   "end": "19.440", 
+   "id": "f000001", 
+   "language": "eng", 
+   "lines": [
+    "Mr. Chairman , Mr. Vice President , Mr. Chief Justice , Mr. Speaker , members of my family and friends , my countrymen , and the friends of my country wherever they may be :"
+   ]
+  }, 
+  {
+   "begin": "19.440", 
+   "children": [], 
+   "end": "31.560", 
+   "id": "f000002", 
+   "language": "eng", 
+   "lines": [
+    "We meet again , as upon a like moment four years ago , and again you have witnessed my solemn oath of service to you ."
+   ]
+  }, 
+  {
+   "begin": "31.560", 
+   "children": [], 
+   "end": "44.520", 
+   "id": "f000003", 
+   "language": "eng", 
+   "lines": [
+    "I , too , am a witness , today testifying in your name to the principles and purposes to which we , as a people , are pledged ."
+   ]
+  }, 
+  {
+   "begin": "44.520", 
+   "children": [], 
+   "end": "53.440", 
+   "id": "f000004", 
+   "language": "eng", 
+   "lines": [
+    "Before all else , we seek , upon our common labor as a nation , the blessings of Almighty God ."
+   ]
+  }, 
+  {
+   "begin": "53.440", 
+   "children": [], 
+   "end": "60.760", 
+   "id": "f000005", 
+   "language": "eng", 
+   "lines": [
+    "And the hopes in our hearts fashion the deepest prayers of our whole people ."
+   ]
+  }, 
+  {
+   "begin": "60.760", 
+   "children": [], 
+   "end": "62.920", 
+   "id": "f000006", 
+   "language": "eng", 
+   "lines": [
+    "May we pursue the right --"
+   ]
+  }, 
+  {
+   "begin": "62.920", 
+   "children": [], 
+   "end": "65.440", 
+   "id": "f000007", 
+   "language": "eng", 
+   "lines": [
+    "without self-righteousness ."
+   ]
+  }, 
+  {
+   "begin": "65.440", 
+   "children": [], 
+   "end": "67.480", 
+   "id": "f000008", 
+   "language": "eng", 
+   "lines": [
+    "May we know unity --"
+   ]
+  }, 
+  {
+   "begin": "67.480", 
+   "children": [], 
+   "end": "69.960", 
+   "id": "f000009", 
+   "language": "eng", 
+   "lines": [
+    "without conformity ."
+   ]
+  }, 
+  {
+   "begin": "69.960", 
+   "children": [], 
+   "end": "72.360", 
+   "id": "f000010", 
+   "language": "eng", 
+   "lines": [
+    "May we grow in strength --"
+   ]
+  }, 
+  {
+   "begin": "72.360", 
+   "children": [], 
+   "end": "75.240", 
+   "id": "f000011", 
+   "language": "eng", 
+   "lines": [
+    "without pride in self ."
+   ]
+  }, 
+  {
+   "begin": "75.240", 
+   "children": [], 
+   "end": "83.960", 
+   "id": "f000012", 
+   "language": "eng", 
+   "lines": [
+    "May we , in our dealings with all peoples of the earth , ever speak truth and serve justice ."
+   ]
+  }, 
+  {
+   "begin": "83.960", 
+   "children": [], 
+   "end": "85.840", 
+   "id": "f000013", 
+   "language": "eng", 
+   "lines": [
+    "And so shall America --"
+   ]
+  }, 
+  {
+   "begin": "85.840", 
+   "children": [], 
+   "end": "98.720", 
+   "id": "f000014", 
+   "language": "eng", 
+   "lines": [
+    "in the sight of all men of good will-prove true to the honorable purposes that bind and rule us as a people in all this time of trial through which we pass ."
+   ]
+  }, 
+  {
+   "begin": "98.720", 
+   "children": [], 
+   "end": "106.560", 
+   "id": "f000015", 
+   "language": "eng", 
+   "lines": [
+    "We live in a land of plenty , but rarely has this earth known such peril as today ."
+   ]
+  }, 
+  {
+   "begin": "106.560", 
+   "children": [], 
+   "end": "109.880", 
+   "id": "f000016", 
+   "language": "eng", 
+   "lines": [
+    "In our nation work and wealth abound ."
+   ]
+  }, 
+  {
+   "begin": "109.880", 
+   "children": [], 
+   "end": "112.240", 
+   "id": "f000017", 
+   "language": "eng", 
+   "lines": [
+    "Our population grows ."
+   ]
+  }, 
+  {
+   "begin": "112.240", 
+   "children": [], 
+   "end": "118.680", 
+   "id": "f000018", 
+   "language": "eng", 
+   "lines": [
+    "Commerce crowds our rivers and rails , our skies , harbors and highways ."
+   ]
+  }, 
+  {
+   "begin": "118.680", 
+   "children": [], 
+   "end": "124.120", 
+   "id": "f000019", 
+   "language": "eng", 
+   "lines": [
+    "Our soil is fertile , our agriculture productive ."
+   ]
+  }, 
+  {
+   "begin": "124.120", 
+   "children": [], 
+   "end": "127.120", 
+   "id": "f000020", 
+   "language": "eng", 
+   "lines": [
+    "The air rings with the song of our industry --"
+   ]
+  }, 
+  {
+   "begin": "127.120", 
+   "children": [], 
+   "end": "132.560", 
+   "id": "f000021", 
+   "language": "eng", 
+   "lines": [
+    "rolling mills and blast furnaces , dynamos , dams and assembly lines --"
+   ]
+  }, 
+  {
+   "begin": "132.560", 
+   "children": [], 
+   "end": "136.760", 
+   "id": "f000022", 
+   "language": "eng", 
+   "lines": [
+    "the chorus of America the bountiful ."
+   ]
+  }, 
+  {
+   "begin": "136.760", 
+   "children": [], 
+   "end": "138.800", 
+   "id": "f000023", 
+   "language": "eng", 
+   "lines": [
+    "Now this is our home --"
+   ]
+  }, 
+  {
+   "begin": "138.800", 
+   "children": [], 
+   "end": "142.440", 
+   "id": "f000024", 
+   "language": "eng", 
+   "lines": [
+    "yet this is not the whole of our world ."
+   ]
+  }, 
+  {
+   "begin": "142.440", 
+   "children": [], 
+   "end": "145.800", 
+   "id": "f000025", 
+   "language": "eng", 
+   "lines": [
+    "For our world is where our full destiny lies --"
+   ]
+  }, 
+  {
+   "begin": "145.800", 
+   "children": [], 
+   "end": "151.880", 
+   "id": "f000026", 
+   "language": "eng", 
+   "lines": [
+    "with men , of all peoples and all nations , who are or would be free ."
+   ]
+  }, 
+  {
+   "begin": "151.880", 
+   "children": [], 
+   "end": "153.280", 
+   "id": "f000027", 
+   "language": "eng", 
+   "lines": [
+    "And for them --"
+   ]
+  }, 
+  {
+   "begin": "153.280", 
+   "children": [], 
+   "end": "155.120", 
+   "id": "f000028", 
+   "language": "eng", 
+   "lines": [
+    "and so for us --"
+   ]
+  }, 
+  {
+   "begin": "155.120", 
+   "children": [], 
+   "end": "159.400", 
+   "id": "f000029", 
+   "language": "eng", 
+   "lines": [
+    "this is no time of ease or of rest ."
+   ]
+  }, 
+  {
+   "begin": "159.400", 
+   "children": [], 
+   "end": "164.800", 
+   "id": "f000030", 
+   "language": "eng", 
+   "lines": [
+    "In too much of the earth there is want , discord , danger ."
+   ]
+  }, 
+  {
+   "begin": "164.800", 
+   "children": [], 
+   "end": "177.360", 
+   "id": "f000031", 
+   "language": "eng", 
+   "lines": [
+    "New forces and new nations stir and strive across the earth , with power to bring , by their fate , great good or great evil to the free world 's future ."
+   ]
+  }, 
+  {
+   "begin": "177.360", 
+   "children": [], 
+   "end": "188.320", 
+   "id": "f000032", 
+   "language": "eng", 
+   "lines": [
+    "From the deserts of North Africa to the islands of the South Pacific one third of all mankind has entered upon an historic struggle for a new freedom :"
+   ]
+  }, 
+  {
+   "begin": "188.320", 
+   "children": [], 
+   "end": "191.480", 
+   "id": "f000033", 
+   "language": "eng", 
+   "lines": [
+    "freedom from grinding poverty ."
+   ]
+  }, 
+  {
+   "begin": "191.480", 
+   "children": [], 
+   "end": "210.800", 
+   "id": "f000034", 
+   "language": "eng", 
+   "lines": [
+    "Across all continents , nearly a billion people seek , sometimes almost in desperation , for the skills and knowledge and assistance by which they may satisfy from their own resources , the material wants common to all mankind ."
+   ]
+  }, 
+  {
+   "begin": "210.800", 
+   "children": [], 
+   "end": "217.880", 
+   "id": "f000035", 
+   "language": "eng", 
+   "lines": [
+    "No nation , however old or great , escapes this tempest of change and turmoil ."
+   ]
+  }, 
+  {
+   "begin": "217.880", 
+   "children": [], 
+   "end": "225.320", 
+   "id": "f000036", 
+   "language": "eng", 
+   "lines": [
+    "Some , impoverished by the recent World War , seek to restore their means of livelihood ."
+   ]
+  }, 
+  {
+   "begin": "225.320", 
+   "children": [], 
+   "end": "230.000", 
+   "id": "f000037", 
+   "language": "eng", 
+   "lines": [
+    "In the heart of Europe , Germany still stands tragically divided ."
+   ]
+  }, 
+  {
+   "begin": "230.000", 
+   "children": [], 
+   "end": "232.720", 
+   "id": "f000038", 
+   "language": "eng", 
+   "lines": [
+    "So is the whole continent divided ."
+   ]
+  }, 
+  {
+   "begin": "232.720", 
+   "children": [], 
+   "end": "236.560", 
+   "id": "f000039", 
+   "language": "eng", 
+   "lines": [
+    "And so , too , all the world ."
+   ]
+  }, 
+  {
+   "begin": "236.560", 
+   "children": [], 
+   "end": "243.080", 
+   "id": "f000040", 
+   "language": "eng", 
+   "lines": [
+    "The divisive force is International Communism and the power that it controls ."
+   ]
+  }, 
+  {
+   "begin": "243.080", 
+   "children": [], 
+   "end": "249.720", 
+   "id": "f000041", 
+   "language": "eng", 
+   "lines": [
+    "The designs of that power , dark in purpose , are clear in practice ."
+   ]
+  }, 
+  {
+   "begin": "249.720", 
+   "children": [], 
+   "end": "255.360", 
+   "id": "f000042", 
+   "language": "eng", 
+   "lines": [
+    "It strives to seal forever the fate of those it has enslaved ."
+   ]
+  }, 
+  {
+   "begin": "255.360", 
+   "children": [], 
+   "end": "259.040", 
+   "id": "f000043", 
+   "language": "eng", 
+   "lines": [
+    "It strives to break the ties that unite the free ."
+   ]
+  }, 
+  {
+   "begin": "259.040", 
+   "children": [], 
+   "end": "261.200", 
+   "id": "f000044", 
+   "language": "eng", 
+   "lines": [
+    "And it strives to capture --"
+   ]
+  }, 
+  {
+   "begin": "261.200", 
+   "children": [], 
+   "end": "263.880", 
+   "id": "f000045", 
+   "language": "eng", 
+   "lines": [
+    "to exploit for its own greater power --"
+   ]
+  }, 
+  {
+   "begin": "263.880", 
+   "children": [], 
+   "end": "271.720", 
+   "id": "f000046", 
+   "language": "eng", 
+   "lines": [
+    "all forces of change in the world , especially the needs of the hungry and the hopes of the oppressed ."
+   ]
+  }, 
+  {
+   "begin": "271.720", 
+   "children": [], 
+   "end": "279.520", 
+   "id": "f000047", 
+   "language": "eng", 
+   "lines": [
+    "Yet the world of International Communism has itself been shaken by a fierce and mighty force :"
+   ]
+  }, 
+  {
+   "begin": "279.520", 
+   "children": [], 
+   "end": "285.720", 
+   "id": "f000048", 
+   "language": "eng", 
+   "lines": [
+    "the readiness of men who love freedom to pledge their lives to that love ."
+   ]
+  }, 
+  {
+   "begin": "285.720", 
+   "children": [], 
+   "end": "293.880", 
+   "id": "f000049", 
+   "language": "eng", 
+   "lines": [
+    "Through the night of their bondage , the unconquerable will of heroes has struck with the swift , sharp thrust of lightning ."
+   ]
+  }, 
+  {
+   "begin": "293.880", 
+   "children": [], 
+   "end": "297.720", 
+   "id": "f000050", 
+   "language": "eng", 
+   "lines": [
+    "Budapest is no longer merely the name of a city ;"
+   ]
+  }, 
+  {
+   "begin": "297.720", 
+   "children": [], 
+   "end": "312.920", 
+   "id": "f000051", 
+   "language": "eng", 
+   "lines": [
+    "henceforth it is a new and shining symbol of man 's yearning to be free ."
+   ]
+  }, 
+  {
+   "begin": "312.920", 
+   "children": [], 
+   "end": "318.200", 
+   "id": "f000052", 
+   "language": "eng", 
+   "lines": [
+    "Thus across all the globe there harshly blow the winds of change ."
+   ]
+  }, 
+  {
+   "begin": "318.200", 
+   "children": [], 
+   "end": "319.600", 
+   "id": "f000053", 
+   "language": "eng", 
+   "lines": [
+    "And , we --"
+   ]
+  }, 
+  {
+   "begin": "319.600", 
+   "children": [], 
+   "end": "321.800", 
+   "id": "f000054", 
+   "language": "eng", 
+   "lines": [
+    "though fortunate be our lot --"
+   ]
+  }, 
+  {
+   "begin": "321.800", 
+   "children": [], 
+   "end": "325.520", 
+   "id": "f000055", 
+   "language": "eng", 
+   "lines": [
+    "know that we can never turn our backs to them ."
+   ]
+  }, 
+  {
+   "begin": "325.520", 
+   "children": [], 
+   "end": "330.560", 
+   "id": "f000056", 
+   "language": "eng", 
+   "lines": [
+    "We look upon this shaken earth , and we declare our firm and fixed purpose --"
+   ]
+  }, 
+  {
+   "begin": "330.560", 
+   "children": [], 
+   "end": "336.400", 
+   "id": "f000057", 
+   "language": "eng", 
+   "lines": [
+    "the building of a peace with justice in a world where moral law prevails ."
+   ]
+  }, 
+  {
+   "begin": "336.400", 
+   "children": [], 
+   "end": "341.440", 
+   "id": "f000058", 
+   "language": "eng", 
+   "lines": [
+    "The building of such a peace is a bold and solemn purpose ."
+   ]
+  }, 
+  {
+   "begin": "341.440", 
+   "children": [], 
+   "end": "344.480", 
+   "id": "f000059", 
+   "language": "eng", 
+   "lines": [
+    "To proclaim it is easy ."
+   ]
+  }, 
+  {
+   "begin": "344.480", 
+   "children": [], 
+   "end": "347.040", 
+   "id": "f000060", 
+   "language": "eng", 
+   "lines": [
+    "To serve it will be hard ."
+   ]
+  }, 
+  {
+   "begin": "347.040", 
+   "children": [], 
+   "end": "350.600", 
+   "id": "f000061", 
+   "language": "eng", 
+   "lines": [
+    "And to attain it , we must be aware of its full meaning --"
+   ]
+  }, 
+  {
+   "begin": "350.600", 
+   "children": [], 
+   "end": "354.720", 
+   "id": "f000062", 
+   "language": "eng", 
+   "lines": [
+    "and ready to pay its full price ."
+   ]
+  }, 
+  {
+   "begin": "354.720", 
+   "children": [], 
+   "end": "358.920", 
+   "id": "f000063", 
+   "language": "eng", 
+   "lines": [
+    "We know clearly what we seek , and why ."
+   ]
+  }, 
+  {
+   "begin": "358.920", 
+   "children": [], 
+   "end": "364.840", 
+   "id": "f000064", 
+   "language": "eng", 
+   "lines": [
+    "We seek peace , knowing that peace is the climate of freedom ."
+   ]
+  }, 
+  {
+   "begin": "364.840", 
+   "children": [], 
+   "end": "381.160", 
+   "id": "f000065", 
+   "language": "eng", 
+   "lines": [
+    "And now , as in no other age , we seek it because we have been warned , by the power of modern weapons , that peace may be the only climate possible for human life itself ."
+   ]
+  }, 
+  {
+   "begin": "381.160", 
+   "children": [], 
+   "end": "385.920", 
+   "id": "f000066", 
+   "language": "eng", 
+   "lines": [
+    "Yet this peace we seek can not be born of fear alone :"
+   ]
+  }, 
+  {
+   "begin": "385.920", 
+   "children": [], 
+   "end": "389.680", 
+   "id": "f000067", 
+   "language": "eng", 
+   "lines": [
+    "it must be rooted in the lives of nations ."
+   ]
+  }, 
+  {
+   "begin": "389.680", 
+   "children": [], 
+   "end": "400.200", 
+   "id": "f000068", 
+   "language": "eng", 
+   "lines": [
+    "There must be justice , sensed and shared by all peoples , for , without justice the world can know only a tense and unstable truce ."
+   ]
+  }, 
+  {
+   "begin": "400.200", 
+   "children": [], 
+   "end": "414.960", 
+   "id": "f000069", 
+   "language": "eng", 
+   "lines": [
+    "There must be law , steadily invoked and respected by all nations , for without law , the world promises only such meager justice as the pity of the strong upon the weak ."
+   ]
+  }, 
+  {
+   "begin": "414.960", 
+   "children": [], 
+   "end": "426.240", 
+   "id": "f000070", 
+   "language": "eng", 
+   "lines": [
+    "But the law of which we speak , comprehending the values of freedom , affirms the equality of all nations , great and small ."
+   ]
+  }, 
+  {
+   "begin": "426.240", 
+   "children": [], 
+   "end": "430.720", 
+   "id": "f000071", 
+   "language": "eng", 
+   "lines": [
+    "Splendid as can be the blessings of such a peace , high will be its cost :"
+   ]
+  }, 
+  {
+   "begin": "430.720", 
+   "children": [], 
+   "end": "439.760", 
+   "id": "f000072", 
+   "language": "eng", 
+   "lines": [
+    "in toil patiently sustained , in help honorably given , in sacrifice calmly borne ."
+   ]
+  }, 
+  {
+   "begin": "439.760", 
+   "children": [], 
+   "end": "442.800", 
+   "id": "f000073", 
+   "language": "eng", 
+   "lines": [
+    "We are called to meet the price of this peace ."
+   ]
+  }, 
+  {
+   "begin": "442.800", 
+   "children": [], 
+   "end": "455.800", 
+   "id": "f000074", 
+   "language": "eng", 
+   "lines": [
+    "To counter the threat of those who seek to rule by force , we must pay the costs of our own needed military strength , and help to build the security of others ."
+   ]
+  }, 
+  {
+   "begin": "455.800", 
+   "children": [], 
+   "end": "468.240", 
+   "id": "f000075", 
+   "language": "eng", 
+   "lines": [
+    "We must use our skills and knowledge and , at times , our substance , to help others rise from misery , however far the scene of suffering may be from our shores ."
+   ]
+  }, 
+  {
+   "begin": "468.240", 
+   "children": [], 
+   "end": "485.440", 
+   "id": "f000076", 
+   "language": "eng", 
+   "lines": [
+    "For wherever in the world a people knows desperate want , there must appear at least the spark of hope , the hope of progress or there will surely rise at last the flames of conflict ."
+   ]
+  }, 
+  {
+   "begin": "485.440", 
+   "children": [], 
+   "end": "491.600", 
+   "id": "f000077", 
+   "language": "eng", 
+   "lines": [
+    "We recognize and accept our own deep involvement in the destiny of men everywhere ."
+   ]
+  }, 
+  {
+   "begin": "491.600", 
+   "children": [], 
+   "end": "498.680", 
+   "id": "f000078", 
+   "language": "eng", 
+   "lines": [
+    "We are accordingly pledged to honor , and to strive to fortify , the authority of the United Nations ."
+   ]
+  }, 
+  {
+   "begin": "498.680", 
+   "children": [], 
+   "end": "508.520", 
+   "id": "f000079", 
+   "language": "eng", 
+   "lines": [
+    "For in that body rests the best hope of our age for the assertion of that law by which all nations may live in dignity ."
+   ]
+  }, 
+  {
+   "begin": "508.520", 
+   "children": [], 
+   "end": "517.240", 
+   "id": "f000080", 
+   "language": "eng", 
+   "lines": [
+    "And beyond this general resolve , we are called to act a responsible role in the world 's great concerns or conflicts --"
+   ]
+  }, 
+  {
+   "begin": "517.240", 
+   "children": [], 
+   "end": "526.920", 
+   "id": "f000081", 
+   "language": "eng", 
+   "lines": [
+    "whether they touch upon the affairs of a vast region , the fate of an island in the Pacific , or the use of a canal in the Middle East ."
+   ]
+  }, 
+  {
+   "begin": "526.920", 
+   "children": [], 
+   "end": "534.360", 
+   "id": "f000082", 
+   "language": "eng", 
+   "lines": [
+    "Only in respecting the hopes and cultures of others will we practice the equality of all nations ."
+   ]
+  }, 
+  {
+   "begin": "534.360", 
+   "children": [], 
+   "end": "539.960", 
+   "id": "f000083", 
+   "language": "eng", 
+   "lines": [
+    "Only as we show willingness and wisdom in giving counsel in receiving counsel --"
+   ]
+  }, 
+  {
+   "begin": "539.960", 
+   "children": [], 
+   "end": "545.040", 
+   "id": "f000084", 
+   "language": "eng", 
+   "lines": [
+    "and in sharing burdens , will we wisely perform the work of peace ."
+   ]
+  }, 
+  {
+   "begin": "545.040", 
+   "children": [], 
+   "end": "548.960", 
+   "id": "f000085", 
+   "language": "eng", 
+   "lines": [
+    "For one truth must rule all we think and all we do ."
+   ]
+  }, 
+  {
+   "begin": "548.960", 
+   "children": [], 
+   "end": "552.360", 
+   "id": "f000086", 
+   "language": "eng", 
+   "lines": [
+    "No people can live to itself alone ."
+   ]
+  }, 
+  {
+   "begin": "552.360", 
+   "children": [], 
+   "end": "560.560", 
+   "id": "f000087", 
+   "language": "eng", 
+   "lines": [
+    "The unity of all who dwell in freedom is their only sure defense ."
+   ]
+  }, 
+  {
+   "begin": "560.560", 
+   "children": [], 
+   "end": "564.920", 
+   "id": "f000088", 
+   "language": "eng", 
+   "lines": [
+    "The economic need of all nations-in mutual dependence --"
+   ]
+  }, 
+  {
+   "begin": "564.920", 
+   "children": [], 
+   "end": "567.640", 
+   "id": "f000089", 
+   "language": "eng", 
+   "lines": [
+    "makes isolation an impossibility :"
+   ]
+  }, 
+  {
+   "begin": "567.640", 
+   "children": [], 
+   "end": "575.120", 
+   "id": "f000090", 
+   "language": "eng", 
+   "lines": [
+    "not even America 's prosperity could long survive if other nations did not also prosper ."
+   ]
+  }, 
+  {
+   "begin": "575.120", 
+   "children": [], 
+   "end": "580.760", 
+   "id": "f000091", 
+   "language": "eng", 
+   "lines": [
+    "No nation can longer be a fortress , lone and strong and safe ."
+   ]
+  }, 
+  {
+   "begin": "580.760", 
+   "children": [], 
+   "end": "590.720", 
+   "id": "f000092", 
+   "language": "eng", 
+   "lines": [
+    "And any people , seeking such shelter for themselves , can now build only their own prison ."
+   ]
+  }, 
+  {
+   "begin": "590.720", 
+   "children": [], 
+   "end": "596.760", 
+   "id": "f000093", 
+   "language": "eng", 
+   "lines": [
+    "Our pledge to these principles is constant , because we believe in their rightness ."
+   ]
+  }, 
+  {
+   "begin": "596.760", 
+   "children": [], 
+   "end": "599.440", 
+   "id": "f000094", 
+   "language": "eng", 
+   "lines": [
+    "We do not fear this world of change ."
+   ]
+  }, 
+  {
+   "begin": "599.440", 
+   "children": [], 
+   "end": "603.440", 
+   "id": "f000095", 
+   "language": "eng", 
+   "lines": [
+    "America is no stranger to much of its spirit ."
+   ]
+  }, 
+  {
+   "begin": "603.440", 
+   "children": [], 
+   "end": "609.360", 
+   "id": "f000096", 
+   "language": "eng", 
+   "lines": [
+    "Everywhere we see the seeds of the same growth that America itself has known ."
+   ]
+  }, 
+  {
+   "begin": "609.360", 
+   "children": [], 
+   "end": "620.200", 
+   "id": "f000097", 
+   "language": "eng", 
+   "lines": [
+    "The American experiment has , for generations , fired the passion and the courage of millions elsewhere seeking freedom , equality , opportunity ."
+   ]
+  }, 
+  {
+   "begin": "620.200", 
+   "children": [], 
+   "end": "630.080", 
+   "id": "f000098", 
+   "language": "eng", 
+   "lines": [
+    "And the American story of material progress has helped excite the longing of all needy peoples for some satisfaction of their human wants ."
+   ]
+  }, 
+  {
+   "begin": "630.080", 
+   "children": [], 
+   "end": "637.840", 
+   "id": "f000099", 
+   "language": "eng", 
+   "lines": [
+    "These hopes that we have helped to inspire , we can help to fulfill ."
+   ]
+  }, 
+  {
+   "begin": "637.840", 
+   "children": [], 
+   "end": "643.160", 
+   "id": "f000100", 
+   "language": "eng", 
+   "lines": [
+    "In this confidence , we speak plainly to all peoples ."
+   ]
+  }, 
+  {
+   "begin": "643.160", 
+   "children": [], 
+   "end": "648.120", 
+   "id": "f000101", 
+   "language": "eng", 
+   "lines": [
+    "We cherish our friendship with all nations that are or would be free ."
+   ]
+  }, 
+  {
+   "begin": "648.120", 
+   "children": [], 
+   "end": "652.400", 
+   "id": "f000102", 
+   "language": "eng", 
+   "lines": [
+    "We respect , no less , their independence ."
+   ]
+  }, 
+  {
+   "begin": "652.400", 
+   "children": [], 
+   "end": "659.360", 
+   "id": "f000103", 
+   "language": "eng", 
+   "lines": [
+    "And when , in time of want or peril , they ask our help , they may honorably receive it ;"
+   ]
+  }, 
+  {
+   "begin": "659.360", 
+   "children": [], 
+   "end": "665.400", 
+   "id": "f000104", 
+   "language": "eng", 
+   "lines": [
+    "for we no more seek to buy their sovereignty than we would sell our own ."
+   ]
+  }, 
+  {
+   "begin": "665.400", 
+   "children": [], 
+   "end": "676.960", 
+   "id": "f000105", 
+   "language": "eng", 
+   "lines": [
+    "Sovereignty is never bartered among free"
+   ]
+  }, 
+  {
+   "begin": "676.960", 
+   "children": [], 
+   "end": "683.240", 
+   "id": "f000106", 
+   "language": "eng", 
+   "lines": [
+    "We honor the aspirations of those nations which , now captive , long for freedom ."
+   ]
+  }, 
+  {
+   "begin": "683.240", 
+   "children": [], 
+   "end": "690.160", 
+   "id": "f000107", 
+   "language": "eng", 
+   "lines": [
+    "We seek neither their military alliance nor any artificial imitation of our society ."
+   ]
+  }, 
+  {
+   "begin": "690.160", 
+   "children": [], 
+   "end": "699.280", 
+   "id": "f000108", 
+   "language": "eng", 
+   "lines": [
+    "And they can know the warmth of the welcome that awaits them when , as must be , they join again the ranks of freedom ."
+   ]
+  }, 
+  {
+   "begin": "699.280", 
+   "children": [], 
+   "end": "707.320", 
+   "id": "f000109", 
+   "language": "eng", 
+   "lines": [
+    "We honor , no less in this divided world than in a less tormented time , the people of Russia ."
+   ]
+  }, 
+  {
+   "begin": "707.320", 
+   "children": [], 
+   "end": "714.920", 
+   "id": "f000110", 
+   "language": "eng", 
+   "lines": [
+    "We do not dread , rather do we welcome , their progress in education and industry ."
+   ]
+  }, 
+  {
+   "begin": "714.920", 
+   "children": [], 
+   "end": "726.400", 
+   "id": "f000111", 
+   "language": "eng", 
+   "lines": [
+    "We wish them success in their demands for more intellectual freedom , greater security before their own laws , fuller enjoyment of the rewards of their own toil ."
+   ]
+  }, 
+  {
+   "begin": "726.400", 
+   "children": [], 
+   "end": "736.880", 
+   "id": "f000112", 
+   "language": "eng", 
+   "lines": [
+    "For as such things come to pass , the more certain will be the coming of that day when our peoples may freely meet in friendship ."
+   ]
+  }, 
+  {
+   "begin": "736.880", 
+   "children": [], 
+   "end": "743.240", 
+   "id": "f000113", 
+   "language": "eng", 
+   "lines": [
+    "So we voice our hope and our belief that we can help to heal this divided world ."
+   ]
+  }, 
+  {
+   "begin": "743.240", 
+   "children": [], 
+   "end": "748.880", 
+   "id": "f000114", 
+   "language": "eng", 
+   "lines": [
+    "Thus may the nations cease to live in trembling before the menace of force ."
+   ]
+  }, 
+  {
+   "begin": "748.880", 
+   "children": [], 
+   "end": "757.120", 
+   "id": "f000115", 
+   "language": "eng", 
+   "lines": [
+    "Thus may the weight of fear and the weight of arms be taken from the burdened shoulders of mankind ."
+   ]
+  }, 
+  {
+   "begin": "757.120", 
+   "children": [], 
+   "end": "764.480", 
+   "id": "f000116", 
+   "language": "eng", 
+   "lines": [
+    "This , nothing less , is the labor to which we are called and our strength dedicated ."
+   ]
+  }, 
+  {
+   "begin": "764.480", 
+   "children": [], 
+   "end": "774.400", 
+   "id": "f000117", 
+   "language": "eng", 
+   "lines": [
+    "And so the prayer of our people carries far beyond our own frontiers , to the wide world of our duty and our destiny ."
+   ]
+  }, 
+  {
+   "begin": "774.400", 
+   "children": [], 
+   "end": "778.920", 
+   "id": "f000118", 
+   "language": "eng", 
+   "lines": [
+    "May the light of freedom , coming to all darkened lands , flame brightly --"
+   ]
+  }, 
+  {
+   "begin": "778.920", 
+   "children": [], 
+   "end": "782.720", 
+   "id": "f000119", 
+   "language": "eng", 
+   "lines": [
+    "until at last the darkness is no more ."
+   ]
+  }, 
+  {
+   "begin": "782.720", 
+   "children": [], 
+   "end": "796.760", 
+   "id": "f000120", 
+   "language": "eng", 
+   "lines": [
+    "May the turbulence of our age yield to a true time of peace , when men and nations shall share a life that honors the dignity of each , the brotherhood of all ."
+   ]
+  }, 
+  {
+   "begin": "796.760", 
+   "children": [], 
+   "end": "800.120", 
+   "id": "f000121", 
+   "language": "eng", 
+   "lines": [
+    "Thank you very much ."
+   ]
+  }
+ ]
+}

@@ -97,6 +97,10 @@ textarea {
     margin: -4px;
 }
 
+.video {
+    margin: -10px auto 40px;
+}
+
 .annotation-container {
     width: 100%;
     overflow: scroll;

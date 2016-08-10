@@ -1,0 +1,864 @@
+{
+ "fragments": [
+  {
+   "begin": "0.000", 
+   "children": [], 
+   "end": "18.800", 
+   "id": "f000001", 
+   "language": "eng", 
+   "lines": [
+    "I , RICHARD NIXON , do solemnly swear that I will faithfully execute the Office of President of the United States , and will to the best of my ability , preserve , protect and defend the Constitution of the United States , so help me God ."
+   ]
+  }, 
+  {
+   "begin": "18.800", 
+   "children": [], 
+   "end": "32.480", 
+   "id": "f000002", 
+   "language": "eng", 
+   "lines": [
+    "Mr. Vice President , Mr. Speaker , Mr. Chief Justice , Senator Cook , Mrs. Eisenhower , and my fellow citizens of this great and good country we share together :"
+   ]
+  }, 
+  {
+   "begin": "32.480", 
+   "children": [], 
+   "end": "46.040", 
+   "id": "f000003", 
+   "language": "eng", 
+   "lines": [
+    "When we met here 4 years ago , America was bleak in spirit , depressed by the prospect of seemingly endless war abroad and of destructive conflict at home ."
+   ]
+  }, 
+  {
+   "begin": "46.040", 
+   "children": [], 
+   "end": "54.880", 
+   "id": "f000004", 
+   "language": "eng", 
+   "lines": [
+    "As we meet here today , we stand on the threshold of a new era of peace in the world ."
+   ]
+  }, 
+  {
+   "begin": "54.880", 
+   "children": [], 
+   "end": "66.760", 
+   "id": "f000005", 
+   "language": "eng", 
+   "lines": [
+    "The central question before us is :"
+   ]
+  }, 
+  {
+   "begin": "66.760", 
+   "children": [], 
+   "end": "69.840", 
+   "id": "f000006", 
+   "language": "eng", 
+   "lines": [
+    "How shall we use that peace ?"
+   ]
+  }, 
+  {
+   "begin": "69.840", 
+   "children": [], 
+   "end": "77.960", 
+   "id": "f000007", 
+   "language": "eng", 
+   "lines": [
+    "Let us resolve that this era we are about to enter will not be what other postwar periods have so often been :"
+   ]
+  }, 
+  {
+   "begin": "77.960", 
+   "children": [], 
+   "end": "85.040", 
+   "id": "f000008", 
+   "language": "eng", 
+   "lines": [
+    "a time of retreat and isolation that leads to stagnation at home and invites new danger abroad ."
+   ]
+  }, 
+  {
+   "begin": "85.040", 
+   "children": [], 
+   "end": "91.120", 
+   "id": "f000009", 
+   "language": "eng", 
+   "lines": [
+    "Let us resolve that this will be what it can become :"
+   ]
+  }, 
+  {
+   "begin": "91.120", 
+   "children": [], 
+   "end": "105.000", 
+   "id": "f000010", 
+   "language": "eng", 
+   "lines": [
+    "a time of great responsibilities greatly borne , in which we renew the spirit and the promise of America as we enter our third century as a nation ."
+   ]
+  }, 
+  {
+   "begin": "105.000", 
+   "children": [], 
+   "end": "110.240", 
+   "id": "f000011", 
+   "language": "eng", 
+   "lines": [
+    "This past year saw far-reaching results from our new policies for peace ."
+   ]
+  }, 
+  {
+   "begin": "110.240", 
+   "children": [], 
+   "end": "125.840", 
+   "id": "f000012", 
+   "language": "eng", 
+   "lines": [
+    "By continuing to revitalize our traditional friendships , and by our missions to Peking and to Moscow , we were able to establish the base for a new and more durable pattern of relationships among the nations of the world ."
+   ]
+  }, 
+  {
+   "begin": "125.840", 
+   "children": [], 
+   "end": "141.240", 
+   "id": "f000013", 
+   "language": "eng", 
+   "lines": [
+    "Because of America 's bold initiatives , 1972 will be long remembered as the year of the greatest progress since the end of World War II toward a lasting peace in the world ."
+   ]
+  }, 
+  {
+   "begin": "141.240", 
+   "children": [], 
+   "end": "160.640", 
+   "id": "f000014", 
+   "language": "eng", 
+   "lines": [
+    "The peace we seek in the world is not the flimsy peace which is merely an interlude between wars , but a peace which can endure for generations to come ."
+   ]
+  }, 
+  {
+   "begin": "160.640", 
+   "children": [], 
+   "end": "172.320", 
+   "id": "f000015", 
+   "language": "eng", 
+   "lines": [
+    "It is important that we understand both the necessity and the limitations of America 's role in maintaining that peace ."
+   ]
+  }, 
+  {
+   "begin": "172.320", 
+   "children": [], 
+   "end": "179.240", 
+   "id": "f000016", 
+   "language": "eng", 
+   "lines": [
+    "Unless we in America work to preserve the peace , there will be no peace ."
+   ]
+  }, 
+  {
+   "begin": "179.240", 
+   "children": [], 
+   "end": "186.880", 
+   "id": "f000017", 
+   "language": "eng", 
+   "lines": [
+    "Unless we in America work to preserve freedom , there will be no freedom ."
+   ]
+  }, 
+  {
+   "begin": "186.880", 
+   "children": [], 
+   "end": "196.200", 
+   "id": "f000018", 
+   "language": "eng", 
+   "lines": [
+    "But let us clearly understand the new nature of America 's role , as a result of the new policies we have adopted over these past 4 years ."
+   ]
+  }, 
+  {
+   "begin": "196.200", 
+   "children": [], 
+   "end": "199.120", 
+   "id": "f000019", 
+   "language": "eng", 
+   "lines": [
+    "We shall respect our treaty commitments ."
+   ]
+  }, 
+  {
+   "begin": "199.120", 
+   "children": [], 
+   "end": "209.200", 
+   "id": "f000020", 
+   "language": "eng", 
+   "lines": [
+    "We shall support vigorously the principle that no country has the right to impose its will or rule on another by force ."
+   ]
+  }, 
+  {
+   "begin": "209.200", 
+   "children": [], 
+   "end": "221.000", 
+   "id": "f000021", 
+   "language": "eng", 
+   "lines": [
+    "We shall continue , in this era of negotiation , to work for the limitation of nuclear arms and to reduce the danger of confrontation between the great powers ."
+   ]
+  }, 
+  {
+   "begin": "221.000", 
+   "children": [], 
+   "end": "227.400", 
+   "id": "f000022", 
+   "language": "eng", 
+   "lines": [
+    "We shall do our share in defending peace and freedom in the world ."
+   ]
+  }, 
+  {
+   "begin": "227.400", 
+   "children": [], 
+   "end": "232.920", 
+   "id": "f000023", 
+   "language": "eng", 
+   "lines": [
+    "But we shall expect others to do their share ."
+   ]
+  }, 
+  {
+   "begin": "232.920", 
+   "children": [], 
+   "end": "256.440", 
+   "id": "f000024", 
+   "language": "eng", 
+   "lines": [
+    "The time has passed when America will make every other nation 's conflict our own , or make every other nation 's future our responsibility , or presume to tell the people of other nations how to manage their own affairs ."
+   ]
+  }, 
+  {
+   "begin": "256.440", 
+   "children": [], 
+   "end": "268.120", 
+   "id": "f000025", 
+   "language": "eng", 
+   "lines": [
+    "Just as we respect the right of each nation to determine its own future , we also recognize the responsibility of each nation to secure its own future ."
+   ]
+  }, 
+  {
+   "begin": "268.120", 
+   "children": [], 
+   "end": "278.280", 
+   "id": "f000026", 
+   "language": "eng", 
+   "lines": [
+    "Just as America 's role is indispensable in preserving the world 's peace , so is each nation 's role indispensable in preserving its own peace ."
+   ]
+  }, 
+  {
+   "begin": "278.280", 
+   "children": [], 
+   "end": "287.920", 
+   "id": "f000027", 
+   "language": "eng", 
+   "lines": [
+    "Together with the rest of the world , let us resolve to move forward from the beginnings we have made ."
+   ]
+  }, 
+  {
+   "begin": "287.920", 
+   "children": [], 
+   "end": "302.200", 
+   "id": "f000028", 
+   "language": "eng", 
+   "lines": [
+    "Let us continue to bring down the walls of hostility which have divided the world for too long , and to build in their place bridges of understanding --"
+   ]
+  }, 
+  {
+   "begin": "302.200", 
+   "children": [], 
+   "end": "309.640", 
+   "id": "f000029", 
+   "language": "eng", 
+   "lines": [
+    "so that despite profound differences between systems of government , the people of the world can be friends ."
+   ]
+  }, 
+  {
+   "begin": "309.640", 
+   "children": [], 
+   "end": "340.840", 
+   "id": "f000030", 
+   "language": "eng", 
+   "lines": [
+    "Let us build a structure of peace in the world in which the weak are as safe as the strong , in which each respects the right of the other to live by a different system , in which those who would influence others will do so by the strength of their ideas and not by the force of their arms ."
+   ]
+  }, 
+  {
+   "begin": "340.840", 
+   "children": [], 
+   "end": "347.520", 
+   "id": "f000031", 
+   "language": "eng", 
+   "lines": [
+    "Let us accept that high responsibility not as a burden , but gladly --"
+   ]
+  }, 
+  {
+   "begin": "347.520", 
+   "children": [], 
+   "end": "356.960", 
+   "id": "f000032", 
+   "language": "eng", 
+   "lines": [
+    "gladly because the chance to build such a peace is the noblest endeavor in which a nation can engage ;"
+   ]
+  }, 
+  {
+   "begin": "356.960", 
+   "children": [], 
+   "end": "379.840", 
+   "id": "f000033", 
+   "language": "eng", 
+   "lines": [
+    "gladly also because only if we act greatly in meeting our responsibilities abroad will we remain a great nation , and only if we remain a great nation will we act greatly in meeting our challenges at home ."
+   ]
+  }, 
+  {
+   "begin": "379.840", 
+   "children": [], 
+   "end": "389.320", 
+   "id": "f000034", 
+   "language": "eng", 
+   "lines": [
+    "We have the chance today to do more than ever before in our history to make life better in America --"
+   ]
+  }, 
+  {
+   "begin": "389.320", 
+   "children": [], 
+   "end": "405.640", 
+   "id": "f000035", 
+   "language": "eng", 
+   "lines": [
+    "to ensure better education , better health , better housing , better transportation , a cleaner environment-to restore respect for law , to make our communities more livable --"
+   ]
+  }, 
+  {
+   "begin": "405.640", 
+   "children": [], 
+   "end": "413.320", 
+   "id": "f000036", 
+   "language": "eng", 
+   "lines": [
+    "and to ensure the God-given right of every American to full and equal opportunity ."
+   ]
+  }, 
+  {
+   "begin": "413.320", 
+   "children": [], 
+   "end": "436.320", 
+   "id": "f000037", 
+   "language": "eng", 
+   "lines": [
+    "Because the range of our needs is so great , because the reach of our opportunities is so great , let us be bold in our determination to meet those needs in new ways ."
+   ]
+  }, 
+  {
+   "begin": "436.320", 
+   "children": [], 
+   "end": "454.640", 
+   "id": "f000038", 
+   "language": "eng", 
+   "lines": [
+    "Just as building a structure of peace abroad has required turning away from old policies that have failed , so building a new era of progress at home requires turning away from old policies that have failed ."
+   ]
+  }, 
+  {
+   "begin": "454.640", 
+   "children": [], 
+   "end": "463.960", 
+   "id": "f000039", 
+   "language": "eng", 
+   "lines": [
+    "Abroad , the shift from old policies to new has not been a retreat from our responsibilities , but a better way to peace ."
+   ]
+  }, 
+  {
+   "begin": "463.960", 
+   "children": [], 
+   "end": "475.000", 
+   "id": "f000040", 
+   "language": "eng", 
+   "lines": [
+    "And at home , the shift from old policies to new will not be a retreat from our responsibilities , but a better way to progress ."
+   ]
+  }, 
+  {
+   "begin": "475.000", 
+   "children": [], 
+   "end": "487.080", 
+   "id": "f000041", 
+   "language": "eng", 
+   "lines": [
+    "Abroad and at home , the key to those new responsibilities lies in the placing and the division of responsibility ."
+   ]
+  }, 
+  {
+   "begin": "487.080", 
+   "children": [], 
+   "end": "497.880", 
+   "id": "f000042", 
+   "language": "eng", 
+   "lines": [
+    "We have lived too long with the consequences of attempting to gather all power and responsibility in Washington ."
+   ]
+  }, 
+  {
+   "begin": "497.880", 
+   "children": [], 
+   "end": "508.000", 
+   "id": "f000043", 
+   "language": "eng", 
+   "lines": [
+    "Abroad and at home , the time has come to turn away from the condescending policies of paternalism --"
+   ]
+  }, 
+  {
+   "begin": "508.000", 
+   "children": [], 
+   "end": "511.480", 
+   "id": "f000044", 
+   "language": "eng", 
+   "lines": [
+    "of `` Washington knows best . ''"
+   ]
+  }, 
+  {
+   "begin": "511.480", 
+   "children": [], 
+   "end": "527.640", 
+   "id": "f000045", 
+   "language": "eng", 
+   "lines": [
+    "A person can be expected to act responsibly only if he has responsibility ."
+   ]
+  }, 
+  {
+   "begin": "527.640", 
+   "children": [], 
+   "end": "529.920", 
+   "id": "f000046", 
+   "language": "eng", 
+   "lines": [
+    "This is human nature ."
+   ]
+  }, 
+  {
+   "begin": "529.920", 
+   "children": [], 
+   "end": "539.680", 
+   "id": "f000047", 
+   "language": "eng", 
+   "lines": [
+    "So let us encourage individuals at home and nations abroad to do more for themselves , to decide more for themselves ."
+   ]
+  }, 
+  {
+   "begin": "539.680", 
+   "children": [], 
+   "end": "545.840", 
+   "id": "f000048", 
+   "language": "eng", 
+   "lines": [
+    "Let us locate responsibility in more places ."
+   ]
+  }, 
+  {
+   "begin": "545.840", 
+   "children": [], 
+   "end": "553.680", 
+   "id": "f000049", 
+   "language": "eng", 
+   "lines": [
+    "And let us measure what we will do for others by what they will do for themselves ."
+   ]
+  }, 
+  {
+   "begin": "553.680", 
+   "children": [], 
+   "end": "565.360", 
+   "id": "f000050", 
+   "language": "eng", 
+   "lines": [
+    "That is why today I offer no promise of a purely governmental solution for every problem ."
+   ]
+  }, 
+  {
+   "begin": "565.360", 
+   "children": [], 
+   "end": "569.120", 
+   "id": "f000051", 
+   "language": "eng", 
+   "lines": [
+    "We have lived too long with that false promise ."
+   ]
+  }, 
+  {
+   "begin": "569.120", 
+   "children": [], 
+   "end": "575.160", 
+   "id": "f000052", 
+   "language": "eng", 
+   "lines": [
+    "In trusting too much in government , we have asked of it more than it can deliver ."
+   ]
+  }, 
+  {
+   "begin": "575.160", 
+   "children": [], 
+   "end": "591.680", 
+   "id": "f000053", 
+   "language": "eng", 
+   "lines": [
+    "This leads only to inflated expectations , to reduced individual effort , and to a disappointment and frustration that erode confidence both in what government can do and in what people can do ."
+   ]
+  }, 
+  {
+   "begin": "591.680", 
+   "children": [], 
+   "end": "599.720", 
+   "id": "f000054", 
+   "language": "eng", 
+   "lines": [
+    "Government must learn to take less from people so that people can do more for themselves ."
+   ]
+  }, 
+  {
+   "begin": "599.720", 
+   "children": [], 
+   "end": "611.960", 
+   "id": "f000055", 
+   "language": "eng", 
+   "lines": [
+    "Let us remember that America was built not by government , but by people ;"
+   ]
+  }, 
+  {
+   "begin": "611.960", 
+   "children": [], 
+   "end": "614.440", 
+   "id": "f000056", 
+   "language": "eng", 
+   "lines": [
+    "not by welfare , but by work ;"
+   ]
+  }, 
+  {
+   "begin": "614.440", 
+   "children": [], 
+   "end": "618.240", 
+   "id": "f000057", 
+   "language": "eng", 
+   "lines": [
+    "not by shirking responsibility , but by seeking responsibility ."
+   ]
+  }, 
+  {
+   "begin": "618.240", 
+   "children": [], 
+   "end": "635.320", 
+   "id": "f000058", 
+   "language": "eng", 
+   "lines": [
+    "In our own lives , let each of us ask-not just what will government do for me , but what can I do for myself ?"
+   ]
+  }, 
+  {
+   "begin": "635.320", 
+   "children": [], 
+   "end": "638.960", 
+   "id": "f000059", 
+   "language": "eng", 
+   "lines": [
+    "In the challenges we face together , let each of us ask --"
+   ]
+  }, 
+  {
+   "begin": "638.960", 
+   "children": [], 
+   "end": "644.680", 
+   "id": "f000060", 
+   "language": "eng", 
+   "lines": [
+    "not just how can government help , but how can I help ?"
+   ]
+  }, 
+  {
+   "begin": "644.680", 
+   "children": [], 
+   "end": "649.400", 
+   "id": "f000061", 
+   "language": "eng", 
+   "lines": [
+    "Your National Government has a great and vital role to play ."
+   ]
+  }, 
+  {
+   "begin": "649.400", 
+   "children": [], 
+   "end": "658.040", 
+   "id": "f000062", 
+   "language": "eng", 
+   "lines": [
+    "And I pledge to you that where this Government should act , we will act boldly and we will lead boldly ."
+   ]
+  }, 
+  {
+   "begin": "658.040", 
+   "children": [], 
+   "end": "672.080", 
+   "id": "f000063", 
+   "language": "eng", 
+   "lines": [
+    "But just as important is the role that each and every one of us must play , as an individual and as a member of his own community ."
+   ]
+  }, 
+  {
+   "begin": "672.080", 
+   "children": [], 
+   "end": "680.520", 
+   "id": "f000064", 
+   "language": "eng", 
+   "lines": [
+    "From this day forward , let each of us make a solemn commitment in his own heart :"
+   ]
+  }, 
+  {
+   "begin": "680.520", 
+   "children": [], 
+   "end": "687.400", 
+   "id": "f000065", 
+   "language": "eng", 
+   "lines": [
+    "to bear his responsibility , to do his part , to live his ideals --"
+   ]
+  }, 
+  {
+   "begin": "687.400", 
+   "children": [], 
+   "end": "707.040", 
+   "id": "f000066", 
+   "language": "eng", 
+   "lines": [
+    "so that together we can see the dawn of a new age of progress for America , and together , as we celebrate our 200th anniversary as a nation , we can do so proud in the fulfillment of our promise to ourselves and to the world ."
+   ]
+  }, 
+  {
+   "begin": "707.040", 
+   "children": [], 
+   "end": "717.200", 
+   "id": "f000067", 
+   "language": "eng", 
+   "lines": [
+    "As America 's longest and most difficult war comes to an end , let us again learn to debate our differences with civility and decency ."
+   ]
+  }, 
+  {
+   "begin": "717.200", 
+   "children": [], 
+   "end": "732.640", 
+   "id": "f000068", 
+   "language": "eng", 
+   "lines": [
+    "And let each of us reach out for that one precious quality government can not provide --"
+   ]
+  }, 
+  {
+   "begin": "732.640", 
+   "children": [], 
+   "end": "744.440", 
+   "id": "f000069", 
+   "language": "eng", 
+   "lines": [
+    "a new level of respect for the rights and feelings of one another , a new level of respect for the individual human dignity which is the cherished birthright of every American ."
+   ]
+  }, 
+  {
+   "begin": "744.440", 
+   "children": [], 
+   "end": "757.840", 
+   "id": "f000070", 
+   "language": "eng", 
+   "lines": [
+    "Above all else , the time has come for us to renew our faith in ourselves and in America ."
+   ]
+  }, 
+  {
+   "begin": "757.840", 
+   "children": [], 
+   "end": "764.080", 
+   "id": "f000071", 
+   "language": "eng", 
+   "lines": [
+    "In recent years , that faith has been challenged ."
+   ]
+  }, 
+  {
+   "begin": "764.080", 
+   "children": [], 
+   "end": "778.560", 
+   "id": "f000072", 
+   "language": "eng", 
+   "lines": [
+    "Our children have been taught to be ashamed of their country , ashamed of their parents , ashamed of America 's record at home and its role in the world ."
+   ]
+  }, 
+  {
+   "begin": "778.560", 
+   "children": [], 
+   "end": "785.040", 
+   "id": "f000073", 
+   "language": "eng", 
+   "lines": [
+    "At every turn we have been beset by those who find everything wrong with America and little that is right ."
+   ]
+  }, 
+  {
+   "begin": "785.040", 
+   "children": [], 
+   "end": "793.760", 
+   "id": "f000074", 
+   "language": "eng", 
+   "lines": [
+    "But I am confident that this will not be the judgment of history on these remarkable times in which we are privileged to live ."
+   ]
+  }, 
+  {
+   "begin": "793.760", 
+   "children": [], 
+   "end": "811.680", 
+   "id": "f000075", 
+   "language": "eng", 
+   "lines": [
+    "America 's record in this century has been unparalleled in the world 's h!story for its responsibility , for its generosity , for its creativity , and for its progress ."
+   ]
+  }, 
+  {
+   "begin": "811.680", 
+   "children": [], 
+   "end": "822.880", 
+   "id": "f000076", 
+   "language": "eng", 
+   "lines": [
+    "Let us be proud that our system has produced and provided more freedom and more abundance , more widely shared , than any system in the history of the world ."
+   ]
+  }, 
+  {
+   "begin": "822.880", 
+   "children": [], 
+   "end": "838.800", 
+   "id": "f000077", 
+   "language": "eng", 
+   "lines": [
+    "Let us be proud that in each of the four wars in which we have been engaged in this century , including the one we are now bringing to an end , we have fought not for our selfish advantage , but to help others resist aggression ."
+   ]
+  }, 
+  {
+   "begin": "838.800", 
+   "children": [], 
+   "end": "860.560", 
+   "id": "f000078", 
+   "language": "eng", 
+   "lines": [
+    "And let us be proud that by our bold , new initiatives , by our steadfastness for peace with honor , we have made a breakthrough toward creating in the world what the world has not known before --"
+   ]
+  }, 
+  {
+   "begin": "860.560", 
+   "children": [], 
+   "end": "869.560", 
+   "id": "f000079", 
+   "language": "eng", 
+   "lines": [
+    "a structure of peace that can last , not merely for our time , but for generations to come ."
+   ]
+  }, 
+  {
+   "begin": "869.560", 
+   "children": [], 
+   "end": "881.720", 
+   "id": "f000080", 
+   "language": "eng", 
+   "lines": [
+    "We are embarking here today on an era that presents challenges as great as those any nation , or any generation , has ever faced ."
+   ]
+  }, 
+  {
+   "begin": "881.720", 
+   "children": [], 
+   "end": "895.920", 
+   "id": "f000081", 
+   "language": "eng", 
+   "lines": [
+    "We shall answer to God , to history , and to our conscience for the way in which we use these years ."
+   ]
+  }, 
+  {
+   "begin": "895.920", 
+   "children": [], 
+   "end": "907.320", 
+   "id": "f000082", 
+   "language": "eng", 
+   "lines": [
+    "As I stand in this place , so hallowed by history , I think of others who have stood here before me ."
+   ]
+  }, 
+  {
+   "begin": "907.320", 
+   "children": [], 
+   "end": "926.560", 
+   "id": "f000083", 
+   "language": "eng", 
+   "lines": [
+    "I think of the dreams they had for America and I think of how each recognized that he needed help far beyond himself in order to make those dreams come true ."
+   ]
+  }, 
+  {
+   "begin": "926.560", 
+   "children": [], 
+   "end": "943.560", 
+   "id": "f000084", 
+   "language": "eng", 
+   "lines": [
+    "Today I ask your prayers that in the years ahead I may have God 's help in making decisions that are right for America , and I pray for your help so that together we may be worthy of our challenge ."
+   ]
+  }, 
+  {
+   "begin": "943.560", 
+   "children": [], 
+   "end": "963.040", 
+   "id": "f000085", 
+   "language": "eng", 
+   "lines": [
+    "Let us pledge together to make these next 4 years the best 4 years in America 's history , so that on its 200th birthday America will be as young and as vital as when it began , and as bright a beacon of hope for all the world ."
+   ]
+  }, 
+  {
+   "begin": "963.040", 
+   "children": [], 
+   "end": "1002.200", 
+   "id": "f000086", 
+   "language": "eng", 
+   "lines": [
+    "Let us go forward from here confident in hope , strong in our faith in one another , sustained by our faith in God who created us , and striving always to serve His purpose ."
+   ]
+  }
+ ]
+}

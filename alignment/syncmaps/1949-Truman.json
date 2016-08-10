@@ -1,0 +1,1284 @@
+{
+ "fragments": [
+  {
+   "begin": "0.000", 
+   "children": [], 
+   "end": "3.880", 
+   "id": "f000001", 
+   "language": "eng", 
+   "lines": [
+    "Mr. Vice President , Mr. Chief Justice , fellow citizens :"
+   ]
+  }, 
+  {
+   "begin": "3.880", 
+   "children": [], 
+   "end": "8.840", 
+   "id": "f000002", 
+   "language": "eng", 
+   "lines": [
+    "I accept with humility the honor which the American people have conferred upon me ."
+   ]
+  }, 
+  {
+   "begin": "8.840", 
+   "children": [], 
+   "end": "18.520", 
+   "id": "f000003", 
+   "language": "eng", 
+   "lines": [
+    "I accept it with a resolve to do all that I can for the welfare of this Nation and for the peace of the world ."
+   ]
+  }, 
+  {
+   "begin": "18.520", 
+   "children": [], 
+   "end": "28.360", 
+   "id": "f000004", 
+   "language": "eng", 
+   "lines": [
+    "In performing the duties of my office , I need the help and the prayers of every one of you ."
+   ]
+  }, 
+  {
+   "begin": "28.360", 
+   "children": [], 
+   "end": "34.600", 
+   "id": "f000005", 
+   "language": "eng", 
+   "lines": [
+    "I ask for your encouragement and for your support ."
+   ]
+  }, 
+  {
+   "begin": "34.600", 
+   "children": [], 
+   "end": "38.480", 
+   "id": "f000006", 
+   "language": "eng", 
+   "lines": [
+    "The tasks we face are difficult ."
+   ]
+  }, 
+  {
+   "begin": "38.480", 
+   "children": [], 
+   "end": "43.680", 
+   "id": "f000007", 
+   "language": "eng", 
+   "lines": [
+    "We can accomplish them only if we work together ."
+   ]
+  }, 
+  {
+   "begin": "43.680", 
+   "children": [], 
+   "end": "49.160", 
+   "id": "f000008", 
+   "language": "eng", 
+   "lines": [
+    "Each period of our national history has had its special challenges ."
+   ]
+  }, 
+  {
+   "begin": "49.160", 
+   "children": [], 
+   "end": "55.440", 
+   "id": "f000009", 
+   "language": "eng", 
+   "lines": [
+    "Those that confront us now are as momentous as any in the past ."
+   ]
+  }, 
+  {
+   "begin": "55.440", 
+   "children": [], 
+   "end": "68.240", 
+   "id": "f000010", 
+   "language": "eng", 
+   "lines": [
+    "Today marks the beginning not only of a new administration , but of a period that will be eventful , perhaps decisive , for us and for the world ."
+   ]
+  }, 
+  {
+   "begin": "68.240", 
+   "children": [], 
+   "end": "77.640", 
+   "id": "f000011", 
+   "language": "eng", 
+   "lines": [
+    "It may be our lot to experience , and in a large measure bring about , a major turning point in the long history of the human race ."
+   ]
+  }, 
+  {
+   "begin": "77.640", 
+   "children": [], 
+   "end": "91.840", 
+   "id": "f000012", 
+   "language": "eng", 
+   "lines": [
+    "The first half of this century has been marked by unprecedented and brutal attacks on the rights of man , and by the two most frightful wars in history ."
+   ]
+  }, 
+  {
+   "begin": "91.840", 
+   "children": [], 
+   "end": "102.440", 
+   "id": "f000013", 
+   "language": "eng", 
+   "lines": [
+    "The supreme need of our time is for men to learn to live together in peace and harmony ."
+   ]
+  }, 
+  {
+   "begin": "102.440", 
+   "children": [], 
+   "end": "114.720", 
+   "id": "f000014", 
+   "language": "eng", 
+   "lines": [
+    "The peoples of the earth face the future with grave uncertainty , composed almost equally of great hopes and great fears ."
+   ]
+  }, 
+  {
+   "begin": "114.720", 
+   "children": [], 
+   "end": "127.880", 
+   "id": "f000015", 
+   "language": "eng", 
+   "lines": [
+    "In this time of doubt , they look to the United States as never before for good will , strength , and wise leadership ."
+   ]
+  }, 
+  {
+   "begin": "127.880", 
+   "children": [], 
+   "end": "143.320", 
+   "id": "f000016", 
+   "language": "eng", 
+   "lines": [
+    "It is fitting , therefore , that we take this occasion to proclaim to the world the essential principles of the faith by which we live , and to declare our aims to all peoples ."
+   ]
+  }, 
+  {
+   "begin": "143.320", 
+   "children": [], 
+   "end": "149.720", 
+   "id": "f000017", 
+   "language": "eng", 
+   "lines": [
+    "The American people stand firm in the faith which has inspired this Nation from the beginning ."
+   ]
+  }, 
+  {
+   "begin": "149.720", 
+   "children": [], 
+   "end": "165.680", 
+   "id": "f000018", 
+   "language": "eng", 
+   "lines": [
+    "We believe that all men have a right to equal justice under law and equal opportunity to share in the common good ."
+   ]
+  }, 
+  {
+   "begin": "165.680", 
+   "children": [], 
+   "end": "171.840", 
+   "id": "f000019", 
+   "language": "eng", 
+   "lines": [
+    "We believe that all men have a right to freedom of thought and expression ."
+   ]
+  }, 
+  {
+   "begin": "171.840", 
+   "children": [], 
+   "end": "182.600", 
+   "id": "f000020", 
+   "language": "eng", 
+   "lines": [
+    "We believe that all men are created equal because they are created in the image of God ."
+   ]
+  }, 
+  {
+   "begin": "182.600", 
+   "children": [], 
+   "end": "188.520", 
+   "id": "f000021", 
+   "language": "eng", 
+   "lines": [
+    "From this faith we will not be moved ."
+   ]
+  }, 
+  {
+   "begin": "188.520", 
+   "children": [], 
+   "end": "204.480", 
+   "id": "f000022", 
+   "language": "eng", 
+   "lines": [
+    "The American people desire , and are determined to work for , a world in which all nations and all peoples are free to govern themselves as they see fit , and to achieve a decent and satisfying life ."
+   ]
+  }, 
+  {
+   "begin": "204.480", 
+   "children": [], 
+   "end": "211.720", 
+   "id": "f000023", 
+   "language": "eng", 
+   "lines": [
+    "Above all else , our people desire , and are determined to work for , peace on earth --"
+   ]
+  }, 
+  {
+   "begin": "211.720", 
+   "children": [], 
+   "end": "214.120", 
+   "id": "f000024", 
+   "language": "eng", 
+   "lines": [
+    "a just and lasting peace --"
+   ]
+  }, 
+  {
+   "begin": "214.120", 
+   "children": [], 
+   "end": "219.520", 
+   "id": "f000025", 
+   "language": "eng", 
+   "lines": [
+    "based on genuine agreement freely arrived at by equals ."
+   ]
+  }, 
+  {
+   "begin": "219.520", 
+   "children": [], 
+   "end": "239.200", 
+   "id": "f000026", 
+   "language": "eng", 
+   "lines": [
+    "In the pursuit of these aims , the United States and other like-minded nations find themselves directly opposed by a regime with contrary aims and a totally different concept of life ."
+   ]
+  }, 
+  {
+   "begin": "239.200", 
+   "children": [], 
+   "end": "251.560", 
+   "id": "f000027", 
+   "language": "eng", 
+   "lines": [
+    "That regime adheres to a false philosophy which purports to offer freedom , security , and greater opportunity to mankind ."
+   ]
+  }, 
+  {
+   "begin": "251.560", 
+   "children": [], 
+   "end": "266.680", 
+   "id": "f000028", 
+   "language": "eng", 
+   "lines": [
+    "Misled by that philosophy , many peoples have sacrificed their liberties only to learn to their sorrow that deceit and mockery , poverty and tyranny , are their reward ."
+   ]
+  }, 
+  {
+   "begin": "266.680", 
+   "children": [], 
+   "end": "271.360", 
+   "id": "f000029", 
+   "language": "eng", 
+   "lines": [
+    "That false philosophy is communism ."
+   ]
+  }, 
+  {
+   "begin": "271.360", 
+   "children": [], 
+   "end": "284.200", 
+   "id": "f000030", 
+   "language": "eng", 
+   "lines": [
+    "Communism is based on the belief that man is so weak and inadequate that he is unable to govern himself , and therefore requires the rule of strong masters ."
+   ]
+  }, 
+  {
+   "begin": "284.200", 
+   "children": [], 
+   "end": "297.640", 
+   "id": "f000031", 
+   "language": "eng", 
+   "lines": [
+    "Democracy is based on the conviction that man has the moral and intellectual capacity , as well as the inalienable right , to govern himself with reason and justice ."
+   ]
+  }, 
+  {
+   "begin": "297.640", 
+   "children": [], 
+   "end": "318.760", 
+   "id": "f000032", 
+   "language": "eng", 
+   "lines": [
+    "Communism subjects the individual to arrest without lawful cause , punishment without trial , and forced labor as the chattel of the state ."
+   ]
+  }, 
+  {
+   "begin": "318.760", 
+   "children": [], 
+   "end": "331.720", 
+   "id": "f000033", 
+   "language": "eng", 
+   "lines": [
+    "It decrees what information he shall receive , what art he shall produce , what leaders he shall follow , and what thoughts he shall think ."
+   ]
+  }, 
+  {
+   "begin": "331.720", 
+   "children": [], 
+   "end": "347.160", 
+   "id": "f000034", 
+   "language": "eng", 
+   "lines": [
+    "Democracy maintains that government is established for the benefit of the individual , and is charged with the responsibility of protecting the rights of the individual and his freedom in the exercise of those abilities of his ."
+   ]
+  }, 
+  {
+   "begin": "347.160", 
+   "children": [], 
+   "end": "358.760", 
+   "id": "f000035", 
+   "language": "eng", 
+   "lines": [
+    "Communism maintains that social wrongs can be corrected only by violence ."
+   ]
+  }, 
+  {
+   "begin": "358.760", 
+   "children": [], 
+   "end": "366.080", 
+   "id": "f000036", 
+   "language": "eng", 
+   "lines": [
+    "Democracy has proved that social justice can be achieved through peaceful change ."
+   ]
+  }, 
+  {
+   "begin": "366.080", 
+   "children": [], 
+   "end": "374.640", 
+   "id": "f000037", 
+   "language": "eng", 
+   "lines": [
+    "Communism holds that the world is so widely divided into opposing classes that war is inevitable ."
+   ]
+  }, 
+  {
+   "begin": "374.640", 
+   "children": [], 
+   "end": "381.880", 
+   "id": "f000038", 
+   "language": "eng", 
+   "lines": [
+    "Democracy holds that free nations can settle differences justly and maintain a lasting peace ."
+   ]
+  }, 
+  {
+   "begin": "381.880", 
+   "children": [], 
+   "end": "391.200", 
+   "id": "f000039", 
+   "language": "eng", 
+   "lines": [
+    "These differences between communism and democracy do not concern the United States alone ."
+   ]
+  }, 
+  {
+   "begin": "391.200", 
+   "children": [], 
+   "end": "403.600", 
+   "id": "f000040", 
+   "language": "eng", 
+   "lines": [
+    "People everywhere are coming to realize that what is involved is material well-being , human dignity , and the right to believe in and worship God ."
+   ]
+  }, 
+  {
+   "begin": "403.600", 
+   "children": [], 
+   "end": "421.000", 
+   "id": "f000041", 
+   "language": "eng", 
+   "lines": [
+    "I state these differences , not to draw issues of belief as such , but because the actions resulting from the Communist philosophy are a threat to the efforts of free nations to bring about world recovery and lasting peace ."
+   ]
+  }, 
+  {
+   "begin": "421.000", 
+   "children": [], 
+   "end": "431.720", 
+   "id": "f000042", 
+   "language": "eng", 
+   "lines": [
+    "Since the end of hostilities , the United States has invested its substance and its energy in a great constructive effort to restore peace , stability , and freedom to the world ."
+   ]
+  }, 
+  {
+   "begin": "431.720", 
+   "children": [], 
+   "end": "438.640", 
+   "id": "f000043", 
+   "language": "eng", 
+   "lines": [
+    "We have sought no territory ."
+   ]
+  }, 
+  {
+   "begin": "438.640", 
+   "children": [], 
+   "end": "441.760", 
+   "id": "f000044", 
+   "language": "eng", 
+   "lines": [
+    "We have imposed our will on none ."
+   ]
+  }, 
+  {
+   "begin": "441.760", 
+   "children": [], 
+   "end": "446.240", 
+   "id": "f000045", 
+   "language": "eng", 
+   "lines": [
+    "We have asked for no privileges we would not extend to others ."
+   ]
+  }, 
+  {
+   "begin": "446.240", 
+   "children": [], 
+   "end": "457.680", 
+   "id": "f000046", 
+   "language": "eng", 
+   "lines": [
+    "We have constantly and vigorously supported the United Nations and related agencies as a means of applying democratic principles to international relations ."
+   ]
+  }, 
+  {
+   "begin": "457.680", 
+   "children": [], 
+   "end": "465.520", 
+   "id": "f000047", 
+   "language": "eng", 
+   "lines": [
+    "We have consistently advocated and relied upon peaceful settlement of disputes among nations ."
+   ]
+  }, 
+  {
+   "begin": "465.520", 
+   "children": [], 
+   "end": "481.280", 
+   "id": "f000048", 
+   "language": "eng", 
+   "lines": [
+    "We have made every effort to secure agreement on effective international control of our most powerful weapon , and we have worked steadily for the limitation and control of all armaments ."
+   ]
+  }, 
+  {
+   "begin": "481.280", 
+   "children": [], 
+   "end": "491.880", 
+   "id": "f000049", 
+   "language": "eng", 
+   "lines": [
+    "We have encouraged , by precept and example , the expansion of world trade on a sound and fair basis ."
+   ]
+  }, 
+  {
+   "begin": "491.880", 
+   "children": [], 
+   "end": "501.640", 
+   "id": "f000050", 
+   "language": "eng", 
+   "lines": [
+    "Almost a year ago , in company with 16 free nations of Europe , we launched the greatest cooperative economic program in history ."
+   ]
+  }, 
+  {
+   "begin": "501.640", 
+   "children": [], 
+   "end": "522.000", 
+   "id": "f000051", 
+   "language": "eng", 
+   "lines": [
+    "The purpose of that unprecedented effort is to invigorate and strengthen democracy in Europe , so that the free people of that continent can resume their rightful place in the forefront of civilization and can contribute once more to the security and welfare of the world ."
+   ]
+  }, 
+  {
+   "begin": "522.000", 
+   "children": [], 
+   "end": "526.880", 
+   "id": "f000052", 
+   "language": "eng", 
+   "lines": [
+    "Our efforts have brought new hope to all mankind ."
+   ]
+  }, 
+  {
+   "begin": "526.880", 
+   "children": [], 
+   "end": "528.920", 
+   "id": "f000053", 
+   "language": "eng", 
+   "lines": [
+    "We have beaten back despair and defeatism ."
+   ]
+  }, 
+  {
+   "begin": "528.920", 
+   "children": [], 
+   "end": "534.720", 
+   "id": "f000054", 
+   "language": "eng", 
+   "lines": [
+    "We have saved a number of countries from losing their liberty ."
+   ]
+  }, 
+  {
+   "begin": "534.720", 
+   "children": [], 
+   "end": "541.520", 
+   "id": "f000055", 
+   "language": "eng", 
+   "lines": [
+    "Hundreds of millions of people all over the world now agree with us , that we need not have war --"
+   ]
+  }, 
+  {
+   "begin": "541.520", 
+   "children": [], 
+   "end": "542.120", 
+   "id": "f000056", 
+   "language": "eng", 
+   "lines": [
+    "that we can have peace ."
+   ]
+  }, 
+  {
+   "begin": "542.120", 
+   "children": [], 
+   "end": "544.760", 
+   "id": "f000057", 
+   "language": "eng", 
+   "lines": [
+    "The initiative is ours ."
+   ]
+  }, 
+  {
+   "begin": "544.760", 
+   "children": [], 
+   "end": "560.040", 
+   "id": "f000058", 
+   "language": "eng", 
+   "lines": [
+    "We are moving on with other nations to build an even stronger structure of international order and justice ."
+   ]
+  }, 
+  {
+   "begin": "560.040", 
+   "children": [], 
+   "end": "569.800", 
+   "id": "f000059", 
+   "language": "eng", 
+   "lines": [
+    "We shall have as our partners countries which , no longer solely concerned with the problem of national survival , are now working to improve the standards of living of all their people ."
+   ]
+  }, 
+  {
+   "begin": "569.800", 
+   "children": [], 
+   "end": "576.400", 
+   "id": "f000060", 
+   "language": "eng", 
+   "lines": [
+    "We are ready to undertake new projects to strengthen a free world ."
+   ]
+  }, 
+  {
+   "begin": "576.400", 
+   "children": [], 
+   "end": "585.440", 
+   "id": "f000061", 
+   "language": "eng", 
+   "lines": [
+    "In the coming years , our program for peace and freedom will emphasize four major courses of action ."
+   ]
+  }, 
+  {
+   "begin": "585.440", 
+   "children": [], 
+   "end": "600.200", 
+   "id": "f000062", 
+   "language": "eng", 
+   "lines": [
+    "First , we will continue to give unfaltering support to the United Nations and related agencies , and we will continue to search for ways to strengthen their authority and increase their effectiveness ."
+   ]
+  }, 
+  {
+   "begin": "600.200", 
+   "children": [], 
+   "end": "612.480", 
+   "id": "f000063", 
+   "language": "eng", 
+   "lines": [
+    "We believe that the United Nations will be strengthened by the new nations which are being formed in lands now advancing toward self-government under democratic principles ."
+   ]
+  }, 
+  {
+   "begin": "612.480", 
+   "children": [], 
+   "end": "618.880", 
+   "id": "f000064", 
+   "language": "eng", 
+   "lines": [
+    "Second , we will continue our programs for world economic recovery ."
+   ]
+  }, 
+  {
+   "begin": "618.880", 
+   "children": [], 
+   "end": "626.400", 
+   "id": "f000065", 
+   "language": "eng", 
+   "lines": [
+    "This means , first of all , that we must keep our full weight behind the European recovery program ."
+   ]
+  }, 
+  {
+   "begin": "626.400", 
+   "children": [], 
+   "end": "632.160", 
+   "id": "f000066", 
+   "language": "eng", 
+   "lines": [
+    "We are confident of the success of this major venture in world recovery ."
+   ]
+  }, 
+  {
+   "begin": "632.160", 
+   "children": [], 
+   "end": "639.680", 
+   "id": "f000067", 
+   "language": "eng", 
+   "lines": [
+    "We believe that our partners in this effort will achieve the status of self-supporting nations once again ."
+   ]
+  }, 
+  {
+   "begin": "639.680", 
+   "children": [], 
+   "end": "649.160", 
+   "id": "f000068", 
+   "language": "eng", 
+   "lines": [
+    "In addition , we must carry out our plans for reducing the barriers to world trade and increasing its volume ."
+   ]
+  }, 
+  {
+   "begin": "649.160", 
+   "children": [], 
+   "end": "656.080", 
+   "id": "f000069", 
+   "language": "eng", 
+   "lines": [
+    "Economic recovery and peace itself depend on increased world trade ."
+   ]
+  }, 
+  {
+   "begin": "656.080", 
+   "children": [], 
+   "end": "662.840", 
+   "id": "f000070", 
+   "language": "eng", 
+   "lines": [
+    "Third , we will strengthen freedom-loving nations against the dangers of aggression ."
+   ]
+  }, 
+  {
+   "begin": "662.840", 
+   "children": [], 
+   "end": "670.560", 
+   "id": "f000071", 
+   "language": "eng", 
+   "lines": [
+    "We are now working out with a number of countries a joint agreement designed to strengthen the security of the North Atlantic area ."
+   ]
+  }, 
+  {
+   "begin": "670.560", 
+   "children": [], 
+   "end": "680.480", 
+   "id": "f000072", 
+   "language": "eng", 
+   "lines": [
+    "Such an agreement would take the form of a collective defense arrangement within the terms of the United Nations Charter ."
+   ]
+  }, 
+  {
+   "begin": "680.480", 
+   "children": [], 
+   "end": "689.000", 
+   "id": "f000073", 
+   "language": "eng", 
+   "lines": [
+    "We have already established such a defense pact for the Western Hemisphere by the treaty of Rio de Janeiro ."
+   ]
+  }, 
+  {
+   "begin": "689.000", 
+   "children": [], 
+   "end": "700.680", 
+   "id": "f000074", 
+   "language": "eng", 
+   "lines": [
+    "The primary purpose of these agreements is to provide unmistakable proof of the joint determination of the free countries to resist armed attack from any quarter ."
+   ]
+  }, 
+  {
+   "begin": "700.680", 
+   "children": [], 
+   "end": "708.120", 
+   "id": "f000075", 
+   "language": "eng", 
+   "lines": [
+    "Every country participating in these arrangements must contribute all it can to the common defense ."
+   ]
+  }, 
+  {
+   "begin": "708.120", 
+   "children": [], 
+   "end": "727.800", 
+   "id": "f000076", 
+   "language": "eng", 
+   "lines": [
+    "If we can make it sufficiently clear , in advance , that any armed attack affecting our national security would be met with overwhelming force , the armed attack might never occur ."
+   ]
+  }, 
+  {
+   "begin": "727.800", 
+   "children": [], 
+   "end": "732.400", 
+   "id": "f000077", 
+   "language": "eng", 
+   "lines": [
+    "I hope soon to send to the Senate a treaty respecting the North Atlantic security plan ."
+   ]
+  }, 
+  {
+   "begin": "732.400", 
+   "children": [], 
+   "end": "743.720", 
+   "id": "f000078", 
+   "language": "eng", 
+   "lines": [
+    "In addition , we will provide military advice and equipment to free nations which will cooperate with us in the maintenance of peace and security ."
+   ]
+  }, 
+  {
+   "begin": "743.720", 
+   "children": [], 
+   "end": "759.320", 
+   "id": "f000079", 
+   "language": "eng", 
+   "lines": [
+    "Fourth , we must embark on a bold new program for making the benefits of our scientific advances and industrial progress available for the improvement and growth of underdeveloped areas ."
+   ]
+  }, 
+  {
+   "begin": "759.320", 
+   "children": [], 
+   "end": "764.960", 
+   "id": "f000080", 
+   "language": "eng", 
+   "lines": [
+    "More than half the people of the world are living in conditions approaching misery ."
+   ]
+  }, 
+  {
+   "begin": "764.960", 
+   "children": [], 
+   "end": "766.840", 
+   "id": "f000081", 
+   "language": "eng", 
+   "lines": [
+    "Their food is inadequate ."
+   ]
+  }, 
+  {
+   "begin": "766.840", 
+   "children": [], 
+   "end": "767.160", 
+   "id": "f000082", 
+   "language": "eng", 
+   "lines": [
+    "They are victims of disease ."
+   ]
+  }, 
+  {
+   "begin": "767.160", 
+   "children": [], 
+   "end": "771.360", 
+   "id": "f000083", 
+   "language": "eng", 
+   "lines": [
+    "Their economic life is primitive and stagnant ."
+   ]
+  }, 
+  {
+   "begin": "771.360", 
+   "children": [], 
+   "end": "780.800", 
+   "id": "f000084", 
+   "language": "eng", 
+   "lines": [
+    "Their poverty is a handicap and a threat both to them and to more prosperous areas ."
+   ]
+  }, 
+  {
+   "begin": "780.800", 
+   "children": [], 
+   "end": "793.920", 
+   "id": "f000085", 
+   "language": "eng", 
+   "lines": [
+    "For the first time in history , humanity posesses the knowledge and skill to relieve suffering of these people ."
+   ]
+  }, 
+  {
+   "begin": "793.920", 
+   "children": [], 
+   "end": "800.920", 
+   "id": "f000086", 
+   "language": "eng", 
+   "lines": [
+    "The United States is pre-eminent among nations in the development of industrial and scientific techniques ."
+   ]
+  }, 
+  {
+   "begin": "800.920", 
+   "children": [], 
+   "end": "806.920", 
+   "id": "f000087", 
+   "language": "eng", 
+   "lines": [
+    "The material resources which we can afford to use for assistance of other peoples are limited ."
+   ]
+  }, 
+  {
+   "begin": "806.920", 
+   "children": [], 
+   "end": "818.240", 
+   "id": "f000088", 
+   "language": "eng", 
+   "lines": [
+    "But our imponderable resources in technical knowledge are constantly growing and are inexhaustible ."
+   ]
+  }, 
+  {
+   "begin": "818.240", 
+   "children": [], 
+   "end": "829.600", 
+   "id": "f000089", 
+   "language": "eng", 
+   "lines": [
+    "I believe that we should make available to peace-loving peoples the benefits of our store of technical knowledge in order to help them realize their aspirations for a better life ."
+   ]
+  }, 
+  {
+   "begin": "829.600", 
+   "children": [], 
+   "end": "838.080", 
+   "id": "f000090", 
+   "language": "eng", 
+   "lines": [
+    "And , in cooperation with other nations , we should foster capital investment in areas needing development ."
+   ]
+  }, 
+  {
+   "begin": "838.080", 
+   "children": [], 
+   "end": "852.720", 
+   "id": "f000091", 
+   "language": "eng", 
+   "lines": [
+    "Our aim should be to help the free peoples of the world , through their own efforts , to produce more food , more clothing , more materials for housing , and more mechanical power to lighten their burdens ."
+   ]
+  }, 
+  {
+   "begin": "852.720", 
+   "children": [], 
+   "end": "860.600", 
+   "id": "f000092", 
+   "language": "eng", 
+   "lines": [
+    "We invite other countries to pool their technological resources in this undertaking ."
+   ]
+  }, 
+  {
+   "begin": "860.600", 
+   "children": [], 
+   "end": "864.240", 
+   "id": "f000093", 
+   "language": "eng", 
+   "lines": [
+    "Their contributions will be warmly welcomed ."
+   ]
+  }, 
+  {
+   "begin": "864.240", 
+   "children": [], 
+   "end": "875.160", 
+   "id": "f000094", 
+   "language": "eng", 
+   "lines": [
+    "This should be a cooperative enterprise in which all nations work together through the United Nations and its specialized agencies whenever practicable ."
+   ]
+  }, 
+  {
+   "begin": "875.160", 
+   "children": [], 
+   "end": "882.320", 
+   "id": "f000095", 
+   "language": "eng", 
+   "lines": [
+    "It must be a worldwide effort for the achievement of peace , plenty , and freedom ."
+   ]
+  }, 
+  {
+   "begin": "882.320", 
+   "children": [], 
+   "end": "907.480", 
+   "id": "f000096", 
+   "language": "eng", 
+   "lines": [
+    "With the cooperation of business , private capital , agriculture , and labor in this country , this program can greatly increase the industrial activity in other nations and can raise substantially their standards of living ."
+   ]
+  }, 
+  {
+   "begin": "907.480", 
+   "children": [], 
+   "end": "919.440", 
+   "id": "f000097", 
+   "language": "eng", 
+   "lines": [
+    "Such new economic developments must be devised and controlled to the benefit of the peoples of the areas in which they are established ."
+   ]
+  }, 
+  {
+   "begin": "919.440", 
+   "children": [], 
+   "end": "935.080", 
+   "id": "f000098", 
+   "language": "eng", 
+   "lines": [
+    "Guarantees to the investor must be balanced by guarantees in the interest of the people whose resources and whose labor go into these developments ."
+   ]
+  }, 
+  {
+   "begin": "935.080", 
+   "children": [], 
+   "end": "936.080", 
+   "id": "f000099", 
+   "language": "eng", 
+   "lines": [
+    "The old imperialism --"
+   ]
+  }, 
+  {
+   "begin": "936.080", 
+   "children": [], 
+   "end": "939.000", 
+   "id": "f000100", 
+   "language": "eng", 
+   "lines": [
+    "exploitation for foreign profit --"
+   ]
+  }, 
+  {
+   "begin": "939.000", 
+   "children": [], 
+   "end": "943.960", 
+   "id": "f000101", 
+   "language": "eng", 
+   "lines": [
+    "has no place in our plans ."
+   ]
+  }, 
+  {
+   "begin": "943.960", 
+   "children": [], 
+   "end": "955.400", 
+   "id": "f000102", 
+   "language": "eng", 
+   "lines": [
+    "What we envisage is a program of development based on the concepts of democratic fair-dealing ."
+   ]
+  }, 
+  {
+   "begin": "955.400", 
+   "children": [], 
+   "end": "964.880", 
+   "id": "f000103", 
+   "language": "eng", 
+   "lines": [
+    "All countries , including our own , will greatly benefit from a constructive program for the better use of the world 's human and natural resources ."
+   ]
+  }, 
+  {
+   "begin": "964.880", 
+   "children": [], 
+   "end": "973.680", 
+   "id": "f000104", 
+   "language": "eng", 
+   "lines": [
+    "Experience shows that our commerce with other countries expands as they progress industrially and economically ."
+   ]
+  }, 
+  {
+   "begin": "973.680", 
+   "children": [], 
+   "end": "977.520", 
+   "id": "f000105", 
+   "language": "eng", 
+   "lines": [
+    "Greater production is the key to prosperity and peace ."
+   ]
+  }, 
+  {
+   "begin": "977.520", 
+   "children": [], 
+   "end": "985.480", 
+   "id": "f000106", 
+   "language": "eng", 
+   "lines": [
+    "And the key to greater production is a wider and more vigorous application of modern scientific and technical knowledge ."
+   ]
+  }, 
+  {
+   "begin": "985.480", 
+   "children": [], 
+   "end": "997.040", 
+   "id": "f000107", 
+   "language": "eng", 
+   "lines": [
+    "Only by helping the least fortunate of its members to help themselves can the human family achieve the decent , satisfying life that is the right of all people ."
+   ]
+  }, 
+  {
+   "begin": "997.040", 
+   "children": [], 
+   "end": "1010.800", 
+   "id": "f000108", 
+   "language": "eng", 
+   "lines": [
+    "Democracy alone can supply the vitalizing force to stir the peoples of the world into triumphant action , not only against their human oppressors , but also against their ancient enemies --"
+   ]
+  }, 
+  {
+   "begin": "1010.800", 
+   "children": [], 
+   "end": "1015.000", 
+   "id": "f000109", 
+   "language": "eng", 
+   "lines": [
+    "hunger , misery , and despair ."
+   ]
+  }, 
+  {
+   "begin": "1015.000", 
+   "children": [], 
+   "end": "1025.400", 
+   "id": "f000110", 
+   "language": "eng", 
+   "lines": [
+    "On the basis of these four major courses of action we hope to help create the conditions that will lead eventually to personal freedom and happiness for all mankind ."
+   ]
+  }, 
+  {
+   "begin": "1025.400", 
+   "children": [], 
+   "end": "1042.880", 
+   "id": "f000111", 
+   "language": "eng", 
+   "lines": [
+    "If we are to be successful in carrying out these policies , it is clear that we must have continued prosperity in this country and we must keep ourselves strong ."
+   ]
+  }, 
+  {
+   "begin": "1042.880", 
+   "children": [], 
+   "end": "1063.400", 
+   "id": "f000112", 
+   "language": "eng", 
+   "lines": [
+    "Slowly but surely we are weaving a world fabric of international security and growing prosperity ."
+   ]
+  }, 
+  {
+   "begin": "1063.400", 
+   "children": [], 
+   "end": "1068.080", 
+   "id": "f000113", 
+   "language": "eng", 
+   "lines": [
+    "We are aided by all who wish to live in freedom from fear --"
+   ]
+  }, 
+  {
+   "begin": "1068.080", 
+   "children": [], 
+   "end": "1073.120", 
+   "id": "f000114", 
+   "language": "eng", 
+   "lines": [
+    "even by those who live today in fear under their own governments ."
+   ]
+  }, 
+  {
+   "begin": "1073.120", 
+   "children": [], 
+   "end": "1078.360", 
+   "id": "f000115", 
+   "language": "eng", 
+   "lines": [
+    "We are aided by all who want relief from lies and propaganda --"
+   ]
+  }, 
+  {
+   "begin": "1078.360", 
+   "children": [], 
+   "end": "1083.040", 
+   "id": "f000116", 
+   "language": "eng", 
+   "lines": [
+    "those who desire truth and sincerity ."
+   ]
+  }, 
+  {
+   "begin": "1083.040", 
+   "children": [], 
+   "end": "1088.960", 
+   "id": "f000117", 
+   "language": "eng", 
+   "lines": [
+    "We are aided by all who desire self-government and a voice in deciding their own affairs ."
+   ]
+  }, 
+  {
+   "begin": "1088.960", 
+   "children": [], 
+   "end": "1092.840", 
+   "id": "f000118", 
+   "language": "eng", 
+   "lines": [
+    "We are aided by all who long for economic security --"
+   ]
+  }, 
+  {
+   "begin": "1092.840", 
+   "children": [], 
+   "end": "1099.320", 
+   "id": "f000119", 
+   "language": "eng", 
+   "lines": [
+    "for the security and abundance that men in free societies can enjoy ."
+   ]
+  }, 
+  {
+   "begin": "1099.320", 
+   "children": [], 
+   "end": "1110.400", 
+   "id": "f000120", 
+   "language": "eng", 
+   "lines": [
+    "We are aided by all who desire freedom of speech , freedom of religion , and freedom to live their own lives for useful ends ."
+   ]
+  }, 
+  {
+   "begin": "1110.400", 
+   "children": [], 
+   "end": "1116.840", 
+   "id": "f000121", 
+   "language": "eng", 
+   "lines": [
+    "Our allies are the millions who hunger and thirst after righteousness ."
+   ]
+  }, 
+  {
+   "begin": "1116.840", 
+   "children": [], 
+   "end": "1140.280", 
+   "id": "f000122", 
+   "language": "eng", 
+   "lines": [
+    "In due time , as our stability becomes manifest , as more and more nations come to know the benefits of democracy and to participate in growing abundance , I believe that those countries which now oppose us will abandon their delusions and join with the free nations of the world in a just settlement of international differences ."
+   ]
+  }, 
+  {
+   "begin": "1140.280", 
+   "children": [], 
+   "end": "1152.880", 
+   "id": "f000123", 
+   "language": "eng", 
+   "lines": [
+    "Events have brought our American democracy to new influence and new responsibilities ."
+   ]
+  }, 
+  {
+   "begin": "1152.880", 
+   "children": [], 
+   "end": "1160.680", 
+   "id": "f000124", 
+   "language": "eng", 
+   "lines": [
+    "They will test our courage , our devotion to duty , and our concept of liberty ."
+   ]
+  }, 
+  {
+   "begin": "1160.680", 
+   "children": [], 
+   "end": "1170.200", 
+   "id": "f000125", 
+   "language": "eng", 
+   "lines": [
+    "But I say to all men , what we have achieved in liberty , we will surpass in greater liberty ."
+   ]
+  }, 
+  {
+   "begin": "1170.200", 
+   "children": [], 
+   "end": "1179.040", 
+   "id": "f000126", 
+   "language": "eng", 
+   "lines": [
+    "Steadfast in our faith in the Almighty , we will advance toward a world where man 's freedom is secure ."
+   ]
+  }, 
+  {
+   "begin": "1179.040", 
+   "children": [], 
+   "end": "1188.720", 
+   "id": "f000127", 
+   "language": "eng", 
+   "lines": [
+    "To that end we will devote our strength , our resources , and our firmness of resolve ."
+   ]
+  }, 
+  {
+   "begin": "1188.720", 
+   "children": [], 
+   "end": "1201.880", 
+   "id": "f000128", 
+   "language": "eng", 
+   "lines": [
+    "With God 's help , the future of mankind will be assured in a world of justice , harmony , and peace ."
+   ]
+  }
+ ]
+}

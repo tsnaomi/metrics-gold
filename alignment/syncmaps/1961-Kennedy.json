@@ -1,0 +1,834 @@
+{
+ "fragments": [
+  {
+   "begin": "0.000", 
+   "children": [], 
+   "end": "27.680", 
+   "id": "f000001", 
+   "language": "eng", 
+   "lines": [
+    "Vice President Johnson , Mr. Speaker , Mr. Chief Justice , President Eisenhower , Vice president Nixon , President Truman , Reverend Clergy , fellow citizens :"
+   ]
+  }, 
+  {
+   "begin": "27.680", 
+   "children": [], 
+   "end": "38.040", 
+   "id": "f000002", 
+   "language": "eng", 
+   "lines": [
+    "We observe today not a victory of party but a celebration of freedom --"
+   ]
+  }, 
+  {
+   "begin": "38.040", 
+   "children": [], 
+   "end": "43.120", 
+   "id": "f000003", 
+   "language": "eng", 
+   "lines": [
+    "symbolizing an end as well as a beginning --"
+   ]
+  }, 
+  {
+   "begin": "43.120", 
+   "children": [], 
+   "end": "47.840", 
+   "id": "f000004", 
+   "language": "eng", 
+   "lines": [
+    "signifying renewal as well as change ."
+   ]
+  }, 
+  {
+   "begin": "47.840", 
+   "children": [], 
+   "end": "65.120", 
+   "id": "f000005", 
+   "language": "eng", 
+   "lines": [
+    "For I have sworn before you and Almighty God the same solemn oath our forebears prescribed nearly a century and three quarters ago ."
+   ]
+  }, 
+  {
+   "begin": "65.120", 
+   "children": [], 
+   "end": "69.520", 
+   "id": "f000006", 
+   "language": "eng", 
+   "lines": [
+    "The world is very different now ."
+   ]
+  }, 
+  {
+   "begin": "69.520", 
+   "children": [], 
+   "end": "78.480", 
+   "id": "f000007", 
+   "language": "eng", 
+   "lines": [
+    "For man holds in his mortal hands the power to abolish all forms of human poverty and all forms of human life ."
+   ]
+  }, 
+  {
+   "begin": "78.480", 
+   "children": [], 
+   "end": "89.440", 
+   "id": "f000008", 
+   "language": "eng", 
+   "lines": [
+    "And yet the same revolutionary beliefs for which our forebears fought are still at issue around the globe --"
+   ]
+  }, 
+  {
+   "begin": "89.440", 
+   "children": [], 
+   "end": "98.880", 
+   "id": "f000009", 
+   "language": "eng", 
+   "lines": [
+    "the belief that the rights of man come not from the generosity of the state but from the hand of God ."
+   ]
+  }, 
+  {
+   "begin": "98.880", 
+   "children": [], 
+   "end": "106.120", 
+   "id": "f000010", 
+   "language": "eng", 
+   "lines": [
+    "We dare not forget today that we are the heirs of that first revolution ."
+   ]
+  }, 
+  {
+   "begin": "106.120", 
+   "children": [], 
+   "end": "120.000", 
+   "id": "f000011", 
+   "language": "eng", 
+   "lines": [
+    "Let the word go forth from this time and place , to friend and foe alike , that the torch has been passed to a new generation of Americans --"
+   ]
+  }, 
+  {
+   "begin": "120.000", 
+   "children": [], 
+   "end": "134.840", 
+   "id": "f000012", 
+   "language": "eng", 
+   "lines": [
+    "born in this century , tempered by war , disciplined by a hard and bitter peace , proud of our ancient heritage --"
+   ]
+  }, 
+  {
+   "begin": "134.840", 
+   "children": [], 
+   "end": "153.200", 
+   "id": "f000013", 
+   "language": "eng", 
+   "lines": [
+    "and unwilling to witness or permit the slow undoing of those human rights to which this nation has always been committed , and to which we are committed today at home and around the world ."
+   ]
+  }, 
+  {
+   "begin": "153.200", 
+   "children": [], 
+   "end": "192.960", 
+   "id": "f000014", 
+   "language": "eng", 
+   "lines": [
+    "Let every nation know , whether it wishes us well or ill , that we shall pay any price , bear any burden , meet any hardship , support any friend , oppose any foe to assure the survival and the success of liberty ."
+   ]
+  }, 
+  {
+   "begin": "192.960", 
+   "children": [], 
+   "end": "193.400", 
+   "id": "f000015", 
+   "language": "eng", 
+   "lines": [
+    "This much we pledge --"
+   ]
+  }, 
+  {
+   "begin": "193.400", 
+   "children": [], 
+   "end": "195.600", 
+   "id": "f000016", 
+   "language": "eng", 
+   "lines": [
+    "and more ."
+   ]
+  }, 
+  {
+   "begin": "195.600", 
+   "children": [], 
+   "end": "205.240", 
+   "id": "f000017", 
+   "language": "eng", 
+   "lines": [
+    "To those old allies whose cultural and spiritual origins we share , we pledge the loyalty of faithful friends ."
+   ]
+  }, 
+  {
+   "begin": "205.240", 
+   "children": [], 
+   "end": "210.880", 
+   "id": "f000018", 
+   "language": "eng", 
+   "lines": [
+    "United , there is little we can not do in a host of cooperative ventures ."
+   ]
+  }, 
+  {
+   "begin": "210.880", 
+   "children": [], 
+   "end": "214.800", 
+   "id": "f000019", 
+   "language": "eng", 
+   "lines": [
+    "Divided , there is little we can do --"
+   ]
+  }, 
+  {
+   "begin": "214.800", 
+   "children": [], 
+   "end": "222.240", 
+   "id": "f000020", 
+   "language": "eng", 
+   "lines": [
+    "for we dare not meet a powerful challenge at odds and split asunder ."
+   ]
+  }, 
+  {
+   "begin": "222.240", 
+   "children": [], 
+   "end": "241.480", 
+   "id": "f000021", 
+   "language": "eng", 
+   "lines": [
+    "To those new states whom we welcome to the ranks of the free , we pledge our word that one form of colonial control shall not have passed away merely to be replaced by a far more iron tyranny ."
+   ]
+  }, 
+  {
+   "begin": "241.480", 
+   "children": [], 
+   "end": "249.400", 
+   "id": "f000022", 
+   "language": "eng", 
+   "lines": [
+    "We shall not always expect to find them supporting our view ."
+   ]
+  }, 
+  {
+   "begin": "249.400", 
+   "children": [], 
+   "end": "277.240", 
+   "id": "f000023", 
+   "language": "eng", 
+   "lines": [
+    "But we shall always hope to find them strongly supporting their own freedom-and to remember that , in the past , those who foolishly sought power by riding the back of the tiger ended up inside ."
+   ]
+  }, 
+  {
+   "begin": "277.240", 
+   "children": [], 
+   "end": "292.320", 
+   "id": "f000024", 
+   "language": "eng", 
+   "lines": [
+    "To those peoples in the huts and villages of half the globe struggling to break the bonds of mass misery , we pledge our best efforts to help them help themselves , for whatever period is required --"
+   ]
+  }, 
+  {
+   "begin": "292.320", 
+   "children": [], 
+   "end": "300.360", 
+   "id": "f000025", 
+   "language": "eng", 
+   "lines": [
+    "not because the communists may be doing it , not because we seek their votes , but because it is right ."
+   ]
+  }, 
+  {
+   "begin": "300.360", 
+   "children": [], 
+   "end": "315.160", 
+   "id": "f000026", 
+   "language": "eng", 
+   "lines": [
+    "If a free society can not help the many who are poor , it can not save the few who are rich ."
+   ]
+  }, 
+  {
+   "begin": "315.160", 
+   "children": [], 
+   "end": "320.720", 
+   "id": "f000027", 
+   "language": "eng", 
+   "lines": [
+    "To our sister republics south of our border , we offer a special pledge --"
+   ]
+  }, 
+  {
+   "begin": "320.720", 
+   "children": [], 
+   "end": "325.320", 
+   "id": "f000028", 
+   "language": "eng", 
+   "lines": [
+    "to convert our good words into good deeds --"
+   ]
+  }, 
+  {
+   "begin": "325.320", 
+   "children": [], 
+   "end": "328.840", 
+   "id": "f000029", 
+   "language": "eng", 
+   "lines": [
+    "in a new alliance for progress --"
+   ]
+  }, 
+  {
+   "begin": "328.840", 
+   "children": [], 
+   "end": "336.680", 
+   "id": "f000030", 
+   "language": "eng", 
+   "lines": [
+    "to assist free men and free governments in casting off the chains of poverty ."
+   ]
+  }, 
+  {
+   "begin": "336.680", 
+   "children": [], 
+   "end": "344.920", 
+   "id": "f000031", 
+   "language": "eng", 
+   "lines": [
+    "But this peaceful revolution of hope can not become the prey of hostile powers ."
+   ]
+  }, 
+  {
+   "begin": "344.920", 
+   "children": [], 
+   "end": "356.480", 
+   "id": "f000032", 
+   "language": "eng", 
+   "lines": [
+    "Let all our neighbors know that we shall join with them to oppose aggression or subversion anywhere in the Americas ."
+   ]
+  }, 
+  {
+   "begin": "356.480", 
+   "children": [], 
+   "end": "373.120", 
+   "id": "f000033", 
+   "language": "eng", 
+   "lines": [
+    "And let every other power know that this Hemisphere intends to remain the master of its own house ."
+   ]
+  }, 
+  {
+   "begin": "373.120", 
+   "children": [], 
+   "end": "389.800", 
+   "id": "f000034", 
+   "language": "eng", 
+   "lines": [
+    "To that world assembly of sovereign states , the United Nations , our last best hope in an age where the instruments of war have far outpaced the instruments of peace , we renew our pledge of support --"
+   ]
+  }, 
+  {
+   "begin": "389.800", 
+   "children": [], 
+   "end": "394.960", 
+   "id": "f000035", 
+   "language": "eng", 
+   "lines": [
+    "to prevent it from becoming merely a forum for invective --"
+   ]
+  }, 
+  {
+   "begin": "394.960", 
+   "children": [], 
+   "end": "399.400", 
+   "id": "f000036", 
+   "language": "eng", 
+   "lines": [
+    "to strengthen its shield of the new and the weak --"
+   ]
+  }, 
+  {
+   "begin": "399.400", 
+   "children": [], 
+   "end": "404.760", 
+   "id": "f000037", 
+   "language": "eng", 
+   "lines": [
+    "and to enlarge the area in which its writ may run ."
+   ]
+  }, 
+  {
+   "begin": "404.760", 
+   "children": [], 
+   "end": "416.320", 
+   "id": "f000038", 
+   "language": "eng", 
+   "lines": [
+    "Finally , to those nations who would make themselves our adversary , we offer not a pledge but a request :"
+   ]
+  }, 
+  {
+   "begin": "416.320", 
+   "children": [], 
+   "end": "435.120", 
+   "id": "f000039", 
+   "language": "eng", 
+   "lines": [
+    "that both sides begin anew the quest for peace , before the dark powers of destruction unleashed by science engulf all humanity in planned or accidental self-destruction ."
+   ]
+  }, 
+  {
+   "begin": "435.120", 
+   "children": [], 
+   "end": "438.400", 
+   "id": "f000040", 
+   "language": "eng", 
+   "lines": [
+    "We dare not tempt them with weakness ."
+   ]
+  }, 
+  {
+   "begin": "438.400", 
+   "children": [], 
+   "end": "448.520", 
+   "id": "f000041", 
+   "language": "eng", 
+   "lines": [
+    "For only when our arms are sufficient beyond doubt can we be certain beyond doubt that they will never be employed ."
+   ]
+  }, 
+  {
+   "begin": "448.520", 
+   "children": [], 
+   "end": "458.160", 
+   "id": "f000042", 
+   "language": "eng", 
+   "lines": [
+    "But neither can two great and powerful groups of nations take comfort from our present course --"
+   ]
+  }, 
+  {
+   "begin": "458.160", 
+   "children": [], 
+   "end": "480.040", 
+   "id": "f000043", 
+   "language": "eng", 
+   "lines": [
+    "both sides overburdened by the cost of modern weapons , both rightly alarmed by the steady spread of the deadly atom , yet both racing to alter that uncertain balance of terror that stays the hand of mankind 's final war ."
+   ]
+  }, 
+  {
+   "begin": "480.040", 
+   "children": [], 
+   "end": "482.760", 
+   "id": "f000044", 
+   "language": "eng", 
+   "lines": [
+    "So let us begin anew --"
+   ]
+  }, 
+  {
+   "begin": "482.760", 
+   "children": [], 
+   "end": "492.880", 
+   "id": "f000045", 
+   "language": "eng", 
+   "lines": [
+    "remembering on both sides that civility is not a sign of weakness , and sincerity is always subject to proof ."
+   ]
+  }, 
+  {
+   "begin": "492.880", 
+   "children": [], 
+   "end": "495.840", 
+   "id": "f000046", 
+   "language": "eng", 
+   "lines": [
+    "Let us never negotiate out of fear ."
+   ]
+  }, 
+  {
+   "begin": "495.840", 
+   "children": [], 
+   "end": "499.080", 
+   "id": "f000047", 
+   "language": "eng", 
+   "lines": [
+    "But let us never fear to negotiate ."
+   ]
+  }, 
+  {
+   "begin": "499.080", 
+   "children": [], 
+   "end": "515.040", 
+   "id": "f000048", 
+   "language": "eng", 
+   "lines": [
+    "Let both sides explore what problems unite us instead of belaboring those problems which divide us ."
+   ]
+  }, 
+  {
+   "begin": "515.040", 
+   "children": [], 
+   "end": "525.440", 
+   "id": "f000049", 
+   "language": "eng", 
+   "lines": [
+    "Let both sides , for the first time , formulate serious and precise proposals for the inspection and control of arms --"
+   ]
+  }, 
+  {
+   "begin": "525.440", 
+   "children": [], 
+   "end": "535.000", 
+   "id": "f000050", 
+   "language": "eng", 
+   "lines": [
+    "and bring the absolute power to destroy other nations under the absolute control of all nations ."
+   ]
+  }, 
+  {
+   "begin": "535.000", 
+   "children": [], 
+   "end": "546.880", 
+   "id": "f000051", 
+   "language": "eng", 
+   "lines": [
+    "Let both sides seek to invoke the wonders of science instead of its terrors ."
+   ]
+  }, 
+  {
+   "begin": "546.880", 
+   "children": [], 
+   "end": "560.400", 
+   "id": "f000052", 
+   "language": "eng", 
+   "lines": [
+    "Together let us explore the stars , conquer the deserts , eradicate disease , tap the ocean depths and encourage the arts and commerce ."
+   ]
+  }, 
+  {
+   "begin": "560.400", 
+   "children": [], 
+   "end": "565.520", 
+   "id": "f000053", 
+   "language": "eng", 
+   "lines": [
+    "Let both sides unite to heed in all corners of the earth the command of Isaiah --"
+   ]
+  }, 
+  {
+   "begin": "565.520", 
+   "children": [], 
+   "end": "570.920", 
+   "id": "f000054", 
+   "language": "eng", 
+   "lines": [
+    "to `` undo the heavy burdens ."
+   ]
+  }, 
+  {
+   "begin": "570.920", 
+   "children": [], 
+   "end": "570.920", 
+   "id": "f000055", 
+   "language": "eng", 
+   "lines": [
+    "."
+   ]
+  }, 
+  {
+   "begin": "570.920", 
+   "children": [], 
+   "end": "574.160", 
+   "id": "f000056", 
+   "language": "eng", 
+   "lines": [
+    "-LRB- and -RRB- let the oppressed go free . ''"
+   ]
+  }, 
+  {
+   "begin": "574.160", 
+   "children": [], 
+   "end": "600.960", 
+   "id": "f000057", 
+   "language": "eng", 
+   "lines": [
+    "And if a beach-head of cooperation may push back the jungle of suspicion , let both sides join in creating a new endeavor , not a new balance of power , but a new world of law , where the strong are just and the weak secure and the peace preserved ."
+   ]
+  }, 
+  {
+   "begin": "600.960", 
+   "children": [], 
+   "end": "606.320", 
+   "id": "f000058", 
+   "language": "eng", 
+   "lines": [
+    "All this will not be finished in the first one hundred days ."
+   ]
+  }, 
+  {
+   "begin": "606.320", 
+   "children": [], 
+   "end": "618.920", 
+   "id": "f000059", 
+   "language": "eng", 
+   "lines": [
+    "Nor will it be finished in the first one thousand days , nor in the life of this Administration , nor even perhaps in our lifetime on this planet ."
+   ]
+  }, 
+  {
+   "begin": "618.920", 
+   "children": [], 
+   "end": "621.600", 
+   "id": "f000060", 
+   "language": "eng", 
+   "lines": [
+    "But let us begin ."
+   ]
+  }, 
+  {
+   "begin": "621.600", 
+   "children": [], 
+   "end": "639.440", 
+   "id": "f000061", 
+   "language": "eng", 
+   "lines": [
+    "In your hands , my fellow citizens , more than mine , will rest the final success or failure of our course ."
+   ]
+  }, 
+  {
+   "begin": "639.440", 
+   "children": [], 
+   "end": "651.120", 
+   "id": "f000062", 
+   "language": "eng", 
+   "lines": [
+    "Since this country was founded , each generation of Americans has been summoned to give testimony to its national loyalty ."
+   ]
+  }, 
+  {
+   "begin": "651.120", 
+   "children": [], 
+   "end": "659.440", 
+   "id": "f000063", 
+   "language": "eng", 
+   "lines": [
+    "The graves of young Americans who answered the call to service surround the globe ."
+   ]
+  }, 
+  {
+   "begin": "659.440", 
+   "children": [], 
+   "end": "669.040", 
+   "id": "f000064", 
+   "language": "eng", 
+   "lines": [
+    "Now the trumpet summons us again-not as a call to bear arms , though arms we need --"
+   ]
+  }, 
+  {
+   "begin": "669.040", 
+   "children": [], 
+   "end": "674.000", 
+   "id": "f000065", 
+   "language": "eng", 
+   "lines": [
+    "not as a call to battle , though embattled we are --"
+   ]
+  }, 
+  {
+   "begin": "674.000", 
+   "children": [], 
+   "end": "688.760", 
+   "id": "f000066", 
+   "language": "eng", 
+   "lines": [
+    "but a call to bear the burden of a long twilight struggle , year in and year out , `` rejoicing in hope , patient in tribulation '' --"
+   ]
+  }, 
+  {
+   "begin": "688.760", 
+   "children": [], 
+   "end": "694.320", 
+   "id": "f000067", 
+   "language": "eng", 
+   "lines": [
+    "a struggle against the common enemies of man :"
+   ]
+  }, 
+  {
+   "begin": "694.320", 
+   "children": [], 
+   "end": "697.960", 
+   "id": "f000068", 
+   "language": "eng", 
+   "lines": [
+    "tyranny , poverty , disease and war itself ."
+   ]
+  }, 
+  {
+   "begin": "697.960", 
+   "children": [], 
+   "end": "713.800", 
+   "id": "f000069", 
+   "language": "eng", 
+   "lines": [
+    "Can we forge against these enemies a grand and global alliance , North and South , East and West , that can assure a more fruitful life for all mankind ?"
+   ]
+  }, 
+  {
+   "begin": "713.800", 
+   "children": [], 
+   "end": "717.920", 
+   "id": "f000070", 
+   "language": "eng", 
+   "lines": [
+    "Will you join in that historic effort ?"
+   ]
+  }, 
+  {
+   "begin": "717.920", 
+   "children": [], 
+   "end": "738.360", 
+   "id": "f000071", 
+   "language": "eng", 
+   "lines": [
+    "In the long history of the world , only a few generations have been granted the role of defending freedom in its hour of maximum danger ."
+   ]
+  }, 
+  {
+   "begin": "738.360", 
+   "children": [], 
+   "end": "741.360", 
+   "id": "f000072", 
+   "language": "eng", 
+   "lines": [
+    "I do not shrink from this responsibility --"
+   ]
+  }, 
+  {
+   "begin": "741.360", 
+   "children": [], 
+   "end": "749.440", 
+   "id": "f000073", 
+   "language": "eng", 
+   "lines": [
+    "I welcome it ."
+   ]
+  }, 
+  {
+   "begin": "749.440", 
+   "children": [], 
+   "end": "757.560", 
+   "id": "f000074", 
+   "language": "eng", 
+   "lines": [
+    "I do not believe that any of us would exchange places with any other people or any other generation ."
+   ]
+  }, 
+  {
+   "begin": "757.560", 
+   "children": [], 
+   "end": "768.400", 
+   "id": "f000075", 
+   "language": "eng", 
+   "lines": [
+    "The energy , the faith , the devotion which we bring to this endeavor will light our country and all who serve it --"
+   ]
+  }, 
+  {
+   "begin": "768.400", 
+   "children": [], 
+   "end": "774.680", 
+   "id": "f000076", 
+   "language": "eng", 
+   "lines": [
+    "and the glow from that fire can truly light the world ."
+   ]
+  }, 
+  {
+   "begin": "774.680", 
+   "children": [], 
+   "end": "779.760", 
+   "id": "f000077", 
+   "language": "eng", 
+   "lines": [
+    "And so , my fellow Americans :"
+   ]
+  }, 
+  {
+   "begin": "779.760", 
+   "children": [], 
+   "end": "783.040", 
+   "id": "f000078", 
+   "language": "eng", 
+   "lines": [
+    "ask not what your country can do for you --"
+   ]
+  }, 
+  {
+   "begin": "783.040", 
+   "children": [], 
+   "end": "794.920", 
+   "id": "f000079", 
+   "language": "eng", 
+   "lines": [
+    "ask what you can do for your country ."
+   ]
+  }, 
+  {
+   "begin": "794.920", 
+   "children": [], 
+   "end": "796.240", 
+   "id": "f000080", 
+   "language": "eng", 
+   "lines": [
+    "My fellow citizens of the world :"
+   ]
+  }, 
+  {
+   "begin": "796.240", 
+   "children": [], 
+   "end": "804.440", 
+   "id": "f000081", 
+   "language": "eng", 
+   "lines": [
+    "ask not what America will do for you , but what together we can do for the freedom of man ."
+   ]
+  }, 
+  {
+   "begin": "804.440", 
+   "children": [], 
+   "end": "827.160", 
+   "id": "f000082", 
+   "language": "eng", 
+   "lines": [
+    "Finally , whether you are citizens of America or citizens of the world , ask of us here the same high standards of strength and sacrifice which we ask of you ."
+   ]
+  }, 
+  {
+   "begin": "827.160", 
+   "children": [], 
+   "end": "861.080", 
+   "id": "f000083", 
+   "language": "eng", 
+   "lines": [
+    "With a good conscience our only sure reward , with history the final judge of our deeds , let us go forth to lead the land we love , asking His blessing and His help , but knowing that here on earth God 's work must truly be our own ."
+   ]
+  }
+ ]
+}

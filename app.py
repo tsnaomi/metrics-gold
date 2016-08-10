@@ -259,16 +259,19 @@ class Sentence(db.Model):
             True: 'annotated',
             }.get(self.annotators.get(int(user_id), ''))
 
+    @property
     def has_video(self):
         return bool(self.youtube_id and self.manual_end != 0)
 
+    @property
     def start(self, Buffer=0.1):
         if self.manual_start is not None:
             return self.manual_start
 
         return max(self.aeneas_start - Buffer, 0)
 
-    def end(self, Buffer=0.2):
+    @property
+    def end(self, Buffer=0.0):
         if self.manual_end is not None:
             return self.manual_end
 

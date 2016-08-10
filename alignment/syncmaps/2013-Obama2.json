@@ -1,0 +1,1214 @@
+{
+ "fragments": [
+  {
+   "begin": "0.000", 
+   "children": [], 
+   "end": "1.520", 
+   "id": "f000001", 
+   "language": "eng", 
+   "lines": [
+    "Thank you ."
+   ]
+  }, 
+  {
+   "begin": "1.520", 
+   "children": [], 
+   "end": "23.440", 
+   "id": "f000002", 
+   "language": "eng", 
+   "lines": [
+    "Thank you so much ."
+   ]
+  }, 
+  {
+   "begin": "23.440", 
+   "children": [], 
+   "end": "39.600", 
+   "id": "f000003", 
+   "language": "eng", 
+   "lines": [
+    "Vice President Biden , Mr. Chief Justice , Members of the United States Congress , distinguished guests , and fellow citizens :"
+   ]
+  }, 
+  {
+   "begin": "39.600", 
+   "children": [], 
+   "end": "51.280", 
+   "id": "f000004", 
+   "language": "eng", 
+   "lines": [
+    "Each time we gather to inaugurate a President we bear witness to the enduring strength of our Constitution ."
+   ]
+  }, 
+  {
+   "begin": "51.280", 
+   "children": [], 
+   "end": "55.800", 
+   "id": "f000005", 
+   "language": "eng", 
+   "lines": [
+    "We affirm the promise of our democracy ."
+   ]
+  }, 
+  {
+   "begin": "55.800", 
+   "children": [], 
+   "end": "69.160", 
+   "id": "f000006", 
+   "language": "eng", 
+   "lines": [
+    "We recall that what binds this Nation together is not the colors of our skin or the tenets of our faith or the origins of our names ."
+   ]
+  }, 
+  {
+   "begin": "69.160", 
+   "children": [], 
+   "end": "72.120", 
+   "id": "f000007", 
+   "language": "eng", 
+   "lines": [
+    "What makes us exceptional --"
+   ]
+  }, 
+  {
+   "begin": "72.120", 
+   "children": [], 
+   "end": "75.520", 
+   "id": "f000008", 
+   "language": "eng", 
+   "lines": [
+    "what makes us American --"
+   ]
+  }, 
+  {
+   "begin": "75.520", 
+   "children": [], 
+   "end": "84.640", 
+   "id": "f000009", 
+   "language": "eng", 
+   "lines": [
+    "is our allegiance to an idea articulated in a declaration made more than two centuries ago :"
+   ]
+  }, 
+  {
+   "begin": "84.640", 
+   "children": [], 
+   "end": "93.960", 
+   "id": "f000010", 
+   "language": "eng", 
+   "lines": [
+    "We hold these truths to be self-evident , that all men are created equal ;"
+   ]
+  }, 
+  {
+   "begin": "93.960", 
+   "children": [], 
+   "end": "102.160", 
+   "id": "f000011", 
+   "language": "eng", 
+   "lines": [
+    "that they are endowed by their Creator with certain unalienable rights ;"
+   ]
+  }, 
+  {
+   "begin": "102.160", 
+   "children": [], 
+   "end": "110.080", 
+   "id": "f000012", 
+   "language": "eng", 
+   "lines": [
+    "that among these are life , liberty , and the pursuit of happiness ."
+   ]
+  }, 
+  {
+   "begin": "110.080", 
+   "children": [], 
+   "end": "125.000", 
+   "id": "f000013", 
+   "language": "eng", 
+   "lines": [
+    "Today we continue a never-ending journey to bridge the meaning of those words with the realities of our time ."
+   ]
+  }, 
+  {
+   "begin": "125.000", 
+   "children": [], 
+   "end": "134.320", 
+   "id": "f000014", 
+   "language": "eng", 
+   "lines": [
+    "For history tells us that while these truths may be self-evident , they 've never been self-executing ;"
+   ]
+  }, 
+  {
+   "begin": "134.320", 
+   "children": [], 
+   "end": "144.960", 
+   "id": "f000015", 
+   "language": "eng", 
+   "lines": [
+    "that while freedom is a gift from God , it must be secured by His people here on Earth ."
+   ]
+  }, 
+  {
+   "begin": "144.960", 
+   "children": [], 
+   "end": "157.080", 
+   "id": "f000016", 
+   "language": "eng", 
+   "lines": [
+    "The patriots of 1776 did not fight to replace the tyranny of a king with the privileges of a few or the rule of a mob ."
+   ]
+  }, 
+  {
+   "begin": "157.080", 
+   "children": [], 
+   "end": "170.640", 
+   "id": "f000017", 
+   "language": "eng", 
+   "lines": [
+    "They gave to us a republic , a government of and by and for the people , entrusting each generation to keep safe our founding creed ."
+   ]
+  }, 
+  {
+   "begin": "170.640", 
+   "children": [], 
+   "end": "176.760", 
+   "id": "f000018", 
+   "language": "eng", 
+   "lines": [
+    "And for more than 200 years , we have ."
+   ]
+  }, 
+  {
+   "begin": "176.760", 
+   "children": [], 
+   "end": "188.480", 
+   "id": "f000019", 
+   "language": "eng", 
+   "lines": [
+    "Through blood drawn by lash and blood drawn by sword , we learned that no union founded on the principles of liberty and equality could survive half-slave and half-free ."
+   ]
+  }, 
+  {
+   "begin": "188.480", 
+   "children": [], 
+   "end": "193.080", 
+   "id": "f000020", 
+   "language": "eng", 
+   "lines": [
+    "We made ourselves anew , and vowed to move forward together ."
+   ]
+  }, 
+  {
+   "begin": "193.080", 
+   "children": [], 
+   "end": "203.960", 
+   "id": "f000021", 
+   "language": "eng", 
+   "lines": [
+    "Together , we determined that a modern economy requires railroads and highways to speed travel and commerce , schools and colleges to train our workers ."
+   ]
+  }, 
+  {
+   "begin": "203.960", 
+   "children": [], 
+   "end": "213.240", 
+   "id": "f000022", 
+   "language": "eng", 
+   "lines": [
+    "Together , we discovered that a free market only thrives when there are rules to ensure competition and fair play ."
+   ]
+  }, 
+  {
+   "begin": "213.240", 
+   "children": [], 
+   "end": "225.560", 
+   "id": "f000023", 
+   "language": "eng", 
+   "lines": [
+    "Together , we resolved that a great nation must care for the vulnerable and protect its people from life 's worst hazards and misfortune ."
+   ]
+  }, 
+  {
+   "begin": "225.560", 
+   "children": [], 
+   "end": "240.520", 
+   "id": "f000024", 
+   "language": "eng", 
+   "lines": [
+    "Through it all , we have never relinquished our skepticism of central authority nor have we succumbed to the fiction that all society 's ills can be cured through government alone ."
+   ]
+  }, 
+  {
+   "begin": "240.520", 
+   "children": [], 
+   "end": "252.720", 
+   "id": "f000025", 
+   "language": "eng", 
+   "lines": [
+    "Our celebration of initiative and enterprise , our insistence on hard work and personal responsibility , these are constants in our character ."
+   ]
+  }, 
+  {
+   "begin": "252.720", 
+   "children": [], 
+   "end": "258.560", 
+   "id": "f000026", 
+   "language": "eng", 
+   "lines": [
+    "But we have always understood that when times change , so must we ;"
+   ]
+  }, 
+  {
+   "begin": "258.560", 
+   "children": [], 
+   "end": "265.360", 
+   "id": "f000027", 
+   "language": "eng", 
+   "lines": [
+    "that fidelity to our founding principles requires new responses to new challenges ;"
+   ]
+  }, 
+  {
+   "begin": "265.360", 
+   "children": [], 
+   "end": "272.560", 
+   "id": "f000028", 
+   "language": "eng", 
+   "lines": [
+    "that preserving our individual freedoms ultimately requires collective action ."
+   ]
+  }, 
+  {
+   "begin": "272.560", 
+   "children": [], 
+   "end": "284.160", 
+   "id": "f000029", 
+   "language": "eng", 
+   "lines": [
+    "For the American people can no more meet the demands of today 's world by acting alone than American soldiers could have met the forces of fascism or communism with muskets and militias ."
+   ]
+  }, 
+  {
+   "begin": "284.160", 
+   "children": [], 
+   "end": "298.440", 
+   "id": "f000030", 
+   "language": "eng", 
+   "lines": [
+    "No single person can train all the math and science teachers we 'll need to equip our children for the future , or build the roads and networks and research labs that will bring new jobs and businesses to our shores ."
+   ]
+  }, 
+  {
+   "begin": "298.440", 
+   "children": [], 
+   "end": "316.760", 
+   "id": "f000031", 
+   "language": "eng", 
+   "lines": [
+    "Now more than ever , we must do these things together , as one nation and one people ."
+   ]
+  }, 
+  {
+   "begin": "316.760", 
+   "children": [], 
+   "end": "324.880", 
+   "id": "f000032", 
+   "language": "eng", 
+   "lines": [
+    "This generation of Americans has been tested by crises that steeled our resolve and proved our resilience ."
+   ]
+  }, 
+  {
+   "begin": "324.880", 
+   "children": [], 
+   "end": "332.000", 
+   "id": "f000033", 
+   "language": "eng", 
+   "lines": [
+    "A decade of war is now ending ."
+   ]
+  }, 
+  {
+   "begin": "332.000", 
+   "children": [], 
+   "end": "335.480", 
+   "id": "f000034", 
+   "language": "eng", 
+   "lines": [
+    "An economic recovery has begun ."
+   ]
+  }, 
+  {
+   "begin": "335.480", 
+   "children": [], 
+   "end": "345.560", 
+   "id": "f000035", 
+   "language": "eng", 
+   "lines": [
+    "America 's possibilities are limitless , for we possess all the qualities that this world without boundaries demands :"
+   ]
+  }, 
+  {
+   "begin": "345.560", 
+   "children": [], 
+   "end": "347.400", 
+   "id": "f000036", 
+   "language": "eng", 
+   "lines": [
+    "youth and drive ;"
+   ]
+  }, 
+  {
+   "begin": "347.400", 
+   "children": [], 
+   "end": "350.920", 
+   "id": "f000037", 
+   "language": "eng", 
+   "lines": [
+    "diversity and openness ;"
+   ]
+  }, 
+  {
+   "begin": "350.920", 
+   "children": [], 
+   "end": "357.200", 
+   "id": "f000038", 
+   "language": "eng", 
+   "lines": [
+    "an endless capacity for risk and a gift for reinvention ."
+   ]
+  }, 
+  {
+   "begin": "357.200", 
+   "children": [], 
+   "end": "361.080", 
+   "id": "f000039", 
+   "language": "eng", 
+   "lines": [
+    "My fellow Americans , we are made for this moment and we will seize it --"
+   ]
+  }, 
+  {
+   "begin": "361.080", 
+   "children": [], 
+   "end": "363.360", 
+   "id": "f000040", 
+   "language": "eng", 
+   "lines": [
+    "so long as we seize it together ."
+   ]
+  }, 
+  {
+   "begin": "363.360", 
+   "children": [], 
+   "end": "386.200", 
+   "id": "f000041", 
+   "language": "eng", 
+   "lines": [
+    "For we , the people , understand that our country can not succeed when a shrinking few do very well and a growing many barely make it ."
+   ]
+  }, 
+  {
+   "begin": "386.200", 
+   "children": [], 
+   "end": "393.360", 
+   "id": "f000042", 
+   "language": "eng", 
+   "lines": [
+    "We believe that America 's prosperity must rest upon the broad shoulders of a rising middle class ."
+   ]
+  }, 
+  {
+   "begin": "393.360", 
+   "children": [], 
+   "end": "399.400", 
+   "id": "f000043", 
+   "language": "eng", 
+   "lines": [
+    "We know that America thrives when every person can find independence and pride in their work ;"
+   ]
+  }, 
+  {
+   "begin": "399.400", 
+   "children": [], 
+   "end": "405.400", 
+   "id": "f000044", 
+   "language": "eng", 
+   "lines": [
+    "when the wages of honest labor liberate families from the brink of hardship ."
+   ]
+  }, 
+  {
+   "begin": "405.400", 
+   "children": [], 
+   "end": "413.960", 
+   "id": "f000045", 
+   "language": "eng", 
+   "lines": [
+    "We are true to our creed when a little girl born into the bleakest poverty knows that she has the same chance to succeed as anybody else , because she is an American ;"
+   ]
+  }, 
+  {
+   "begin": "413.960", 
+   "children": [], 
+   "end": "419.760", 
+   "id": "f000046", 
+   "language": "eng", 
+   "lines": [
+    "she is free and she is equal , not just in the eyes of God , but also in our own ."
+   ]
+  }, 
+  {
+   "begin": "419.760", 
+   "children": [], 
+   "end": "432.840", 
+   "id": "f000047", 
+   "language": "eng", 
+   "lines": [
+    "We understand that outworn programs are inadequate to the needs of our time ."
+   ]
+  }, 
+  {
+   "begin": "432.840", 
+   "children": [], 
+   "end": "448.320", 
+   "id": "f000048", 
+   "language": "eng", 
+   "lines": [
+    "So we must harness new ideas and technology to remake our government , revamp our Tax Code , reform our schools , and empower our citizens with the skills they need to work harder , learn more , reach higher ."
+   ]
+  }, 
+  {
+   "begin": "448.320", 
+   "children": [], 
+   "end": "453.720", 
+   "id": "f000049", 
+   "language": "eng", 
+   "lines": [
+    "But while the means will change , our purpose endures :"
+   ]
+  }, 
+  {
+   "begin": "453.720", 
+   "children": [], 
+   "end": "458.600", 
+   "id": "f000050", 
+   "language": "eng", 
+   "lines": [
+    "a nation that rewards the effort and determination of every single American ."
+   ]
+  }, 
+  {
+   "begin": "458.600", 
+   "children": [], 
+   "end": "460.840", 
+   "id": "f000051", 
+   "language": "eng", 
+   "lines": [
+    "That is what this moment requires ."
+   ]
+  }, 
+  {
+   "begin": "460.840", 
+   "children": [], 
+   "end": "468.200", 
+   "id": "f000052", 
+   "language": "eng", 
+   "lines": [
+    "That is what will give real meaning to our creed ."
+   ]
+  }, 
+  {
+   "begin": "468.200", 
+   "children": [], 
+   "end": "479.480", 
+   "id": "f000053", 
+   "language": "eng", 
+   "lines": [
+    "We , the people , still believe that every citizen deserves a basic measure of security and dignity ."
+   ]
+  }, 
+  {
+   "begin": "479.480", 
+   "children": [], 
+   "end": "488.360", 
+   "id": "f000054", 
+   "language": "eng", 
+   "lines": [
+    "We must make the hard choices to reduce the cost of health care and the size of our deficit ."
+   ]
+  }, 
+  {
+   "begin": "488.360", 
+   "children": [], 
+   "end": "497.640", 
+   "id": "f000055", 
+   "language": "eng", 
+   "lines": [
+    "But we reject the belief that America must choose between caring for the generation that built this country and investing in the generation that will build its future ."
+   ]
+  }, 
+  {
+   "begin": "497.640", 
+   "children": [], 
+   "end": "515.800", 
+   "id": "f000056", 
+   "language": "eng", 
+   "lines": [
+    "For we remember the lessons of our past , when twilight years were spent in poverty and parents of a child with a disability had nowhere to turn ."
+   ]
+  }, 
+  {
+   "begin": "515.800", 
+   "children": [], 
+   "end": "523.160", 
+   "id": "f000057", 
+   "language": "eng", 
+   "lines": [
+    "We do not believe that in this country freedom is reserved for the lucky , or happiness for the few ."
+   ]
+  }, 
+  {
+   "begin": "523.160", 
+   "children": [], 
+   "end": "538.680", 
+   "id": "f000058", 
+   "language": "eng", 
+   "lines": [
+    "We recognize that no matter how responsibly we live our lives , any one of us at any time may face a job loss or a sudden illness or a home swept away in a terrible storm ."
+   ]
+  }, 
+  {
+   "begin": "538.680", 
+   "children": [], 
+   "end": "549.360", 
+   "id": "f000059", 
+   "language": "eng", 
+   "lines": [
+    "The commitments we make to each other through Medicare and Medicaid and Social Security , these things do not sap our initiative , they strengthen us ."
+   ]
+  }, 
+  {
+   "begin": "549.360", 
+   "children": [], 
+   "end": "554.600", 
+   "id": "f000060", 
+   "language": "eng", 
+   "lines": [
+    "They do not make us a nation of takers ;"
+   ]
+  }, 
+  {
+   "begin": "554.600", 
+   "children": [], 
+   "end": "565.120", 
+   "id": "f000061", 
+   "language": "eng", 
+   "lines": [
+    "they free us to take the risks that make this country great ."
+   ]
+  }, 
+  {
+   "begin": "565.120", 
+   "children": [], 
+   "end": "577.960", 
+   "id": "f000062", 
+   "language": "eng", 
+   "lines": [
+    "We , the people , still believe that our obligations as Americans are not just to ourselves , but to all posterity ."
+   ]
+  }, 
+  {
+   "begin": "577.960", 
+   "children": [], 
+   "end": "593.080", 
+   "id": "f000063", 
+   "language": "eng", 
+   "lines": [
+    "We will respond to the threat of climate change , knowing that the failure to do so would betray our children and future generations ."
+   ]
+  }, 
+  {
+   "begin": "593.080", 
+   "children": [], 
+   "end": "605.680", 
+   "id": "f000064", 
+   "language": "eng", 
+   "lines": [
+    "Some may still deny the overwhelming judgment of science , but none can avoid the devastating impact of raging fires and crippling drought and more powerful storms ."
+   ]
+  }, 
+  {
+   "begin": "605.680", 
+   "children": [], 
+   "end": "612.120", 
+   "id": "f000065", 
+   "language": "eng", 
+   "lines": [
+    "The path towards sustainable energy sources will be long and sometimes difficult ."
+   ]
+  }, 
+  {
+   "begin": "612.120", 
+   "children": [], 
+   "end": "616.960", 
+   "id": "f000066", 
+   "language": "eng", 
+   "lines": [
+    "But America can not resist this transition , we must lead it ."
+   ]
+  }, 
+  {
+   "begin": "616.960", 
+   "children": [], 
+   "end": "624.880", 
+   "id": "f000067", 
+   "language": "eng", 
+   "lines": [
+    "We can not cede to other nations the technology that will power new jobs and new industries , we must claim its promise ."
+   ]
+  }, 
+  {
+   "begin": "624.880", 
+   "children": [], 
+   "end": "631.760", 
+   "id": "f000068", 
+   "language": "eng", 
+   "lines": [
+    "That 's how we will maintain our economic vitality and our national treasure --"
+   ]
+  }, 
+  {
+   "begin": "631.760", 
+   "children": [], 
+   "end": "638.080", 
+   "id": "f000069", 
+   "language": "eng", 
+   "lines": [
+    "our forests and waterways , our crop lands and snow-capped peaks ."
+   ]
+  }, 
+  {
+   "begin": "638.080", 
+   "children": [], 
+   "end": "642.720", 
+   "id": "f000070", 
+   "language": "eng", 
+   "lines": [
+    "That is how we will preserve our planet , commanded to our care by God ."
+   ]
+  }, 
+  {
+   "begin": "642.720", 
+   "children": [], 
+   "end": "652.360", 
+   "id": "f000071", 
+   "language": "eng", 
+   "lines": [
+    "That 's what will lend meaning to the creed our fathers once declared ."
+   ]
+  }, 
+  {
+   "begin": "652.360", 
+   "children": [], 
+   "end": "664.960", 
+   "id": "f000072", 
+   "language": "eng", 
+   "lines": [
+    "We , the people , still believe that enduring security and lasting peace do not require perpetual war ."
+   ]
+  }, 
+  {
+   "begin": "664.960", 
+   "children": [], 
+   "end": "679.440", 
+   "id": "f000073", 
+   "language": "eng", 
+   "lines": [
+    "Our brave men and women in uniform , tempered by the flames of battle , are unmatched in skill and courage ."
+   ]
+  }, 
+  {
+   "begin": "679.440", 
+   "children": [], 
+   "end": "689.280", 
+   "id": "f000074", 
+   "language": "eng", 
+   "lines": [
+    "Our citizens , seared by the memory of those we have lost , know too well the price that is paid for liberty ."
+   ]
+  }, 
+  {
+   "begin": "689.280", 
+   "children": [], 
+   "end": "695.760", 
+   "id": "f000075", 
+   "language": "eng", 
+   "lines": [
+    "The knowledge of their sacrifice will keep us forever vigilant against those who would do us harm ."
+   ]
+  }, 
+  {
+   "begin": "695.760", 
+   "children": [], 
+   "end": "700.640", 
+   "id": "f000076", 
+   "language": "eng", 
+   "lines": [
+    "But we are also heirs to those who won the peace and not just the war ;"
+   ]
+  }, 
+  {
+   "begin": "700.640", 
+   "children": [], 
+   "end": "703.800", 
+   "id": "f000077", 
+   "language": "eng", 
+   "lines": [
+    "who turned sworn enemies into the surest of friends --"
+   ]
+  }, 
+  {
+   "begin": "703.800", 
+   "children": [], 
+   "end": "709.400", 
+   "id": "f000078", 
+   "language": "eng", 
+   "lines": [
+    "and we must carry those lessons into this time as well ."
+   ]
+  }, 
+  {
+   "begin": "709.400", 
+   "children": [], 
+   "end": "716.480", 
+   "id": "f000079", 
+   "language": "eng", 
+   "lines": [
+    "We will defend our people and uphold our values through strength of arms and rule of law ."
+   ]
+  }, 
+  {
+   "begin": "716.480", 
+   "children": [], 
+   "end": "720.960", 
+   "id": "f000080", 
+   "language": "eng", 
+   "lines": [
+    "We will show the courage to try and resolve our differences with other nations peacefully --"
+   ]
+  }, 
+  {
+   "begin": "720.960", 
+   "children": [], 
+   "end": "732.800", 
+   "id": "f000081", 
+   "language": "eng", 
+   "lines": [
+    "not because we are naive about the dangers we face , but because engagement can more durably lift suspicion and fear ."
+   ]
+  }, 
+  {
+   "begin": "732.800", 
+   "children": [], 
+   "end": "738.200", 
+   "id": "f000082", 
+   "language": "eng", 
+   "lines": [
+    "America will remain the anchor of strong alliances in every corner of the globe ."
+   ]
+  }, 
+  {
+   "begin": "738.200", 
+   "children": [], 
+   "end": "749.000", 
+   "id": "f000083", 
+   "language": "eng", 
+   "lines": [
+    "And we will renew those institutions that extend our capacity to manage crisis abroad , for no one has a greater stake in a peaceful world than its most powerful nation ."
+   ]
+  }, 
+  {
+   "begin": "749.000", 
+   "children": [], 
+   "end": "760.480", 
+   "id": "f000084", 
+   "language": "eng", 
+   "lines": [
+    "We will support democracy from Asia to Africa , from the Americas to the Middle East , because our interests and our conscience compel us to act on behalf of those who long for freedom ."
+   ]
+  }, 
+  {
+   "begin": "760.480", 
+   "children": [], 
+   "end": "770.120", 
+   "id": "f000085", 
+   "language": "eng", 
+   "lines": [
+    "And we must be a source of hope to the poor , the sick , the marginalized , the victims of prejudice --"
+   ]
+  }, 
+  {
+   "begin": "770.120", 
+   "children": [], 
+   "end": "778.480", 
+   "id": "f000086", 
+   "language": "eng", 
+   "lines": [
+    "not out of mere charity , but because peace in our time requires the constant advance of those principles that our common creed describes :"
+   ]
+  }, 
+  {
+   "begin": "778.480", 
+   "children": [], 
+   "end": "788.880", 
+   "id": "f000087", 
+   "language": "eng", 
+   "lines": [
+    "tolerance and opportunity , human dignity and justice ."
+   ]
+  }, 
+  {
+   "begin": "788.880", 
+   "children": [], 
+   "end": "796.520", 
+   "id": "f000088", 
+   "language": "eng", 
+   "lines": [
+    "We , the people , declare today that the most evident of truths --"
+   ]
+  }, 
+  {
+   "begin": "796.520", 
+   "children": [], 
+   "end": "799.480", 
+   "id": "f000089", 
+   "language": "eng", 
+   "lines": [
+    "that all of us are created equal --"
+   ]
+  }, 
+  {
+   "begin": "799.480", 
+   "children": [], 
+   "end": "802.880", 
+   "id": "f000090", 
+   "language": "eng", 
+   "lines": [
+    "is the star that guides us still ;"
+   ]
+  }, 
+  {
+   "begin": "802.880", 
+   "children": [], 
+   "end": "807.920", 
+   "id": "f000091", 
+   "language": "eng", 
+   "lines": [
+    "just as it guided our forebears through Seneca Falls and Selma and Stonewall ;"
+   ]
+  }, 
+  {
+   "begin": "807.920", 
+   "children": [], 
+   "end": "818.080", 
+   "id": "f000092", 
+   "language": "eng", 
+   "lines": [
+    "just as it guided all those men and women , sung and unsung , who left footprints along this great Mall , to hear a preacher say that we can not walk alone ;"
+   ]
+  }, 
+  {
+   "begin": "818.080", 
+   "children": [], 
+   "end": "827.160", 
+   "id": "f000093", 
+   "language": "eng", 
+   "lines": [
+    "to hear a King proclaim that our individual freedom is inextricably bound to the freedom of every soul on Earth ."
+   ]
+  }, 
+  {
+   "begin": "827.160", 
+   "children": [], 
+   "end": "833.440", 
+   "id": "f000094", 
+   "language": "eng", 
+   "lines": [
+    "It is now our generation 's task to carry on what those pioneers began ."
+   ]
+  }, 
+  {
+   "begin": "833.440", 
+   "children": [], 
+   "end": "843.440", 
+   "id": "f000095", 
+   "language": "eng", 
+   "lines": [
+    "For our journey is not complete until our wives , our mothers and daughters can earn a living equal to their efforts ."
+   ]
+  }, 
+  {
+   "begin": "843.440", 
+   "children": [], 
+   "end": "857.800", 
+   "id": "f000096", 
+   "language": "eng", 
+   "lines": [
+    "Our journey is not complete until our gay brothers and sisters are treated like anyone else under the law --"
+   ]
+  }, 
+  {
+   "begin": "857.800", 
+   "children": [], 
+   "end": "870.000", 
+   "id": "f000097", 
+   "language": "eng", 
+   "lines": [
+    "for if we are truly created equal , then surely the love we commit to one another must be equal as well ."
+   ]
+  }, 
+  {
+   "begin": "870.000", 
+   "children": [], 
+   "end": "877.040", 
+   "id": "f000098", 
+   "language": "eng", 
+   "lines": [
+    "Our journey is not complete until no citizen is forced to wait for hours to exercise the right to vote ."
+   ]
+  }, 
+  {
+   "begin": "877.040", 
+   "children": [], 
+   "end": "902.120", 
+   "id": "f000099", 
+   "language": "eng", 
+   "lines": [
+    "Our journey is not complete until we find a better way to welcome the striving , hopeful immigrants who still see America as a land of opportunity -- until bright young students and engineers are enlisted in our workforce rather than expelled from our country ."
+   ]
+  }, 
+  {
+   "begin": "902.120", 
+   "children": [], 
+   "end": "923.280", 
+   "id": "f000100", 
+   "language": "eng", 
+   "lines": [
+    "Our journey is not complete until all our children , from the streets of Detroit to the hills of Appalachia , to the quiet lanes of Newtown , know that they are cared for and cherished and always safe from harm ."
+   ]
+  }, 
+  {
+   "begin": "923.280", 
+   "children": [], 
+   "end": "926.120", 
+   "id": "f000101", 
+   "language": "eng", 
+   "lines": [
+    "That is our generation 's task --"
+   ]
+  }, 
+  {
+   "begin": "926.120", 
+   "children": [], 
+   "end": "940.480", 
+   "id": "f000102", 
+   "language": "eng", 
+   "lines": [
+    "to make these words , these rights , these values of life and liberty and the pursuit of happiness real for every American ."
+   ]
+  }, 
+  {
+   "begin": "940.480", 
+   "children": [], 
+   "end": "948.080", 
+   "id": "f000103", 
+   "language": "eng", 
+   "lines": [
+    "Being true to our founding documents does not require us to agree on every contour of life ."
+   ]
+  }, 
+  {
+   "begin": "948.080", 
+   "children": [], 
+   "end": "956.320", 
+   "id": "f000104", 
+   "language": "eng", 
+   "lines": [
+    "It does not mean we all define liberty in exactly the same way or follow the same precise path to happiness ."
+   ]
+  }, 
+  {
+   "begin": "956.320", 
+   "children": [], 
+   "end": "970.920", 
+   "id": "f000105", 
+   "language": "eng", 
+   "lines": [
+    "Progress does not compel us to settle centuries-long debates about the role of government for all time , but it does require us to act in our time ."
+   ]
+  }, 
+  {
+   "begin": "970.920", 
+   "children": [], 
+   "end": "981.840", 
+   "id": "f000106", 
+   "language": "eng", 
+   "lines": [
+    "For now decisions are upon us and we can not afford delay ."
+   ]
+  }, 
+  {
+   "begin": "981.840", 
+   "children": [], 
+   "end": "995.080", 
+   "id": "f000107", 
+   "language": "eng", 
+   "lines": [
+    "We can not mistake absolutism for principle or substitute spectacle for politics or treat name-calling as reasoned debate ."
+   ]
+  }, 
+  {
+   "begin": "995.080", 
+   "children": [], 
+   "end": "1002.920", 
+   "id": "f000108", 
+   "language": "eng", 
+   "lines": [
+    "We must act , knowing that our work will be imperfect ."
+   ]
+  }, 
+  {
+   "begin": "1002.920", 
+   "children": [], 
+   "end": "1024.680", 
+   "id": "f000109", 
+   "language": "eng", 
+   "lines": [
+    "We must act , we must act knowing that today 's victories will be only partial and that it will be up to those who stand here in 4 years and 40 years and 400 years hence to advance the timeless spirit once conferred to us in a spare Philadelphia hall ."
+   ]
+  }, 
+  {
+   "begin": "1024.680", 
+   "children": [], 
+   "end": "1043.440", 
+   "id": "f000110", 
+   "language": "eng", 
+   "lines": [
+    "My fellow Americans , the oath I have sworn before you today , like the one recited by others who serve in this Capitol , was an oath to God and country , not party or faction ."
+   ]
+  }, 
+  {
+   "begin": "1043.440", 
+   "children": [], 
+   "end": "1047.960", 
+   "id": "f000111", 
+   "language": "eng", 
+   "lines": [
+    "And we must faithfully execute that pledge during the duration of our service ."
+   ]
+  }, 
+  {
+   "begin": "1047.960", 
+   "children": [], 
+   "end": "1061.560", 
+   "id": "f000112", 
+   "language": "eng", 
+   "lines": [
+    "But the words I spoke today are not so different from the oath that is taken each time a soldier signs up for duty or an immigrant realizes her dream ."
+   ]
+  }, 
+  {
+   "begin": "1061.560", 
+   "children": [], 
+   "end": "1070.960", 
+   "id": "f000113", 
+   "language": "eng", 
+   "lines": [
+    "My oath is not so different from the pledge we all make to the flag that waves above and that fills our hearts with pride ."
+   ]
+  }, 
+  {
+   "begin": "1070.960", 
+   "children": [], 
+   "end": "1077.080", 
+   "id": "f000114", 
+   "language": "eng", 
+   "lines": [
+    "They are the words of citizens and they represent our greatest hope ."
+   ]
+  }, 
+  {
+   "begin": "1077.080", 
+   "children": [], 
+   "end": "1083.120", 
+   "id": "f000115", 
+   "language": "eng", 
+   "lines": [
+    "You and I , as citizens , have the power to set this country 's course ."
+   ]
+  }, 
+  {
+   "begin": "1083.120", 
+   "children": [], 
+   "end": "1088.720", 
+   "id": "f000116", 
+   "language": "eng", 
+   "lines": [
+    "You and I , as citizens , have the obligation to shape the debates of our time --"
+   ]
+  }, 
+  {
+   "begin": "1088.720", 
+   "children": [], 
+   "end": "1096.880", 
+   "id": "f000117", 
+   "language": "eng", 
+   "lines": [
+    "not only with the votes we cast , but with the voices we lift in defense of our most ancient values and enduring ideals ."
+   ]
+  }, 
+  {
+   "begin": "1096.880", 
+   "children": [], 
+   "end": "1107.800", 
+   "id": "f000118", 
+   "language": "eng", 
+   "lines": [
+    "Let us , each of us , now embrace with solemn duty and awesome joy what is our lasting birthright ."
+   ]
+  }, 
+  {
+   "begin": "1107.800", 
+   "children": [], 
+   "end": "1136.800", 
+   "id": "f000119", 
+   "language": "eng", 
+   "lines": [
+    "With common effort and common purpose , with passion and dedication , let us answer the call of history and carry into an uncertain future that precious light of freedom ."
+   ]
+  }, 
+  {
+   "begin": "1136.800", 
+   "children": [], 
+   "end": "1139.040", 
+   "id": "f000120", 
+   "language": "eng", 
+   "lines": [
+    "Thank you ."
+   ]
+  }, 
+  {
+   "begin": "1139.040", 
+   "children": [], 
+   "end": "1149.080", 
+   "id": "f000121", 
+   "language": "eng", 
+   "lines": [
+    "God bless you , and may He forever bless these United States of America ."
+   ]
+  }
+ ]
+}

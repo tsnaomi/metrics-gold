@@ -12,6 +12,18 @@
     <span class='arrow'>&#xf105;</span>
     <span class='emph'>Sentence {{ sentence.index }}</span>
 </div>
+{% if sentence.has_video %}
+<div class='video'>
+    <center>
+        <object width="425" height="344">
+            <param name="movie" value='http://swf.tubechop.com/tubechop.swf?vurl={{ sentence.youtube_id }}&start={{ sentence.start }}&end={{ sentence.end }}&cid=8201995'></param>
+            <embed src='http://swf.tubechop.com/tubechop.swf?vurl={{ sentence.youtube_id }}&start={{ sentence.start }}&end={{ sentence.end }}&cid=8201995' type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344"></embed>
+        </object>
+    </center>
+</div>
+{% endif %}
+<div>
+</div>
 <form method='POST' class='annotate'>
     <input type='hidden' name='_csrf_token' value='{{ csrf_token() }}'/>
     <input type='hidden' name='_submit' value=''/>
