@@ -1,8 +1,9 @@
 *.pyc
 
+import-annotations.py
 restart.sh
 start.py
 
-node/
-
 alignment/audio/
+node/
+previous-annotations/
