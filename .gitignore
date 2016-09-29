@@ -1,6 +1,4 @@
 *.pyc
 
-import-annotations.py
-
 alignment/audio/
-previous-annotations/
+static/csv/
