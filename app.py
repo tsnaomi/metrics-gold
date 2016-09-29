@@ -5,6 +5,7 @@ import os
 import re
 
 from collections import Counter
+from datetime import datetime
 from flask import (
     abort,
     flash,
@@ -12,6 +13,7 @@ from flask import (
     redirect,
     render_template,
     request,
+    Response,
     session,
     url_for,
     )
@@ -41,12 +43,6 @@ manager.add_command('db', MigrateCommand)
 
 csrf = SeaSurf(app)
 flask_bcrypt = Bcrypt(app)
-
-# TODO:
-# - Import annotations
-# - Import audio/video
-# - Summary pane
-# - Add .jshintrc
 
 
 # Models ----------------------------------------------------------------------
@@ -170,6 +166,49 @@ class Doc(db.Model):
     def has_video(self):
         return bool(self.youtube_id)
 
+    def generate_csv(self):
+        print 'Starting... ', datetime.utcnow().strftime('%I:%M')
+
+        users = load_users()
+
+        headers = [[u.username, u.username + '-UB', u.username + '-note', ] for u in users]  # noqa
+        headers = reduce(lambda x, y: x + y, headers)
+
+        with open('./inaugural/%s.csv' % self.title, 'rb') as f:
+            table = [i for i in csv.reader(f, delimiter=',')]
+
+        table[0].extend(headers)
+
+        x = 1
+
+        for sent in self.sentences:
+            peaks, breaks, notes = {}, {}, {}
+
+            for user in users:
+                peaks[user.id] = [p.prom if p is not None else '' for p in sent.get_peaks(user.id)]  # noqa
+                breaks[user.id] = [int(b.index) for b in sent.get_breaks(user.id)]  # noqa
+
+                try:
+                    notes[user.id] = sent.get_note(user.id).note
+
+                except AttributeError:
+                    notes[user.id] = ''
+
+            for j, tok in enumerate(sent.tokens):
+                for user in users:
+                    table[x].extend([
+                        unicode(peaks[user.id][j]).encode('utf-8'),
+                        unicode(1 if tok.index in breaks[user.id] else '').encode('utf-8'),  # noqa
+                        unicode(notes[user.id]).encode('utf-8'),
+                        ])
+                x += 1
+
+        with open('./static/csv/%s.csv' % self.title, 'wb') as f:
+            writer = csv.writer(f, delimiter=',')
+            writer.writerows(table)
+
+        print 'Complete. ', datetime.utcnow().strftime('%I:%M')
+
 
 class Sentence(db.Model):
     __tablename__ = 'Sentence'
@@ -221,6 +260,9 @@ class Sentence(db.Model):
 
     def __unicode__(self):
         return self.__repr__()
+
+    def get_note(self, user_id):
+        return Note.query.filter_by(sentence=self.id, user=user_id).one_or_none()  # noqa
 
     def get_peaks(self, user_id):
         return [p for t in self.tokens for p in t.peaks if p.user == user_id]
@@ -351,8 +393,14 @@ class Note(db.Model):
         self.user = user
         self.sentence = sentence
 
+    def __repr__(self):
+        return self.note
 
-# Extraction ------------------------------------------------------------------
+    def __unicode__(self):
+        return self.__repr__()
+
+
+# Commands --------------------------------------------------------------------
 
 @manager.command
 def extract_inaugural_addresses():
@@ -402,8 +450,14 @@ def extract_inaugural_addresses():
 
 
 @manager.command
-def import_annotations():
-    pass
+def add_user(username, password, is_admin=False):
+    is_admin = eval(is_admin)
+    user = User(username, password)
+    user.is_admin = is_admin
+    import pdb; pdb.set_trace()
+    db.session.rollback()
+    # db.session.add(user)
+    # user.generate_peaks()
 
 
 # Queries ---------------------------------------------------------------------
@@ -419,6 +473,9 @@ def get_doc(title):
 def load_docs():
     return Doc.query.all()
 
+
+def load_users(is_admin=False):
+    return User.query.filter_by(is_admin=is_admin)
 
 # Views -----------------------------------------------------------------------
 
@@ -441,204 +498,221 @@ def login_required(x):
     return decorator
 
 
-# @app.route('/', methods=['GET', ])
-# @login_required
-# def main_view():
-#     return render_template('index.html', docs=load_docs())
+@app.route('/', methods=['GET', ])
+@login_required
+def main_view():
+    ''' '''
+    return render_template('index.html', docs=load_docs(), users=load_users())
 
 
-# @app.route('/<title>', methods=['GET', ])
-# @login_required
-# def doc_view(title):
-#     try:
-#         doc = get_doc(title=title)
+@app.route('/<title>', methods=['GET', ])
+@login_required
+def doc_view(title):
+    try:
+        doc = get_doc(title=title)
 
-#     except NoResultFound:
-#         abort(404)
+    except NoResultFound:
+        abort(404)
 
-#     return render_template('doc.html', doc=doc)
-
-
-# @app.route('/<title>/<index>', methods=['GET', 'POST'])  # noqa CLEAN UP
-# @login_required
-# def annotate_view(title, index):
-#     try:
-#         doc = Doc.query.filter_by(title=title).one()
-#         sentence = Sentence.query.filter_by(doc=doc.id, index=index).one()
-
-#     except (DataError, NoResultFound):
-#         abort(404)
-
-#     user_id = User.query.get_or_404(session['current_user']).id
-
-#     try:
-#         note = Note.query.filter_by(user=user_id, sentence=sentence.id).one()
-
-#     except (DataError, NoResultFound):
-#         note = None
-
-#     if request.method == 'POST':
-#         # delete all breaks (break reset)
-#         sentence.delete_breaks(user_id)
-
-#         for key, val in request.form.iteritems():
-#             try:
-#                 # update peaks
-#                 iD = int(key)
-#                 peak = Peak.query.get(iD)
-#                 peak.prom = int(val)
-#                 db.session.add(peak)
-
-#             except ValueError:
-
-#                 if key == 'note':
-#                     if val:
-#                         try:
-#                             note.note = val
-
-#                         except AttributeError:
-#                             note = Note(val, sentence.id, user_id)
-
-#                         db.session.add(note)
-
-#                     elif note:
-#                         db.session.delete(note)
-#                         note = None
-
-#                 elif key == '_submit':
-#                     is_complete = val == 'Complete!'
-
-#                 elif key != '_csrf_token':
-#                     # update breaks
-#                     br = Break(float(val), sentence.id, user_id)
-#                     db.session.add(br)
-
-#         sentence.annotators[user_id] = sentence.annotators.get(user_id) or is_complete  # noqa
-#         db.session.add(sentence)
-
-#         doc.annotators[user_id] = None
-#         db.session.add(doc)
-
-#         db.session.commit()
-
-#         if is_complete:
-#             return redirect(url_for('doc_view', title=doc.title))
-
-#         flash('Success!')
-
-#     pb = sentence.get_peaks_and_breaks(user_id)
-
-#     return render_template(
-#         'annotate.html',
-#         doc=doc,
-#         sentence=sentence,
-#         pb=pb,
-#         note=note,
-#         )
+    return render_template('doc.html', doc=doc)
 
 
-# @app.route('/enter', methods=['GET', 'POST'])
-# def login_view():
-#     if session.get('current_user'):
-#         return redirect(url_for('main_view'))
+@app.route('/<title>/<index>', methods=['GET', 'POST'])  # noqa CLEAN UP
+@login_required
+def annotate_view(title, index):
+    try:
+        doc = Doc.query.filter_by(title=title).one()
+        sentence = Sentence.query.filter_by(doc=doc.id, index=index).one()
 
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         user = User.query.filter_by(username=username).first()
+    except (DataError, NoResultFound):
+        abort(404)
 
-#         if user is None or not flask_bcrypt.check_password_hash(
-#                 user.password,
-#                 request.form['password'],
-#                 ):
-#             flash('Invalid username and/or password.')
+    user_id = User.query.get_or_404(session['current_user']).id
 
-#         else:
-#             session['current_user'] = user.id  # WELP
-#             session['is_admin'] = user.is_admin
-#             return redirect(url_for('main_view'))
+    try:
+        note = Note.query.filter_by(user=user_id, sentence=sentence.id).one()
 
-#     return render_template('entrance.html', submit='Sign In')
+    except (DataError, NoResultFound):
+        note = None
 
+    if request.method == 'POST':
 
-# @app.route('/welcome', methods=['GET', 'POST'])
-# def welcome_view():
-#     if session.get('current_user'):
-#         return redirect(url_for('main_view'))
+        # delete corresponding csv file
+        if not session.get('is_admin'):
+            os.remove('static/csv/' + title + '.csv')
 
-#     if request.method == 'POST':
+        # delete all breaks (break reset)
+        sentence.delete_breaks(user_id)
 
-#         try:
-#             username = request.form['username']
-#             password = request.form['password']
+        for key, val in request.form.iteritems():
+            try:
+                # update peaks
+                iD = int(key)
+                peak = Peak.query.get(iD)
+                peak.prom = int(val)
+                db.session.add(peak)
 
-#             user = User(username, password)
-#             db.session.add(user)
-#             db.session.commit()
-#             user.generate_peaks()
+            except ValueError:
 
-#             flash('Welcome! Please sign in.')
+                if key == 'note':
+                    if val:
+                        try:
+                            note.note = val
 
-#             return redirect(url_for('login_view'))
+                        except AttributeError:
+                            note = Note(val, sentence.id, user_id)
 
-#         except IntegrityError:
-#             flash('An account with this username already exists.')
+                        db.session.add(note)
 
-#         except ValueError:
-#             flash('Please supply both a username and password.')
+                    elif note:
+                        db.session.delete(note)
+                        note = None
 
-#     return render_template('entrance.html', submit='Sign Up', )
+                elif key == '_submit':
+                    is_complete = val == 'Complete!'
 
+                elif key != '_csrf_token':
+                    # update breaks
+                    br = Break(float(val), sentence.id, user_id)
+                    db.session.add(br)
 
-# @app.route('/update', methods=['GET', 'POST'])
-# def update_view():
-#     if request.method == 'POST':
+        sentence.annotators[user_id] = sentence.annotators.get(user_id) or is_complete  # noqa
+        db.session.add(sentence)
 
-#         try:
-#             current_user = session.get('current_user')
-#             username = request.form['username']
-#             user = User.query.filter_by(username=username).first()
+        doc.annotators[user_id] = None
+        db.session.add(doc)
 
-#             if user is None or not flask_bcrypt.check_password_hash(
-#                     user.password,
-#                     request.form['password'],
-#                     ):
-#                 flash('Invalid username and/or password.')
+        db.session.commit()
 
-#             elif current_user and int(current_user) != user.id:
-#                 flash('You do not have permission to update this account.')
+        if is_complete:
+            return redirect(url_for('doc_view', title=doc.title))
 
-#             else:
-#                 username = request.form['new_username']
-#                 password = request.form['new_password']
+        flash('Success!')
 
-#                 user.username = username
-#                 user.update_password(password)
-#                 db.session.add(user)
-#                 db.session.commit()
+    pb = sentence.get_peaks_and_breaks(user_id)
 
-#                 flash('Welcome! Please sign in.')
-
-#                 return redirect(url_for('login_view'))
-
-#         except IntegrityError:
-#             flash('An account with this username already exists.')
-
-#         except ValueError:
-#             flash('Please supply both a username and password.')
-
-#     return render_template('entrance.html', submit='Update', )
+    return render_template(
+        'annotate.html',
+        doc=doc,
+        sentence=sentence,
+        pb=pb,
+        note=note,
+        )
 
 
-# @app.route('/leave')
-# def logout_view():
-#     session.pop('current_user', None)
-#     session.pop('is_admin', None)
+@app.route('/generate-csv/<title>', methods=['POST', ])
+def csv_view(title):
+    doc = get_doc(title=title)
 
-#     return redirect(url_for('main_view'))
+    if not os.path.isfile('./static/csv/' + title + '.csv'):
+        doc.generate_csv()
+
+    return Response(status=200)
+
+
+@app.route('/enter', methods=['GET', 'POST'])
+def login_view():
+    if session.get('current_user'):
+        return redirect(url_for('main_view'))
+
+    if request.method == 'POST':
+        username = request.form['username']
+        user = User.query.filter_by(username=username).first()
+
+        if user is None or not flask_bcrypt.check_password_hash(
+                user.password,
+                request.form['password'],
+                ):
+            flash('Invalid username and/or password.')
+
+        else:
+            session['current_user'] = user.id  # WELP
+            session['is_admin'] = user.is_admin
+            return redirect(url_for('main_view'))
+
+    return render_template('entrance.html', submit='Sign In')
+
+
+@app.route('/welcome', methods=['GET', 'POST'])
+def welcome_view():
+    if session.get('current_user'):
+        return redirect(url_for('main_view'))
+
+    if request.method == 'POST':
+
+        try:
+            username = request.form['username']
+            password = request.form['password']
+
+            user = User(username, password)
+            db.session.add(user)
+            db.session.commit()
+            user.generate_peaks()
+
+            flash('Welcome! Please sign in.')
+
+            return redirect(url_for('login_view'))
+
+        except IntegrityError:
+            flash('An account with this username already exists.')
+
+        except ValueError:
+            flash('Please supply both a username and password.')
+
+    return render_template('entrance.html', submit='Sign Up', )
+
+
+@app.route('/update', methods=['GET', 'POST'])
+def update_view():
+    if request.method == 'POST':
+
+        try:
+            current_user = session.get('current_user')
+            username = request.form['username']
+            user = User.query.filter_by(username=username).first()
+
+            if user is None or not flask_bcrypt.check_password_hash(
+                    user.password,
+                    request.form['password'],
+                    ):
+                flash('Invalid username and/or password.')
+
+            elif current_user and int(current_user) != user.id:
+                flash('You do not have permission to update this account.')
+
+            else:
+                username = request.form['new_username']
+                password = request.form['new_password']
+
+                user.username = username
+                user.update_password(password)
+                db.session.add(user)
+                db.session.commit()
+
+                flash('Welcome! Please sign in.')
+
+                return redirect(url_for('login_view'))
+
+        except IntegrityError:
+            flash('An account with this username already exists.')
+
+        except ValueError:
+            flash('Please supply both a username and password.')
+
+    return render_template('entrance.html', submit='Update', )
+
+
+@app.route('/leave')
+def logout_view():
+    session.pop('current_user', None)
+    session.pop('is_admin', None)
+
+    return redirect(url_for('main_view'))
 
 
 @app.route('/', methods=['GET', ])
 def maintenance_view():
+    ''' '''
     return render_template('down.html')
 
 

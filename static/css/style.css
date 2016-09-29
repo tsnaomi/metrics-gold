@@ -33,6 +33,10 @@ table {
     margin: auto auto;
 }
 
+th {
+    min-width: 100px;
+}
+
 td {
     white-space: nowrap;
     text-align: center;
@@ -85,16 +89,67 @@ textarea {
     color: #C7C7C7;
 }
 
-.in-progress {
-    background-color: #80FFBF;
+.status {
     padding: 4px;
     margin: -4px;
 }
 
-.annotated {
+.status.in-progress {
+    background-color: #80FFBF;
+}
+
+.status.annotated {
     background-color: #D1EDFF;
-    padding: 4px;
-    margin: -4px;
+}
+
+.cell:before {
+    font-size: 20px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: '\f00d';
+}
+
+.cell.in-progress{
+    color: #80FFBF;;
+}
+
+.cell.annotated {
+    color: #83ceff;
+}
+
+.cell.unannotated {
+    color: #FFFFFF;
+}
+
+.admin-table {
+    margin: -20px 0 0;
+    border: none;
+}
+
+.download:before {
+    color: #C7C7C7;
+    font-size: 20px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: '\f019';
+}
+
+.download:hover:before {
+    color: #333;
+    cursor: pointer;
+}
+
+.download.wait:before {
+    color: #333;
+    cursor: wait;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-middle {
+    vertical-align: middle;
 }
 
 .video {
