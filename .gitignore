@@ -1,4 +1,6 @@
 *.pyc
 
+notes.txt
+
 alignment/audio/
 static/csv/
