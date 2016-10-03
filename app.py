@@ -450,14 +450,12 @@ def extract_inaugural_addresses():
 
 
 @manager.command
-def add_user(username, password, is_admin=False):
+def add_user(username, password, is_admin='False'):
     is_admin = eval(is_admin)
-    user = User(username, password)
+    user = User(str(username), str(password))
     user.is_admin = is_admin
-    import pdb; pdb.set_trace()
-    db.session.rollback()
-    # db.session.add(user)
-    # user.generate_peaks()
+    db.session.add(user)
+    user.generate_peaks()
 
 
 # Queries ---------------------------------------------------------------------
