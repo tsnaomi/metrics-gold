@@ -4,6 +4,7 @@
         $('.download').on('click', function(event) {
             var $download = $(this);
             var title = $download.attr('id');
+            var csrf_token = $download.attr('name');
             var csv_view = '/generate-csv/' + title;
 
             // change cursors to spinner
@@ -11,7 +12,7 @@
             document.body.style.cursor = 'wait';
 
 
-            $.post(csv_view, function() {
+            $.post(csv_view, { _csrf_token: csrf_token }, function() {
                 // download csv file
                 window.location = '/static/csv/' + title + '.csv';
             }).fail(function() {

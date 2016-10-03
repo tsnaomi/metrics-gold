@@ -30,7 +30,7 @@ Metric Gold
         </td>
         {% endfor %}
         <td class='align-middle'>
-            <span class='download' id='{{ doc.title }}'></span>
+            <span class='download' id='{{ doc.title }}' name='{{ csrf_token() }}'></span>
         </td>
     </tr>
     {% endfor %}
