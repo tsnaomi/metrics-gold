@@ -3,4 +3,4 @@
 notes.txt
 
 alignment/audio/
-static/csv/
+static/csv/*.csv
