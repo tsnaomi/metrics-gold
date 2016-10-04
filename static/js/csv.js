@@ -17,7 +17,7 @@
                 window.location = '/static/csv/' + title + '.csv';
             }).fail(function() {
                 // notify user that the csv file cannot be generated
-                alert('Something went awry. Please tell Naomi.');
+                alert('There is no CSV file for ' + title +'. Please tell Naomi.');
             }).always(function() {
                 // restore cursors
                 document.body.style.cursor = 'default';

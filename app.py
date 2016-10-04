@@ -147,8 +147,8 @@ class Doc(db.Model):
     def __unicode__(self):
         return self.__repr__()
 
-    def has_annotated(self, user_id):
-        return int(user_id) in self.annotators
+    def is_annotated(self, user_id):
+        return self.annotation_status(user_id) == 'annotated'
 
     def annotation_status(self, user_id):
         statuses = [s.annotation_status(user_id) for s in self.sentences]
@@ -163,20 +163,27 @@ class Doc(db.Model):
 
         return 'in-progress'
 
-    def has_video(self):
-        return bool(self.youtube_id)
-
     def generate_csv(self):
-        print 'Starting... ', datetime.utcnow().strftime('%I:%M')
+        print self.title, '\nStarting... ', datetime.utcnow().strftime('%I:%M')
 
-        users = load_users()
+        # add annotator columns
+        try:
+            users = load_annotators()
+            users = [u for u in users if self.is_annotated(u.id)]
+            headers = [
+                [u.username, u.username + '-UB', u.username + '-note', ]
+                for u in users
+                ]
+            headers = reduce(lambda x, y: x + y, headers)
 
-        headers = [[u.username, u.username + '-UB', u.username + '-note', ] for u in users]  # noqa
-        headers = reduce(lambda x, y: x + y, headers)
+        except TypeError:
+            pass
 
+        # extract metrical tree table
         with open('./inaugural/%s.csv' % self.title, 'rb') as f:
             table = [i for i in csv.reader(f, delimiter=',')]
 
+        # add annotator columns to the metrical tree table
         table[0].extend(headers)
 
         x = 1
@@ -198,16 +205,20 @@ class Doc(db.Model):
                 for user in users:
                     table[x].extend([
                         unicode(peaks[user.id][j]).encode('utf-8'),
-                        unicode(1 if tok.index in breaks[user.id] else '').encode('utf-8'),  # noqa
+                        unicode(1 if tok.index in breaks[user.id] else '' if tok.punctuation else 0).encode('utf-8'),  # noqa
                         unicode(notes[user.id]).encode('utf-8'),
                         ])
                 x += 1
 
+        # create csv file
         with open('./static/csv/%s.csv' % self.title, 'wb') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
         print 'Complete. ', datetime.utcnow().strftime('%I:%M')
+
+    def has_video(self):
+        return bool(self.youtube_id)
 
 
 class Sentence(db.Model):
@@ -290,8 +301,8 @@ class Sentence(db.Model):
         for br in breaks:
             db.session.delete(br)
 
-    def has_annotated(self, user_id):
-        return int(user_id) in self.annotators
+    def is_annotated(self, user_id):
+        return self.annotation_status(user_id) == 'annotated'
 
     def annotation_status(self, user_id):
         return {
@@ -458,6 +469,19 @@ def add_user(username, password, is_admin='False'):
     user.generate_peaks()
 
 
+@manager.command
+def generate_csvs(doc_id=0):
+    try:
+        doc = Doc.query.get(int(doc_id))
+        doc.generate_csv()
+
+    except AttributeError:
+        docs = load_docs()
+
+        for doc in docs:
+            doc.generate_csv()
+
+
 # Queries ---------------------------------------------------------------------
 
 def get_user(username):
@@ -472,8 +496,8 @@ def load_docs():
     return Doc.query.all()
 
 
-def load_users(is_admin=False):
-    return User.query.filter_by(is_admin=is_admin)
+def load_annotators():
+    return User.query.filter_by(is_admin=False)
 
 # Views -----------------------------------------------------------------------
 
@@ -499,8 +523,10 @@ def login_required(x):
 @app.route('/', methods=['GET', ])
 @login_required
 def main_view():
-    ''' '''
-    return render_template('index.html', docs=load_docs(), users=load_users())
+    docs = load_docs()
+    users = load_annotators()
+
+    return render_template('index.html', docs=docs, users=users)
 
 
 @app.route('/<title>', methods=['GET', ])
@@ -604,12 +630,10 @@ def annotate_view(title, index):
 
 @app.route('/generate-csv/<title>', methods=['POST', ])
 def csv_view(title):
-    doc = get_doc(title=title)
+    if os.path.isfile('./static/csv/' + title + '.csv'):
+        return Response(status=200)
 
-    if not os.path.isfile('./static/csv/' + title + '.csv'):
-        doc.generate_csv()
-
-    return Response(status=200)
+    return Response(status=500)
 
 
 @app.route('/enter', methods=['GET', 'POST'])  # TEMP
