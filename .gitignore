@@ -1,5 +1,7 @@
 *.pyc
 
 notes.txt
+extract_freqs.py
 
+freqs/
 alignment/audio/
