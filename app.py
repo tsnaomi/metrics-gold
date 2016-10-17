@@ -786,6 +786,7 @@ def logout_view():
 
 
 @app.route('/', methods=['GET', ])
+@app.route('/enter', methods=['GET', ])
 def maintenance_view():
     ''' '''
     return render_template('down.html')
