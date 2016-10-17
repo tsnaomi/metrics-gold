@@ -1,4 +1,4 @@
-widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2
+widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2,doc-freq,corpus-freq
 1,Mr.,5.0,2.0,1.0,NNP,compound,3.0,3.0,3.0,3.0,-2.0,1,"Mr. Chief Justice , Mr. Vice President , my friends :",0,0,2,26
 2,Chief,3.0,1.0,1.0,NNP,compound,2.0,2.0,2.0,2.0,-1.0,1,"Mr. Chief Justice , Mr. Vice President , my friends :",0,0,1,12
 3,Justice,6.0,2.0,1.0,NNP,root,3.0,3.0,3.0,3.0,-2.0,1,"Mr. Chief Justice , Mr. Vice President , my friends :",0,0,1,40

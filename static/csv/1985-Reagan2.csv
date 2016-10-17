@@ -1,4 +1,4 @@
-widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2
+widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2,doc-freq,corpus-freq
 1,Senator,6.0,3.0,1.0,NNP,compound,2.0,2.0,2.0,2.0,-1.0,1,"Senator Mathias , Chief Justice Burger , Vice President Bush , Speaker O'Neill , Senator Dole , reverend clergy , and members of my family and friends and my fellow citizens :",1,1,4,10
 2,Mathias,6.0,3.0,1.0,NNP,root,3.0,3.0,3.0,3.0,-2.0,1,"Senator Mathias , Chief Justice Burger , Vice President Bush , Speaker O'Neill , Senator Dole , reverend clergy , and members of my family and friends and my fellow citizens :",1,1,2,2
 3,",",,,,",",,,,,,,1,"Senator Mathias , Chief Justice Burger , Vice President Bush , Speaker O'Neill , Senator Dole , reverend clergy , and members of my family and friends and my fellow citizens :",1,1,,

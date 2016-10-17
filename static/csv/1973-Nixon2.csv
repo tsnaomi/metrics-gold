@@ -1,4 +1,4 @@
-widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2
+widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2,doc-freq,corpus-freq
 1,I,1.0,1.0,1.0,PRP,nsubj,5.0,5.0,3.0,5.0,-3.5,1,"I , RICHARD NIXON , do solemnly swear that I will faithfully execute the Office of President of the United States , and will to the best of my ability , preserve , protect and defend the Constitution of the United States , so help me God .",10,10,14,213
 2,",",,,,",",,,,,,,1,"I , RICHARD NIXON , do solemnly swear that I will faithfully execute the Office of President of the United States , and will to the best of my ability , preserve , protect and defend the Constitution of the United States , so help me God .",10,10,,
 3,RICHARD,5.0,2.0,1.0,NNP,compound,2.0,2.0,2.0,2.0,-1.0,1,"I , RICHARD NIXON , do solemnly swear that I will faithfully execute the Office of President of the United States , and will to the best of my ability , preserve , protect and defend the Constitution of the United States , so help me God .",10,10,1,1

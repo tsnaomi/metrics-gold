@@ -1,4 +1,4 @@
-widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2
+widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2,doc-freq,corpus-freq
 1,Mr.,5.0,2.0,1.0,NNP,compound,3.0,3.0,3.0,3.0,-2.0,1,"Mr. Chairman , Mr. Vice President , Mr. Chief Justice , Mr. Speaker , members of my family and friends , my countrymen , and the friends of my country wherever they may be :",5,4,4,26
 2,Chairman,6.0,2.0,1.0,NNP,root,4.0,4.0,4.0,4.0,-3.0,1,"Mr. Chairman , Mr. Vice President , Mr. Chief Justice , Mr. Speaker , members of my family and friends , my countrymen , and the friends of my country wherever they may be :",5,4,1,1
 3,",",,,,",",,,,,,,1,"Mr. Chairman , Mr. Vice President , Mr. Chief Justice , Mr. Speaker , members of my family and friends , my countrymen , and the friends of my country wherever they may be :",5,4,,

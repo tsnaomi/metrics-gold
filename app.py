@@ -170,14 +170,13 @@ class Doc(db.Model):
         try:
             users = load_annotators()
             users = [u for u in users if self.is_annotated(u.id)]
-            headers = [
-                [u.username, u.username + '-UB', u.username + '-note', ]
-                for u in users
-                ]
+            headers = [[
+                u.username,
+                u.username + '-UB',
+                u.username + '-UF',
+                u.username + '-note',
+                ] for u in users]
             headers = reduce(lambda x, y: x + y, headers)
-
-            # add frequency headers
-            headers = ['doc-freq', 'corpus-freq'] + headers
 
         except TypeError:
             pass
@@ -186,18 +185,24 @@ class Doc(db.Model):
         with open('./inaugural/%s.csv' % self.title, 'rb') as f:
             table = [i for i in csv.reader(f, delimiter=',')]
 
-        # add annotator columns to the metrical tree table
+        # add frequency headers
+        headers = ['doc-freq', 'corpus-freq'] + headers
+
+        # add annotator + freq columns to the metrical tree table
         table[0].extend(headers)
 
         x = 1
 
         for sent in self.sentences:
-            peaks, breaks, notes = {}, {}, {}
+            peaks, breaks, UFs, notes = {}, {}, {}, {}
 
-            # collect peaks, breaks, and notes
+            # collect peaks, breaks, UFs, and notes
             for user in users:
-                peaks[user.id] = ['' if p.prom is None else p.prom for p in sent.get_peaks(user.id)]  # noqa
-                breaks[user.id] = [int(b.index) for b in sent.get_breaks(user.id)]  # noqa
+                user_peaks = sent.get_peaks(user.id)
+                user_breaks = sent.get_breaks(user.id)
+                peaks[user.id] = ['' if p.prom is None else p.prom for p in user_peaks]  # noqa
+                breaks[user.id] = [int(b.index) for b in user_breaks]  # noqa
+                UFs[user.id] = sent.get_utterance_final_ids(user.id, peaks=user_peaks, breaks=user_breaks)  # noqa
 
                 try:
                     notes[user.id] = sent.get_note(user.id).note
@@ -216,6 +221,7 @@ class Doc(db.Model):
                     table[x].extend([
                         unicode(peaks[user.id][j]).encode('utf-8'),
                         unicode(1 if tok.index in breaks[user.id] else '' if tok.punctuation else 0).encode('utf-8'),  # noqa
+                        unicode(1 if tok.index in UFs[user.id] else '' if tok.punctuation else 0).encode('utf-8'),  # noqa
                         unicode(notes[user.id]).encode('utf-8'),
                         ])
                 x += 1
@@ -304,6 +310,29 @@ class Sentence(db.Model):
         pb.sort(key=lambda i: get_index(i))
 
         return pb
+
+    def get_utterance_final_ids(self, user_id, peaks=None, breaks=None):
+
+        def is_utterance_final(t):
+            try:
+                return t.id == peaks[-1] or t.index + 0.5 in breaks
+
+            except IndexError:
+                print self.sentence
+                return False
+
+        if peaks is None:
+            peaks = self.get_peaks(user_id)
+
+        if breaks is None:
+            breaks = self.get_breaks(user_id)
+
+        peaks = [p.token for p in peaks[-4:] if not p.p_token.punctuation]
+        breaks = [b.index for b in breaks]
+
+        UFs = [t.index for t in self.tokens if is_utterance_final(t)]
+
+        return UFs
 
     def delete_breaks(self, user_id):
         breaks = self.get_breaks(user_id)
@@ -579,7 +608,7 @@ def annotate_view(title, index):
     if request.method == 'POST':
 
         # delete corresponding csv file
-        if not session.get('is_admin'):
+        if not session.get('is_admin') and doc.is_annotated(user_id):
             try:
                 os.remove('static/csv/' + title + '.csv')
 

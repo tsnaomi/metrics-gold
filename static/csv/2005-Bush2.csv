@@ -1,4 +1,4 @@
-widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2
+widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2,doc-freq,corpus-freq
 1,Vice,3.0,1.0,1.0,NNP,compound,3.0,3.0,3.0,3.0,-2.0,1,"Vice President Cheney , Mr. Chief Justice , President Carter , President Bush , President Clinton , Members of the United States Congress , reverend clergy , distinguished guests , fellow citizens :",1,1,1,15
 2,President,9.0,3.0,2.0,NNP,compound,2.0,2.0,2.0,2.0,-1.0,1,"Vice President Cheney , Mr. Chief Justice , President Carter , President Bush , President Clinton , Members of the United States Congress , reverend clergy , distinguished guests , fellow citizens :",1,1,4,47
 3,Cheney,4.0,2.0,1.0,NNP,root,3.0,3.0,3.0,3.0,-2.0,1,"Vice President Cheney , Mr. Chief Justice , President Carter , President Bush , President Clinton , Members of the United States Congress , reverend clergy , distinguished guests , fellow citizens :",1,1,1,1

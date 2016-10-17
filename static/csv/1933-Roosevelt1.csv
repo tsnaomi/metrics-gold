@@ -1,4 +1,4 @@
-widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2
+widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2,doc-freq,corpus-freq
 1,I,1.0,1.0,1.0,PRP,nsubj,4.0,4.0,2.0,4.0,-2.5,1,I am certain that my fellow Americans expect that on my induction into the Presidency I will address them with a candor and a decision which the present situation of our Nation impels .,12,11,19,213
 2,am,2.0,1.0,1.0,VBP,cop,3.0,3.0,2.0,3.0,-1.75,1,I am certain that my fellow Americans expect that on my induction into the Presidency I will address them with a candor and a decision which the present situation of our Nation impels .,12,11,3,11
 3,certain,5.0,2.0,1.0,JJ,root,2.0,2.0,2.0,2.0,-1.0,1,I am certain that my fellow Americans expect that on my induction into the Presidency I will address them with a candor and a decision which the present situation of our Nation impels .,12,11,1,8

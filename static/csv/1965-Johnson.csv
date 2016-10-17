@@ -1,4 +1,4 @@
-widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2
+widx,word,nseg,nsyll,nstress,pos,dep,m1a,m1b,m2a,m2b,mmean,sidx,sent,ambig1,ambig2,doc-freq,corpus-freq
 1,My,2.0,1.0,1.0,PRP$,nmod:poss,3.0,3.0,3.0,3.0,-2.0,1,My fellow countrymen :,0,0,3,93
 2,fellow,4.0,2.0,1.0,JJ,amod,2.0,2.0,2.0,2.0,-1.0,1,My fellow countrymen :,0,0,4,46
 3,countrymen,9.0,3.0,1.0,NNS,root,1.0,1.0,1.0,1.0,0.0,1,My fellow countrymen :,0,0,1,5
