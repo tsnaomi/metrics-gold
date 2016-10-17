@@ -2,6 +2,8 @@
 
 notes.txt
 extract_freqs.py
+import.py
 
 freqs/
+import/
 alignment/audio/
