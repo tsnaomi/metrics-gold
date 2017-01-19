@@ -23,6 +23,8 @@ pafy==0.5.1
 psycopg2==2.6.1
 pycparser==2.14
 python-editor==1.0.1
+redis==2.10.5
+rq==0.7.1
 six==1.10.0
 wsgiref==0.1.2
 youtube-dl==2016.07.22
