@@ -17,6 +17,7 @@ from flask import (
     session,
     url_for,
     )
+from flask_mail import Mail, Message
 from flask_migrate import Migrate, MigrateCommand
 from flask_seasurf import SeaSurf
 from flask_sqlalchemy import SQLAlchemy
@@ -44,6 +45,8 @@ manager.add_command('db', MigrateCommand)
 csrf = SeaSurf(app)
 flask_bcrypt = Bcrypt(app)
 
+mail = Mail(app)
+
 
 # Models ----------------------------------------------------------------------
 
@@ -52,6 +55,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
+    # email = db.Column(db.String, nullable=True)  # TODO
     is_admin = db.Column(db.Boolean, default=False)
 
     # many Peaks per User
@@ -84,6 +88,10 @@ class User(db.Model):
 
     def __unicode__(self):
         return self.__repr__()
+
+    @property
+    def email(self):  # TODO
+        return '%s@stanford.edu' % self.username
 
     def update_password(self, password):
         self.password = flask_bcrypt.generate_password_hash(password)
@@ -227,7 +235,7 @@ class Doc(db.Model):
                 x += 1
 
         # create csv file
-        with open('./static/csv/%s.csv' % self.title, 'wb') as f:
+        with open('./static/csv/test/%s.csv' % self.title, 'wb') as f:  # TODO
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
@@ -674,12 +682,39 @@ def annotate_view(title, index):
         )
 
 
-@app.route('/generate-csv/<title>', methods=['POST', ])
+@app.route('/generate-csv/<title>', methods=['POST', ])  # TODO
 def csv_view(title):
     if os.path.isfile('./static/csv/' + title + '.csv'):
         return Response(status=200)
 
     return Response(status=500)
+
+
+@app.route('/mail-csv/<title>', methods=['POST', ])
+@login_required
+def mail_view(title):
+    try:
+        recipient = User.query.get(session.get('current_user')).email
+        subject = 'Metric Gold: %s csv file' % title
+        body = '(This is an automated email.)'
+        msg = Message(subject=subject, recipients=[recipient, ], body=body)
+
+        # generate csv
+        doc = get_doc(title=title)
+        doc.generate_csv()
+
+        # attach csv
+        with app.open_resource('./static/csv/test/' + title + '.csv') as f:  # noqa TODO
+            msg.attach(title + '.csv', 'text/csv', f.read())
+
+        # send csv
+        mail.send(msg)
+
+        return Response(status=200)
+
+    except IndexError as e:
+        print e
+        return Response(status=500)
 
 
 @app.route('/enter', methods=['GET', 'POST'])  # TEMP
