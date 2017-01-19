@@ -1,9 +1,13 @@
 *.pyc
 
-notes.txt
+export.txt
 extract_freqs.py
+dump.rdb
 import.py
+notes.txt
 
+static/csv/*.csv
+
+alignment/audio/
 freqs/
 import/
-alignment/audio/
