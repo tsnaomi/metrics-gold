@@ -171,7 +171,7 @@ class Doc(db.Model):
 
         return 'in-progress'
 
-    def generate_csv(self):
+    def old_generate_csv(self):
         print self.title, '\nStarting... ', datetime.utcnow().strftime('%I:%M')
 
         # add annotator columns
@@ -243,6 +243,95 @@ class Doc(db.Model):
 
     def has_video(self):
         return bool(self.youtube_id)
+
+    def generate_base_csv(self):
+        # extract metrical tree table
+        with open('./inaugural/%s.csv' % self.title, 'rb') as f:
+            table = [i for i in csv.reader(f, delimiter=',')]
+
+        # add frequency headers
+        headers = ['doc-freq', 'corpus-freq']
+
+        # add frequency columns to the table
+        table[0].extend(headers)
+
+        x = 1
+
+        # add frequencies
+        for sent in self.sentences:
+            for j, tok in enumerate(sent.tokens):
+                table[x].extend([tok.doc_freq or '', tok.corpus_freq or ''])
+                x += 1
+
+        # create csv file
+        with open('./static/csv/base/%s.csv' % self.title, 'wb') as f:  # TODO
+            writer = csv.writer(f, delimiter=',')
+            writer.writerows(table)
+
+    def generate_csv(self):
+
+        def _format(tok, _list):
+            return 1 if tok.index in _list else '' if tok.punctuation else 0
+
+        print self.title, '\nStarting... ', datetime.utcnow().strftime('%I:%M:%S')
+
+        try:
+            # add annotator columns
+            users = [u for u in load_annotators() if self.is_annotated(u.id)]
+            headers = reduce(lambda x, y: x + y, [[
+                u.username,
+                u.username + '-UB',
+                u.username + '-UF',
+                u.username + '-note',
+                ] for u in users])
+
+        except TypeError:
+            pass
+
+        # extract base table
+        with open('./static/csv/base/%s.csv' % self.title, 'rb') as f:
+            table = [i for i in csv.reader(f, delimiter=',')]
+
+        # add annotator columns to the table
+        table[0].extend(headers)
+
+        n = 1
+
+        for sent in self.sentences:
+
+            for user in users:
+                user_peaks = sent.get_peaks(user.id)
+                user_breaks = sent.get_breaks(user.id)
+                peaks = ['' if p.prom is None else p.prom for p in user_peaks]
+                breaks = [int(b.index) for b in user_breaks]
+                UFs = sent.get_utterance_final_ids(
+                    user.id,
+                    peaks=user_peaks,
+                    breaks=user_breaks,
+                    )
+
+                try:
+                    note = sent.get_note(user.id).note
+
+                except AttributeError:
+                    note = ''
+
+                for i, tok in enumerate(sent.tokens):
+                    table[n + i].extend([
+                        unicode(peaks[i]).encode('utf-8'),
+                        unicode(_format(tok, breaks)),
+                        unicode(_format(tok, UFs)),
+                        unicode(note).encode('utf-8'),
+                        ])
+
+            n += sent.tokens.count()
+
+        # create csv file
+        with open('./static/csv/test/%s.csv' % self.title, 'wb') as f:  # TODO
+            writer = csv.writer(f, delimiter=',')
+            writer.writerows(table)
+
+        print 'Complete. ', datetime.utcnow().strftime('%I:%M:%S')
 
 
 class Sentence(db.Model):
@@ -526,7 +615,8 @@ def add_user(username, password, is_admin='False'):
 @manager.command
 def generate_csv(doc_id=0):
     try:
-        doc = Doc.query.get(int(doc_id))
+        # doc = Doc.query.get(int(doc_id))
+        doc = Doc.query.get(2)
         doc.generate_csv()
 
     except AttributeError:
