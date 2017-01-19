@@ -1,40 +1,36 @@
 (function() {
 
     function generage_csv() {
-        $('.download').on('click', function(event) {
-            var $download = $(this);
-            var title = $download.attr('id');
-            var csrf_token = $download.attr('name');
-            // var csv_view = '/generate-csv/' + title;
+        $('.mail').on('click', function(event) {
+            var $mail = $(this);
+            var title = $mail.attr('id');
+            var csrf_token = $mail.attr('name');
             var csv_view = '/mail-csv/' + title;
+            var msg = "<div class='mail-alert'>&nbsp;&nbsp;&nbsp;&nbsp;";
 
             // change cursors to spinner
-            $download.addClass('wait');
+            $mail.addClass('wait');
             document.body.style.cursor = 'wait';
 
             $.post(csv_view, { _csrf_token: csrf_token }, function() {
-                // do nothing...
+                // yay!!
+                msg += 'Please check your email in a few minutes!</div>';
+                $mail.html(msg);
             }).fail(function() {
-                // a response isn't send back because it takes too long...
-                // TODO: check status
-                alert('Please check your email in a few minutes!');
+                // uh-oh!
+                msg += 'Sorry! Something weny awry. Please tell Naomi.</div>';
+                $mail.html(msg);
             }).always(function() {
                 // restore cursors
                 document.body.style.cursor = 'default';
-                $download.removeClass('wait');
+                $mail.removeClass('wait');
+                // display message
+                $('.mail-alert').fadeIn();
+                // hide message
+                setTimeout(function() {
+                    $('.mail-alert').fadeOut(1200);
+                }, 2000);
             });
-
-            // $.post(csv_view, { _csrf_token: csrf_token }, function() {
-            //     // download csv file
-            //     window.location = '/static/csv/' + title + '.csv';
-            // }).fail(function() {
-            //     // notify user that the csv file cannot be generated
-            //     alert('There is no CSV file for ' + title +'. Please tell Naomi.');
-            // }).always(function() {
-            //     // restore cursors
-            //     document.body.style.cursor = 'default';
-            //     $download.removeClass('wait');
-            // });
         });
     }
 

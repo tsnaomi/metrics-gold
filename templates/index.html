@@ -29,8 +29,8 @@ Metric Gold
             <span class='cell {{ doc.annotation_status(user.id) }}'></span>
         </td>
         {% endfor %}
-        <td class='align-middle'>
-            <span class='download' id='{{ doc.title }}' name='{{ csrf_token() }}'></span>
+        <td class='align-left' style='padding-left:40px;'>
+            <span class='mail' id='{{ doc.title }}' name='{{ csrf_token() }}'></span>
         </td>
     </tr>
     {% endfor %}

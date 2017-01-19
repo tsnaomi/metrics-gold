@@ -126,22 +126,28 @@ textarea {
     border: none;
 }
 
-.download:before {
+.mail:before {
     color: #C7C7C7;
     font-size: 20px;
     font-family: FontAwesome;
     display: inline-block;
-    content: '\f019';
+    content: '\f1d9';
 }
 
-.download:hover:before {
+.mail:hover:before {
     color: #333;
     cursor: pointer;
 }
 
-.download.wait:before {
+.mail.wait:before {
     color: #333;
     cursor: wait;
+}
+
+.mail-alert {
+    font-style: italic;
+    float: right;
+    display: none;
 }
 
 .align-left {

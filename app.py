@@ -24,10 +24,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_bcrypt import Bcrypt
 from functools import wraps
-
 from sqlalchemy.exc import DataError, IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.mutable import MutableDict
+from rq import Queue
+from worker import conn
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config.from_pyfile('config.py')
@@ -46,6 +47,8 @@ csrf = SeaSurf(app)
 flask_bcrypt = Bcrypt(app)
 
 mail = Mail(app)
+
+q = Queue(connection=conn)  # set up Redis connection and initialize queue
 
 
 # Models ----------------------------------------------------------------------
@@ -171,76 +174,6 @@ class Doc(db.Model):
 
         return 'in-progress'
 
-    def old_generate_csv(self):
-        print self.title, '\nStarting... ', datetime.utcnow().strftime('%I:%M')
-
-        # add annotator columns
-        try:
-            users = load_annotators()
-            users = [u for u in users if self.is_annotated(u.id)]
-            headers = [[
-                u.username,
-                u.username + '-UB',
-                u.username + '-UF',
-                u.username + '-note',
-                ] for u in users]
-            headers = reduce(lambda x, y: x + y, headers)
-
-        except TypeError:
-            pass
-
-        # extract metrical tree table
-        with open('./inaugural/%s.csv' % self.title, 'rb') as f:
-            table = [i for i in csv.reader(f, delimiter=',')]
-
-        # add frequency headers
-        headers = ['doc-freq', 'corpus-freq'] + headers
-
-        # add annotator + freq columns to the metrical tree table
-        table[0].extend(headers)
-
-        x = 1
-
-        for sent in self.sentences:
-            peaks, breaks, UFs, notes = {}, {}, {}, {}
-
-            # collect peaks, breaks, UFs, and notes
-            for user in users:
-                user_peaks = sent.get_peaks(user.id)
-                user_breaks = sent.get_breaks(user.id)
-                peaks[user.id] = ['' if p.prom is None else p.prom for p in user_peaks]  # noqa
-                breaks[user.id] = [int(b.index) for b in user_breaks]  # noqa
-                UFs[user.id] = sent.get_utterance_final_ids(user.id, peaks=user_peaks, breaks=user_breaks)  # noqa
-
-                try:
-                    notes[user.id] = sent.get_note(user.id).note
-
-                except AttributeError:
-                    notes[user.id] = ''
-
-            # add columns to csv
-            for j, tok in enumerate(sent.tokens):
-
-                # add frequencies
-                table[x].extend([tok.doc_freq or '', tok.corpus_freq or ''])
-
-                # add annotations
-                for user in users:
-                    table[x].extend([
-                        unicode(peaks[user.id][j]).encode('utf-8'),
-                        unicode(1 if tok.index in breaks[user.id] else '' if tok.punctuation else 0).encode('utf-8'),  # noqa
-                        unicode(1 if tok.index in UFs[user.id] else '' if tok.punctuation else 0).encode('utf-8'),  # noqa
-                        unicode(notes[user.id]).encode('utf-8'),
-                        ])
-                x += 1
-
-        # create csv file
-        with open('./static/csv/test/%s.csv' % self.title, 'wb') as f:  # TODO
-            writer = csv.writer(f, delimiter=',')
-            writer.writerows(table)
-
-        print 'Complete. ', datetime.utcnow().strftime('%I:%M')
-
     def has_video(self):
         return bool(self.youtube_id)
 
@@ -264,7 +197,7 @@ class Doc(db.Model):
                 x += 1
 
         # create csv file
-        with open('./static/csv/base/%s.csv' % self.title, 'wb') as f:  # TODO
+        with open('./static/csv/base/%s.csv' % self.title, 'wb') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
@@ -272,8 +205,6 @@ class Doc(db.Model):
 
         def _format(tok, _list):
             return 1 if tok.index in _list else '' if tok.punctuation else 0
-
-        print self.title, '\nStarting... ', datetime.utcnow().strftime('%I:%M:%S')
 
         try:
             # add annotator columns
@@ -327,11 +258,9 @@ class Doc(db.Model):
             n += sent.tokens.count()
 
         # create csv file
-        with open('./static/csv/test/%s.csv' % self.title, 'wb') as f:  # TODO
+        with open('./static/csv/%s.csv' % self.title, 'wb') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
-
-        print 'Complete. ', datetime.utcnow().strftime('%I:%M:%S')
 
 
 class Sentence(db.Model):
@@ -615,8 +544,7 @@ def add_user(username, password, is_admin='False'):
 @manager.command
 def generate_csv(doc_id=0):
     try:
-        # doc = Doc.query.get(int(doc_id))
-        doc = Doc.query.get(2)
+        doc = Doc.query.get(int(doc_id))
         doc.generate_csv()
 
     except AttributeError:
@@ -624,6 +552,35 @@ def generate_csv(doc_id=0):
 
         for doc in docs:
             doc.generate_csv()
+
+
+# Mail ------------------------------------------------------------------------
+
+def mail_csv(title, recipient):
+    with app.app_context():
+
+        try:
+            # get doc
+            doc = get_doc(title=title)
+
+            # compose email
+            subject = 'Metric Gold: %s (csv)' % doc.title
+            body = 'This file contains the latest data for %s. ' % title
+            body += 'Enjoy!\n\n'
+            msg = Message(subject=subject, recipients=[recipient, ], body=body)
+
+            # generate csv
+            doc.generate_csv()
+
+            # attach csv
+            with app.open_resource('./static/csv/%s.csv' % doc.title) as f:
+                msg.attach(doc.title + '.csv', 'text/csv', f.read())
+
+            # send csv
+            mail.send(msg)
+
+        except NoResultFound:
+            pass
 
 
 # Queries ---------------------------------------------------------------------
@@ -685,7 +642,7 @@ def doc_view(title):
     return render_template('doc.html', doc=doc)
 
 
-@app.route('/<title>/<index>', methods=['GET', 'POST'])  # noqa CLEAN UP
+@app.route('/<title>/<index>', methods=['GET', 'POST'])  # CLEAN UP
 @login_required
 def annotate_view(title, index):
     try:
@@ -772,42 +729,18 @@ def annotate_view(title, index):
         )
 
 
-@app.route('/generate-csv/<title>', methods=['POST', ])  # TODO
-def csv_view(title):
-    if os.path.isfile('./static/csv/' + title + '.csv'):
-        return Response(status=200)
-
-    return Response(status=500)
-
-
 @app.route('/mail-csv/<title>', methods=['POST', ])
 @login_required
 def mail_view(title):
-    try:
-        recipient = User.query.get(session.get('current_user')).email
-        subject = 'Metric Gold: %s csv file' % title
-        body = '(This is an automated email.)'
-        msg = Message(subject=subject, recipients=[recipient, ], body=body)
+    user = User.query.get(session.get('current_user'))
 
-        # generate csv
-        doc = get_doc(title=title)
-        doc.generate_csv()
+    # enqueue csv generation and mailing
+    q.enqueue_call(func='app.mail_csv', args=(title, user.email), timeout=1200)
 
-        # attach csv
-        with app.open_resource('./static/csv/test/' + title + '.csv') as f:  # noqa TODO
-            msg.attach(title + '.csv', 'text/csv', f.read())
-
-        # send csv
-        mail.send(msg)
-
-        return Response(status=200)
-
-    except IndexError as e:
-        print e
-        return Response(status=500)
+    return Response(status=200)
 
 
-@app.route('/enter', methods=['GET', 'POST'])  # TEMP
+@app.route('/enter', methods=['GET', 'POST'])  # TODO
 def login_view():
     if session.get('current_user'):
         return redirect(url_for('main_view'))
