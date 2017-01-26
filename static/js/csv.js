@@ -28,7 +28,9 @@
                 $('.mail-alert').fadeIn();
                 // hide and remove message
                 setTimeout(function() {
-                    $('.mail-alert').fadeOut(1200).remove();
+                    $('.mail-alert').fadeOut(1200, function() {
+                        $(this).remove();
+                    });
                 }, 2000);
             });
         });
