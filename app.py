@@ -58,7 +58,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
-    # email = db.Column(db.String, nullable=True)  # TODO
+    email = db.Column(db.String, nullable=True)
     is_admin = db.Column(db.Boolean, default=False)
 
     # many Peaks per User
@@ -91,10 +91,6 @@ class User(db.Model):
 
     def __unicode__(self):
         return self.__repr__()
-
-    @property
-    def email(self):  # TODO
-        return '%s@stanford.edu' % self.username
 
     def update_password(self, password):
         self.password = flask_bcrypt.generate_password_hash(password)
@@ -406,7 +402,20 @@ class Token(db.Model):
     # frequency info
     doc_freq = db.Column(db.Integer)
     corpus_freq = db.Column(db.Integer)
-    # coca_freq = db.Column(db.Integer)
+
+    # conditional probabilities
+    doc_posterior_1 = db.Column(db.Float)  # unigram
+    doc_posterior_2 = db.Column(db.Float)  # bigram
+    doc_posterior_3 = db.Column(db.Float)  # trigram
+    corpus_posterior_1 = db.Column(db.Float)
+    corpus_posterior_2 = db.Column(db.Float)
+    corpus_posterior_3 = db.Column(db.Float)
+
+    # informativity
+    doc_inform_2 = db.Column(db.Float)  # bigram
+    doc_inform_3 = db.Column(db.Float)  # trigram
+    corpus_inform_2 = db.Column(db.Float)
+    corpus_inform_3 = db.Column(db.Float)
 
     # many Tokens per Sentence
     sentence = db.Column(db.Integer, db.ForeignKey('Sentence.id'))
