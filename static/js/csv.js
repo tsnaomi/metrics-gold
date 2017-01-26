@@ -26,9 +26,10 @@
                 $mail.removeClass('wait');
                 // display message
                 $('.mail-alert').fadeIn();
-                // hide message
+                // hide and remove message
                 setTimeout(function() {
                     $('.mail-alert').fadeOut(1200);
+                    $('.mail-alert').remove();
                 }, 2000);
             });
         });
