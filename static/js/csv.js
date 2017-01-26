@@ -28,8 +28,7 @@
                 $('.mail-alert').fadeIn();
                 // hide and remove message
                 setTimeout(function() {
-                    $('.mail-alert').fadeOut(1200);
-                    $('.mail-alert').remove();
+                    $('.mail-alert').fadeOut(1200).remove();
                 }, 2000);
             });
         });
