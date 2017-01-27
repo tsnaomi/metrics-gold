@@ -273,7 +273,7 @@ class Doc(db.Model):
             n += sent.tokens.count()
 
         # create csv file
-        with open('./static/csv/tmp/%s.csv' % self.title, 'wb') as f:
+        with open('./static/csv/%s.csv' % self.title, 'wb') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
@@ -601,7 +601,7 @@ def mail_csv(title, recipient):
             doc.generate_csv()
 
             # attach csv
-            with app.open_resource('./static/csv/tmp/%s.csv' % doc.title) as f:
+            with app.open_resource('./static/csv/%s.csv' % doc.title) as f:
                 msg.attach(doc.title + '.csv', 'text/csv', f.read())
 
             # send csv

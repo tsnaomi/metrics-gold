@@ -5,8 +5,9 @@ dump.rdb
 import.py
 notes.txt
 
+static/csv/*.csv
+
 alignment/audio/
 docs/
 import/
-static/csv/tmp/
 
