@@ -74,16 +74,30 @@ def _get_ngrams(N):
         ngrams['doc'][d.id][-1][''] = doc_total
 
         for s in d.sentences:
-            # impose sentence-initial and sentence-final markers
-            sent = ['<s>'] + [t.word.lower() for t in s.tokens] + ['</s>']
+            # impose sentence-initial marker
+            # (Note that there is no need for a sentence-final marker, as </s>
+            # will never appear as context, nor will we ever calculate the
+            # informativity of </s>.)
+            sent = ['<s>'] + [t.word.lower() for t in s.tokens]
 
             # extract ngram counts
             for i in xrange(len(sent)):
+                tok = s.tokens[i-1] if i else None
+
                 for n in range(N):
                     if i >= n:
                         ngram = ' '.join([sent[t] for t in xrange(i-n, i+1)])
                         ngrams['doc'][d.id][n][ngram] += 1  # doc-level
                         ngrams['corpus'][n][ngram] += 1  # corpus-level
+
+                        # store each ngram string
+                        try:
+                            setattr(tok, 'gram_%s' % str(n + 1), ngram)
+
+                        except AttributeError:
+                            continue
+
+        db.session.commit()
 
     # pickle ngram counts to file
     with open(NGRAM_FILE % N, 'wb') as f:
@@ -152,11 +166,14 @@ def _get_posteriors(N):
         informativity['doc'][d.id] = S_dict()
 
         for s in d.sentences:
-            # impose sentence-initial and sentence-final markers
-            sent = ['<s>'] + [t.word.lower() for t in s.tokens] + ['</s>']
+            # impose sentence-initial marker
+            # (Note that there is no need for a sentence-final marker, as </s>
+            # will never appear as context, nor will we ever calculate the
+            # informativity of </s>.)
+            sent = ['<s>'] + [t.word.lower() for t in s.tokens]
 
             # extract posteriors
-            for i in xrange(1, len(sent)-1):
+            for i in xrange(1, len(sent)):
                 tok = s.tokens[i-1]
 
                 if not tok.punctuation:
