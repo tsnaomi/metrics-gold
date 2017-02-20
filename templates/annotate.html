@@ -15,10 +15,10 @@
 {% if sentence.has_video %}
 <div class='video'>
     <center>
-        <object width="425" height="344">
-            <param name="movie" value='https://swf.tubechop.com/tubechop.swf?vurl={{ sentence.youtube_id }}&start={{ sentence.start }}&end={{ sentence.end }}&cid=8201995'></param>
-            <embed src='https://swf.tubechop.com/tubechop.swf?vurl={{ sentence.youtube_id }}&start={{ sentence.start }}&end={{ sentence.end }}&cid=8201995' type="application/x-shockwave-flash" allowfullscreen="true" width="425" height="344"></embed>
-        </object>
+        <iframe width="425" height="344" src="https://www.youtube.com/embed/{{ sentence.youtube_id }}?start={{ sentence.start|round(0, 'floor')|int }}&end={{ sentence.end|round(0, 'ceil')|int }}&controls=0" frameborder="0"></iframe>
+        <div id='play-video'>
+            <i class='fa fa-refresh' aria-hidden="true"></i>
+        </div>
     </center>
 </div>
 {% endif %}
@@ -84,4 +84,5 @@
 {% block footer %}
 <script src="{{ url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/annotate.js') }}"></script>
+<script src="{{ url_for('static', filename='js/video.js') }}"></script>
 {% endblock %}

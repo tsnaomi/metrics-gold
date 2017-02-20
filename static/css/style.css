@@ -76,6 +76,16 @@ textarea {
     width: 50%;
 }
 
+#play-video {
+    font-size: 24px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#play-video:hover {
+    color: #5FB6C7;
+}
+
 .welp {
     height: 6px;
 }
