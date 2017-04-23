@@ -64,6 +64,10 @@ textarea {
     width: 50%;
 }
 
+.navbar .container-fluid {
+    width: 92%;
+}
+
 .form {
     width: 50%;
     margin:0 25%;
