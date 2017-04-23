@@ -5,49 +5,49 @@ Metric Gold
 {% endblock %}
 
 {% block body %}
-<div class='welp'></div>
-<div class='nav'>
-    <span class='emph'>Inaugural Addresses</span>
-</div>
+
+<!-- admin table -->
 {% if session.is_admin %}
-<table class='admin-table'>
-    <tr>
-        <th></th>
-        {% for user in users %}
-        <th>{{ user.username }}</th>
+<div class='table-responsive'>
+    <table class='table table-hover admin-table'>
+        <tr>
+            <th></th>
+            {% for user in users %}
+            <th>{{ user.username }}</th>
+            {% endfor %}
+        </tr>
+        {% for doc in docs %}
+        <tr>
+            <td>
+                <span class='mail' id='{{ doc.title }}' name='{{ csrf_token() }}'></span>
+                <a href="{{ url_for('doc_view', title=doc.title) }}" class='status {{ doc.annotation_status(session.current_user) }}'> {{ doc }}</a>
+            </td>
+            {% for user in users %}
+            <td>
+                {% if doc.annotation_status(user.id) != 'unannotated' %}
+                <span class='cell {{ doc.annotation_status(user.id) }}'></span>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
         {% endfor %}
-        <th></th>
-    </tr>
+    </table>
+</div>
+
+<!-- annotator docs -->
+{% else %}
+<ul class='list-group'>
     {% for doc in docs %}
-    <tr>
-        <td class='align-left'>
-            <span class='bullet'>&#xf105;</span>
-            <a href="{{ url_for('doc_view', title=doc.title) }}" class='status {{ doc.annotation_status(session.current_user) }}'> {{ doc }}</a>
-        </td>
-        {% for user in users %}
-        <td class='align-middle'>
-            <span class='cell {{ doc.annotation_status(user.id) }}'></span>
-        </td>
-        {% endfor %}
-        <td class='align-left' style='padding-left:40px;'>
-            <span class='mail' id='{{ doc.title }}' name='{{ csrf_token() }}'></span>
-        </td>
-    </tr>
+    <li class='list-group-item {{ doc.annotation_status(session.current_user) }}'>
+        <a href="{{ url_for('doc_view', title=doc.title) }}"> {{ doc }}</a>
+    </li>
     {% endfor %}
 </table>
-{% else %}
-{% for doc in docs %}
-<p>
-    <span class='bullet'>&#xf105;</span> 
-    <a href="{{ url_for('doc_view', title=doc.title) }}" class='status {{ doc.annotation_status(session.current_user) }}'> {{ doc }}</a>
-</p>
-{% endfor %}
 {% endif %}
 {% endblock %}
 
 {% if session.is_admin %}
 {% block footer %}
-<script src="{{ url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/csv.js') }}"></script>
 {% endblock %}
 {% endif %}

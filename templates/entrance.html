@@ -23,26 +23,11 @@
             <br>
             <input type='password' name='password' placeholder='password'>
             <br>
-            {% if submit == 'Update' %}
-            <br>
-            <input type='text' name='new_username' placeholder='new username'>
-            <br>
-            <input type='password' name='new_password' placeholder='new password'>
-            <br>
-            <br>
-            {% endif %}
-            <input type='submit' value='{{ submit }}'>
+            <input type='submit' value='Sign In'>
         </form>
-        <div class='spinner hide'>
-            <i class='fa fa-cog fa-spin fa-3x fa-fw'></i>
-            <span class='sr-only'>Loading...</span>
-        </div>
         {% for message in get_flashed_messages() %}
         <div class='flash'>{{ message }}</div>
         {% endfor %}
-
-        <script src='https://code.jquery.com/jquery-1.12.4.min.js' integrity='sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=' crossorigin='anonymous'></script>
-        <script src="{{ url_for('static', filename='js/entrance.js') }}"></script>
     </body>
 
 </html>

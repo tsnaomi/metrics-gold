@@ -5,6 +5,8 @@
     <head>
         <meta charset='utf-8'/>
         <title>{% block title %}{% endblock %}</title>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}"/>
         <link rel='stylesheet' href="{{ url_for('static', filename='css/style.css') }}"/>
         <link rel='stylesheet' href="{{ url_for('static', filename='fonts/font-awesome/css/font-awesome.min.css') }}"/>
         {% if config.TESTING %}
@@ -16,11 +18,73 @@
     </head>
 
     <body>
-        <div class='leave'><a href="{{ url_for('logout_view') }}">Sign Out</a></div>
+        <!-- bootstrap navbar -->
+        <nav class='navbar navbar-default navbar-fixed-top'>
+            <div class='container-fluid'>
+                <div class='navbar-header'>
+                    <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar-collapse' aria-expanded='false'>
+                        <span class='sr-only'>Toggle navigation</span>
+                        <span class='icon-bar'></span>
+                        <span class='icon-bar'></span>
+                        <span class='icon-bar'></span>
+                    </button>
+                    <a class='navbar-brand' href="{{ url_for('main_view') }}">Metric Gold</a>
+                </div>
+                <div class='collapse navbar-collapse' id='navbar-collapse'>
+                    <ul class='nav navbar-nav navbar-right'>
+                        <li>
+                            <a href="{{ url_for('account_view') }}">Account</a>
+                        </li>
+                        {% if session.is_admin %}
+                        <li>
+                            <a href="{{ url_for('add_user_view') }}">Add User</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('delete_user_view') }}">Delete User</a>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="{{ url_for('logout_view') }}">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- bootstrap breadcrumbs -->
+        {% if docs or doc or sentence %}
+        <ol class='breadcrumb'>
+            <li class='breadcrumb-item {% if docs %} active {% endif %}'>
+                {% if docs %}
+                Inaugural Addresses
+                {% else %}
+                <a href="{{ url_for('main_view') }}">Inaugural Addresses</a>
+                {% endif %}
+            </li>
+            {% if doc %}
+            <li class='breadcrumb-item {% if doc and not sentence %} active {% endif %}'>
+                {% if sentence %}
+                <a href="{{ url_for('doc_view', title=doc.title) }}">{{ doc }}</a>
+                {% else %}
+                {{ doc }}
+                {% endif %}
+            </li>
+            {% if sentence %}
+            <li class='breadcrumb-item {% if sentence %} active {% endif %}'>
+                Sentence {{ sentence.index }}
+            </li>
+            {% endif %}
+            {% endif %}
+        </ol>
+        {% endif %}
+
+        <!-- body -->
         {% block body %}{% endblock %}
     </body>
 
     <footer>
+        <script src="{{ url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         {% block footer %}{% endblock %}
     </footer>
 

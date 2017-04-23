@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Metric Gold | Account
+{% endblock %}
+
+{% block body %}
+<!-- add user form -->
+<form class='form' method='POST'>
+    <input type='hidden' name='_csrf_token' value='{{ csrf_token() }}'>
+    <div class='form-group'>
+        <label>Username</label>
+        <input class='form-control' type='text' name='username' placeholder='username' value='{{ user.username }}'>
+    </div>
+    <br>
+    <div class='form-group'>
+        <label>Email</label>
+        <input class='form-control' type='text' name='email' placeholder='email' value='{{ user.email }}'>
+    </div>
+    <br>
+    <div class='form-group'>
+        <label>Password</label>
+        <input class='form-control' type='password' name='password1' placeholder='new password'>
+        <div class='div10'></div>
+        <input class='form-control' type='password' name='password2' placeholder='re-type password'>
+    </div>
+    <br>
+    <button type='submit' class='btn btn-default form-control'>Update</button>
+</form>
+
+<div class='div20'></div>
+
+<!-- flash messages -->
+{% include 'flash.html' %}
+{% endblock %}

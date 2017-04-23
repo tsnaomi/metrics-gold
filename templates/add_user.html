@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Metric Gold | Add User
+{% endblock %}
+
+{% block body %}
+<!-- description -->
+<div class='well'>
+    <p>This page allows you to create new <i>annotators</i> and <i>administrators</i>.</p>
+    <p><strong>Annotators</strong> vs. <strong>Administrators</strong>: While both annotators and administrators can annotate the presidents data, only <i>annotator</i> contributions will be included for analysis in the downloadable data frames. In contrast, <i>administrators</i> are able to track annotators' progress, download data frames, and create and delete users. (Thus, if you're viewing this page, this means you're an administrator!)</p>
+    <p><strong>To create a new user</strong>: Enter the new user's <i>SUNet ID</i> in the field below and select whether the user is an annotator or administrator. Upon clicking <i>Create User</i>, a link will be sent to the new user at <i>&lt;SUNet ID&gt;@stanford.edu</i>, allowing them to set up their password. And, voila!</p>
+</div>
+
+<br>
+
+<!-- add user form -->
+<form class='form' method='POST'>
+    <input type='hidden' name='_csrf_token' value='{{ csrf_token() }}'>
+    <div class='form-group'>
+        <label>Username</label>
+        <input class='form-control' type='text' name='username' placeholder='SUNet ID' required>
+    </div>
+    <div class='form-group'>
+        <div class='radio'>
+            <label>
+                <input type='radio' name='is_admin' value='0' checked>
+                Annotator
+            </label>
+        </div>
+        <div class='radio'>
+            <label>
+                <input type='radio' name='is_admin' value='1'>
+                Administrator
+            </label>
+        </div>
+    </div>
+    <button type='submit' class='btn btn-default form-control'>Create User</button>
+</form>
+
+<div class='div20'></div>
+
+<!-- flash messages -->
+{% include 'flash.html' %}
+{% endblock %}

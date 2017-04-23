@@ -8,11 +8,6 @@ body {
     padding: 5% 10%;
 }
 
-p {
-    width: 98%;
-    margin: 0 0 10px 2%;
-}
-
 a {
     color: #333;
     text-decoration: none;
@@ -20,17 +15,11 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #000;
 }
 
-form {
-    width: 100%;
-    text-align: center;
-}
-
-table {
-    padding: 20px 10px;
-    margin: auto auto;
+p {
+    margin: 20px;
 }
 
 th {
@@ -43,7 +32,6 @@ td {
     vertical-align: bottom;
 }
 
-table,
 input[type='submit'],
 textarea {
     border: 1px solid #E0E0E0;
@@ -76,27 +64,22 @@ textarea {
     width: 50%;
 }
 
-#play-video {
-    font-size: 24px;
-    margin-top: 10px;
-    cursor: pointer;
+.form {
+    width: 50%;
+    margin:0 25%;
+    text-align: center;
 }
 
-#play-video:hover {
-    color: #5FB6C7;
+.radio {
+    text-align: left;
 }
 
-.welp {
-    height: 6px;
+.div10 {
+    height: 10px;
 }
 
-.nav {
-    font-size: 26px;
-    margin-bottom: 40px;
-}
-
-.emph {
-    color: #C7C7C7;
+.div20 {
+    height: 20px;
 }
 
 .status {
@@ -104,12 +87,32 @@ textarea {
     margin: -4px;
 }
 
-.status.in-progress {
+.flashes {
+    text-align: center;
+}
+
+.status.in-progress,
+.list-group-item.in-progress {
     background-color: #80FFBF;
 }
 
-.status.annotated {
+.status.annotated,
+.list-group-item.annotated {
     background-color: #D1EDFF;
+}
+
+/*---- index.html -----------------------*/
+
+.admin-table th {
+    text-align: center;
+}
+
+.admin-table tr:first-child:hover {
+    background-color: #fff !important;
+}
+
+.admin-table td:first-child {
+    text-align: left;
 }
 
 .cell:before {
@@ -127,21 +130,13 @@ textarea {
     color: #83ceff;
 }
 
-.cell.unannotated {
-    color: #FFFFFF;
-}
-
-.admin-table {
-    margin: -20px 0 0;
-    border: none;
-}
-
 .mail:before {
     color: #C7C7C7;
     font-size: 20px;
     font-family: FontAwesome;
     display: inline-block;
     content: '\f1d9';
+    padding-right: 20px;
 }
 
 .mail:hover:before {
@@ -154,18 +149,50 @@ textarea {
     cursor: wait;
 }
 
-.mail-alert {
-    font-style: italic;
-    float: right;
-    display: none;
+/*---- doc.html -------------------------*/
+
+table.sentences {
+    padding: 0;
+    margin: 0;
+    border: none;
 }
 
-.align-left {
+table.sentences td {
+    white-space: normal;
     text-align: left;
 }
 
-.align-middle {
-    vertical-align: middle;
+td.index {
+    color: #C7C7C7;
+    font-size: 14px;
+    text-align: right !important;
+    vertical-align: top;
+    width: 40px;
+    padding-top: 6px;
+    padding-right: 20px;
+}
+
+/*---- annotate.html --------------------*/
+
+form.annotate {
+    width: 100%;
+    text-align: center;
+}
+
+.annotate table {
+    padding: 20px 10px;
+    margin: auto auto 20px;
+    border: 3px solid #E0E0E0;
+}
+
+#play-video {
+    font-size: 24px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#play-video:hover {
+    color: #5FB6C7;
 }
 
 .video {
@@ -192,19 +219,6 @@ textarea {
     width: 2px;
     margin: auto;
     background-color: #DDDDDD;
-}
-
-.bullet {
-    font-family: FontAwesome;
-    display: inline-block;
-    padding-right: 5px;
-}
-
-.arrow {
-    font-size: 20px;
-    font-family: FontAwesome;
-    display: inline-block;
-    padding: 0 5px;
 }
 
 .rating { 
@@ -242,34 +256,9 @@ textarea {
     color: #5FB6C7; /* light blue */
 }
 
+/*---- entrance.html --------------------*/
+
 .flash {
     font-family: 'Pacifico', Garamond, cursive;
     text-align: center;
-}
-
-.leave {
-    top: 10px;
-    right: 30px;
-    position: absolute;
-}
-
-table.sentences {
-    padding: 0;
-    margin: 0;
-    border: none;
-}
-
-table.sentences td {
-    white-space: normal;
-    text-align: left;
-}
-
-td.index {
-    color: #C7C7C7;
-    font-size: 14px;
-    text-align: right !important;
-    vertical-align: top;
-    width: 40px;
-    padding-top: 6px;
-    padding-right: 20px;
 }
