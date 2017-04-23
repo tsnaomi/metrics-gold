@@ -4,10 +4,10 @@ export.txt
 dump.rdb
 import.py
 notes.txt
+launch.sh
 
 static/csv/*.csv
 
 alignment/audio/
 docs/
 import/
-
