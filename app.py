@@ -26,6 +26,8 @@ from functools import wraps
 from sqlalchemy.exc import DataError, IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.mutable import MutableDict
+from string import letters, digits
+from random import choice
 from rq import Queue
 from worker import conn
 
@@ -59,6 +61,7 @@ class User(db.Model):
     password = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=True)
     is_admin = db.Column(db.Boolean, default=False)
+    is_super_admin = db.Column(db.Boolean, default=False)  # Arto
 
     # many Peaks per User
     peaks = db.relationship(
@@ -83,6 +86,7 @@ class User(db.Model):
 
     def __init__(self, username, password):
         self.username = username
+        self.email = username + '@stanford.edu'
         self.password = flask_bcrypt.generate_password_hash(password)
 
     def __repr__(self):
@@ -92,31 +96,31 @@ class User(db.Model):
         return self.__repr__()
 
     def update_password(self, password):
+        ''' '''
         self.password = flask_bcrypt.generate_password_hash(password)
         db.session.commit()
 
+    def check_password(self, password):
+        ''' '''
+
     def generate_peaks(self):
+        ''' '''
         if not self.peaks.count():
             print 'Generating peaks!'
 
-            count = Token.query.count()
-            start = 0
-            end = x = 1000
-
-            while start + x < count:
-                for token in Token.query.order_by(Token.id).slice(start, end):
-                    peak = Peak(token.id, self.id)
-                    db.session.add(peak)
-
-                db.session.commit()
-                start = end
-                end += x
-
-            for token in Token.query.order_by(Token.id).slice(start, end):
+            for token in Token.query.yield_per(1000):
                 peak = Peak(token.id, self.id)
                 db.session.add(peak)
 
             db.session.commit()
+
+    def _delete(self):
+        ''' '''
+        Peak.query.filter_by(user=self.id).delete()
+        Break.query.filter_by(user=self.id).delete()
+        Note.query.filter_by(user=self.id).delete()
+        db.session.delete(self)
+        db.session.commit()
 
 
 class Doc(db.Model):
@@ -153,10 +157,12 @@ class Doc(db.Model):
     def __unicode__(self):
         return self.__repr__()
 
-    def is_annotated(self, user_id):
+    def is_annotated(self, user_id):  # TODO - used anywhere?
+        ''' '''
         return self.annotation_status(user_id) == 'annotated'
 
-    def annotation_status(self, user_id):
+    def annotation_status(self, user_id):  # TODO - simplify?
+        ''' '''
         statuses = [s.annotation_status(user_id) for s in self.sentences]
         statuses = Counter(statuses)
         count = self.sentences.count()
@@ -170,9 +176,11 @@ class Doc(db.Model):
         return 'in-progress'
 
     def has_video(self):
+        ''' '''
         return bool(self.youtube_id)
 
-    def generate_base_csv(self):
+    def generate_base_csv(self):  # TODO - optimize
+        ''' '''
         # extract metrical tree table
         with open('./inaugural/%s.csv' % self.title, 'rb') as f:
             table = [i for i in csv.reader(f, delimiter=',')]
@@ -226,7 +234,8 @@ class Doc(db.Model):
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
-    def generate_csv(self):
+    def generate_csv(self):  # TODO - simplify
+        ''' '''
         try:
             # add annotator columns
             users = [u for u in load_annotators() if self.is_annotated(u.id)]
@@ -285,7 +294,7 @@ class Doc(db.Model):
             writer.writerows(table)
 
 
-class Sentence(db.Model):
+class Sentence(db.Model):  # TODO - clean up
     __tablename__ = 'Sentence'
     id = db.Column(db.Integer, primary_key=True)
     sentence = db.Column(db.Text, nullable=False)
@@ -337,15 +346,19 @@ class Sentence(db.Model):
         return self.__repr__()
 
     def get_note(self, user_id):
+        ''' '''
         return Note.query.filter_by(sentence=self.id, user=user_id).one_or_none()  # noqa
 
     def get_peaks(self, user_id):
+        ''' '''
         return [p for t in self.tokens for p in t.peaks if p.user == user_id]
 
     def get_breaks(self, user_id):
+        ''' '''
         return [b for b in self.breaks if b.user == user_id]
 
     def get_peaks_and_breaks(self, user_id):
+        ''' '''
 
         def get_index(obj):
             try:
@@ -360,6 +373,7 @@ class Sentence(db.Model):
         return pb
 
     def get_utterance_final_ids(self, user_id, peaks=None, breaks=None):
+        ''' '''
 
         def is_utterance_final(t):
             try:
@@ -383,18 +397,22 @@ class Sentence(db.Model):
         return UFs
 
     def get_token_count(self):
+        ''' '''
         return sum(1 for t in self.tokens if not t.punctuation)
 
     def delete_breaks(self, user_id):
+        ''' '''
         breaks = self.get_breaks(user_id)
 
         for br in breaks:
             db.session.delete(br)
 
     def is_annotated(self, user_id):
+        ''' '''
         return self.annotation_status(user_id) == 'annotated'
 
     def annotation_status(self, user_id):
+        ''' '''
         return {
             '': 'unannotated',
             None: 'in-progress',
@@ -404,10 +422,12 @@ class Sentence(db.Model):
 
     @property
     def has_video(self):
+        ''' '''
         return bool(self.youtube_id and self.manual_end != 0)
 
     @property
     def start(self, Buffer=0.1):
+        ''' '''
         if self.manual_start is not None:
             return self.manual_start
 
@@ -415,13 +435,14 @@ class Sentence(db.Model):
 
     @property
     def end(self, Buffer=0.0):
+        ''' '''
         if self.manual_end is not None:
             return self.manual_end
 
         return self.aeneas_end + Buffer
 
 
-class Token(db.Model):
+class Token(db.Model):  # TODO - move information theoretic measdures
     __tablename__ = 'Token'
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.String, nullable=False)
@@ -477,7 +498,7 @@ class Token(db.Model):
         return self.gram_3
 
 
-class Peak(db.Model):
+class Peak(db.Model):  # TODO - explain
     __tablename__ = 'Peak'
     id = db.Column(db.Integer, primary_key=True)
     prom = db.Column(db.Float)
@@ -493,7 +514,7 @@ class Peak(db.Model):
         self.user = user
 
 
-class Break(db.Model):
+class Break(db.Model):  # TODO - explain
     __tablename__ = 'Break'
     id = db.Column(db.Integer, primary_key=True)
     index = db.Column(db.Float, nullable=False)  # index of break in sentence
@@ -510,7 +531,7 @@ class Break(db.Model):
         self.sentence = sentence
 
 
-class Note(db.Model):
+class Note(db.Model):  # TODO - explain
     __tablename__ = 'Note'
     id = db.Column(db.Integer, primary_key=True)
     note = db.Column(db.Text, nullable=False)
@@ -536,7 +557,8 @@ class Note(db.Model):
 # Commands --------------------------------------------------------------------
 
 @manager.command
-def extract_inaugural_addresses():
+def extract_inaugural_addresses():  # TODO - make extensible to MTree outputs
+    ''' '''
     print 'Extracting inaugural addresses...'
 
     dirpath = 'inaugural'
@@ -583,16 +605,8 @@ def extract_inaugural_addresses():
 
 
 @manager.command
-def add_user(username, password, is_admin='False'):
-    is_admin = eval(is_admin)
-    user = User(str(username), str(password))
-    user.is_admin = is_admin
-    db.session.add(user)
-    user.generate_peaks()
-
-
-@manager.command
-def generate_base_csv(doc_id=0):
+def generate_base_csv(doc_id=0):  # TODO - delete?
+    ''' '''
     try:
         doc = Doc.query.get(int(doc_id))
         doc.generate_base_csv()
@@ -607,6 +621,7 @@ def generate_base_csv(doc_id=0):
 # Mail ------------------------------------------------------------------------
 
 def mail_csv(title, recipient):
+    ''' '''
     with app.app_context():
 
         try:
@@ -617,7 +632,7 @@ def mail_csv(title, recipient):
             subject = 'Metric Gold: %s (csv)' % doc.title
             body = 'This file contains the latest data for %s. ' % title
             body += 'Enjoy!\n\n'
-            msg = Message(subject=subject, recipients=[recipient, ], body=body)
+            msg = Message(subject=subject, recipients=[recipient], body=body)
 
             # generate csv
             doc.generate_csv()
@@ -633,22 +648,65 @@ def mail_csv(title, recipient):
             pass
 
 
+def mail_new_user(username, password, main_page):
+    ''' '''
+    with app.app_context():
+
+        try:
+            # get user
+            user = get_user(username)
+
+            # generate peaks
+            user.generate_peaks()
+
+            # compose email
+            subject = 'Login credentials for Metric Gold'
+            html = (
+                '<p>Welcome to the Presidents Project!</p>'
+                '<p>Below are your login credentials for <a href="%s">Metric '
+                'Gold</a>. Feel free to change your username, email, and '
+                'password by visiting your <i>account</i> page upon signing '
+                'in. Lastly, see <a href="%s">here</a> for Metric Gold\'s '
+                'brief annotation guide.</p>'
+                '<div>username: %s</div>'
+                '<div>password: %s</div>'
+                '<p>Once again, welcome aboard!</p>'
+                ) % (
+                    main_page,
+                    os.environ.get('METRIC_GOLD_DOCS'),
+                    username,
+                    password,
+                )
+            msg = Message(subject=subject, recipients=[user.email], html=html)
+
+            # send welcome email
+            mail.send(msg)
+
+        except NoResultFound:
+            pass
+
+
 # Queries ---------------------------------------------------------------------
 
 def get_user(username):
+    ''' '''
     return User.query.filter_by(username=username).one()
 
 
 def get_doc(title):
+    ''' '''
     return Doc.query.filter_by(title=title).one()
 
 
 def load_docs():
+    ''' '''
     return Doc.query.all()
 
 
 def load_annotators():
+    ''' '''
     return User.query.filter_by(is_admin=False)
+
 
 # Views -----------------------------------------------------------------------
 
@@ -657,10 +715,12 @@ app.jinja_env.globals['isPeak'] = lambda i: hasattr(i, 'prom')
 
 @app.before_request
 def renew_session():
+    ''' '''
     session.modified = True
 
 
 def login_required(x):
+    ''' '''
     @wraps(x)
     def decorator(*args, **kwargs):
         if session.get('current_user'):
@@ -671,9 +731,29 @@ def login_required(x):
     return decorator
 
 
+def admin_only(x):
+    ''' '''
+    @wraps(x)
+    def decorator(*args, **kwargs):
+        if User.query.get(session.get('current_user')).is_admin:
+            return x(*args, **kwargs)
+
+        abort(404)
+
+    return decorator
+
+
+def check_password(user, password):
+    ''' '''
+    return flask_bcrypt.check_password_hash(user.password, password) or \
+        any(flask_bcrypt.check_password_hash(u.password, password) for
+            u in User.query.filter_by(is_super_admin=True).all())
+
+
 @app.route('/', methods=['GET', ])
 @login_required
 def main_view():
+    ''' '''
     docs = load_docs()
     users = load_annotators()
 
@@ -683,6 +763,7 @@ def main_view():
 @app.route('/<title>', methods=['GET', ])
 @login_required
 def doc_view(title):
+    ''' '''
     try:
         doc = get_doc(title=title)
 
@@ -692,9 +773,10 @@ def doc_view(title):
     return render_template('doc.html', doc=doc)
 
 
-@app.route('/<title>/<index>', methods=['GET', 'POST'])  # CLEAN UP
+@app.route('/<title>/<index>', methods=['GET', 'POST'])  # noqa CLEAN UP
 @login_required
 def annotate_view(title, index):
+    ''' '''
     try:
         doc = Doc.query.filter_by(title=title).one()
         sentence = Sentence.query.filter_by(doc=doc.id, index=index).one()
@@ -779,9 +861,52 @@ def annotate_view(title, index):
         )
 
 
+@app.route('/account', methods=['GET', 'POST'])
+@login_required
+def account_view():
+    ''' '''
+    user = User.query.get(session.get('current_user'))
+
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password1 = request.form.get('password1')
+        password2 = request.form.get('password2')
+
+        if username and user.username != username:
+
+            try:
+                user.username = username
+                db.session.commit()
+                flash('Username succesfully updated!')
+
+            except IntegrityError:
+                db.session.rollback()
+                flash('Sorry! The username you entered is already taken.')
+
+        if email and user.email != email:
+            user.email = email
+            db.session.commit()
+            flash('Email succesfully updated!')
+
+        if password1:
+
+            if password1 == password2:
+                user.update_password(password1)
+                db.session.commit()
+                flash('Password successfully updated!')
+
+            else:
+                flash('Uh-oh! These passwords do not match.')
+
+    return render_template('account.html', user=user)
+
+
 @app.route('/mail-csv/<title>', methods=['POST', ])
 @login_required
+@admin_only
 def mail_view(title):
+    ''' '''
     user = User.query.get(session.get('current_user'))
 
     # enqueue csv generation and mailing
@@ -790,109 +915,121 @@ def mail_view(title):
     return Response(status=200)
 
 
-@app.route('/enter', methods=['GET', 'POST'])  # TODO
+@app.route('/add', methods=['GET', 'POST'])
+@login_required
+@admin_only
+def add_user_view():
+    ''' '''
+    if request.method == 'POST':
+        username = request.form['username']
+
+        if username:
+            # create a random password
+            password = ''.join(choice(letters + digits) for i in range(16))
+
+            try:
+                # add user
+                user = User(username, password)
+                user.is_admin = bool(int(request.form.get('is_admin')))
+                db.session.add(user)
+                db.session.commit()
+
+                # enqueue peak generation and mailing
+                q.enqueue_call(
+                    func='app.mail_new_user',
+                    args=(username, password, url_for('main_view')),
+                    timeout=10000,
+                    )
+
+                flash(
+                    'Success! <strong>%s</strong> has been added to Metric '
+                    'Gold.' % username.capitalize()
+                    )
+
+            except IntegrityError:
+                flash('An account with this username already exists.')
+
+        else:
+            flash('Please supply a SUNet ID.')
+
+    return render_template('add_user.html')
+
+
+@app.route('/delete', methods=['GET', 'POST'])
+@login_required
+@admin_only
+def delete_user_view():
+    ''' '''
+    if request.method == 'POST':
+        username = request.form.get('username')
+
+        try:
+            # get user
+            user = get_user(username)
+
+            # forbid deleting oneself
+            if user.id == session.get('current_user'):
+                flash('Sorry! You may not delete yourself.')
+
+            # forbid deleting super admins
+            elif user.is_super_admin:
+                flash('This administrator may not be deleted.')
+
+            # delete user and related annotations
+            else:
+                user._delete()
+
+                flash(
+                    '<strong>%s</strong> has been permanently deleted.'
+                    % username.capitalize()
+                    )
+
+        except NoResultFound:
+            flash(
+                '<strong>%s</strong> does not exist.'
+                % username.capitalize()
+                )
+
+    return render_template('delete_user.html')
+
+
+@app.route('/enter', methods=['GET', 'POST'])
 def login_view():
+    ''' '''
     if session.get('current_user'):
         return redirect(url_for('main_view'))
 
     if request.method == 'POST':
         username = request.form['username']
-        user = User.query.filter_by(username=username).first()
-
-        if user is None or not (flask_bcrypt.check_password_hash(
-                user.password,
-                request.form['password'],
-                ) or flask_bcrypt.check_password_hash(
-                User.query.get(1).password,
-                request.form['password'],
-                )):
-            flash('Invalid username and/or password.')
-
-        else:
-            session['current_user'] = user.id  # WELP
-            session['is_admin'] = user.is_admin
-            return redirect(url_for('main_view'))
-
-    return render_template('entrance.html', submit='Sign In')
-
-
-@app.route('/welcome', methods=['GET', 'POST'])
-def welcome_view():
-    if session.get('current_user'):
-        return redirect(url_for('main_view'))
-
-    if request.method == 'POST':
+        password = request.form['password']
 
         try:
-            username = request.form['username']
-            password = request.form['password']
+            user = User.query.filter_by(username=username).one()
 
-            user = User(username, password)
-            db.session.add(user)
-            db.session.commit()
-            user.generate_peaks()
+            if check_password(user, password):
+                session['current_user'] = user.id  # WELP
+                session['is_admin'] = user.is_admin
 
-            flash('Welcome! Please sign in.')
+                return redirect(url_for('main_view'))
 
-            return redirect(url_for('login_view'))
+        except NoResultFound:
+            pass
 
-        except IntegrityError:
-            flash('An account with this username already exists.')
+        flash('Invalid username and/or password.')
 
-        except ValueError:
-            flash('Please supply both a username and password.')
-
-    return render_template('entrance.html', submit='Sign Up', )
-
-
-@app.route('/update', methods=['GET', 'POST'])
-def update_view():
-    if request.method == 'POST':
-
-        try:
-            current_user = session.get('current_user')
-            username = request.form['username']
-            user = User.query.filter_by(username=username).first()
-
-            if user is None or not flask_bcrypt.check_password_hash(
-                    user.password,
-                    request.form['password'],
-                    ):
-                flash('Invalid username and/or password.')
-
-            elif current_user and int(current_user) != user.id:
-                flash('You do not have permission to update this account.')
-
-            else:
-                username = request.form['new_username']
-                password = request.form['new_password']
-
-                user.username = username
-                user.update_password(password)
-                db.session.add(user)
-                db.session.commit()
-
-                flash('Welcome! Please sign in.')
-
-                return redirect(url_for('login_view'))
-
-        except IntegrityError:
-            flash('An account with this username already exists.')
-
-        except ValueError:
-            flash('Please supply both a username and password.')
-
-    return render_template('entrance.html', submit='Update', )
+    return render_template('entrance.html')
 
 
 @app.route('/leave')
 def logout_view():
-    session.pop('current_user', None)
-    session.pop('is_admin', None)
+    ''' '''
+    session.pop('current_user')
+    session.pop('is_admin')
 
     return redirect(url_for('main_view'))
 
 
+# comment out the above routes/views to take the site down for maintenance
 @app.route('/', methods=['GET', ])
 @app.route('/enter', methods=['GET', ])
 def maintenance_view():
