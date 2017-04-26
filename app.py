@@ -87,9 +87,9 @@ class User(db.Model):
         lazy='dynamic',
         )
 
-    def __init__(self, username, password):
+    def __init__(self, username, email, password):
         self.username = username
-        self.email = username + '@stanford.edu'
+        self.email = email
         self.password = flask_bcrypt.generate_password_hash(password)
 
     def __repr__(self):
@@ -978,6 +978,7 @@ def add_user_view():
     ''' '''
     if request.method == 'POST':
         username = request.form['username']
+        email = request.form['email']
 
         if username:
             # create a random password
@@ -985,7 +986,7 @@ def add_user_view():
 
             try:
                 # add user
-                user = User(username, password)
+                user = User(username, email, password)
                 user.is_admin = bool(int(request.form.get('is_admin')))
                 db.session.add(user)
                 db.session.commit()
