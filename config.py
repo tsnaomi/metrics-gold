@@ -5,6 +5,7 @@ from datetime import timedelta
 SECRET_KEY = os.getenv('SECRET_KEY', '31415926535')
 TESTING = not bool(os.environ.get('DATABASE_URL'))
 PERMANENT_SESSION_LIFETIME = timedelta(hours=10)
+ONLINE_LAST_MINUTES = 20
 
 SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', 'postgresql:///metric-gold')  # noqa
 SQLALCHEMY_TRACK_MODIFICATIONS = False
