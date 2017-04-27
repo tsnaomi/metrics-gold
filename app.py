@@ -28,9 +28,9 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.mutable import MutableDict
 from string import letters, digits
 from random import choice
-from redis import Redis
+# from redis import Redis
 from rq import Queue
-from time import time
+# from time import time
 from worker import conn
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
@@ -52,7 +52,7 @@ flask_bcrypt = Bcrypt(app)
 mail = Mail(app)
 
 q = Queue(connection=conn)  # set up Redis connection and initialize queue
-r = Redis()
+# r = Redis()
 
 
 # Models ----------------------------------------------------------------------
@@ -713,43 +713,43 @@ def load_annotators():
 
 # Redis -----------------------------------------------------------------------
 
-def mark_online(user_id):
-    ''' '''
-    try:
-        username = User.query.get(user_id).username
-        now = int(time())
-        expire = now + (app.config.get('ONLINE_LAST_MINUTES') * 60) + 10
-        key = 'online/%d' % (now // 60)
-        pipe = r.pipeline()
-        pipe.sadd(key, username)
-        pipe.expireat(key, expire)
-        pipe.execute()
+# def mark_online(user_id):
+#     ''' '''
+#     try:
+#         username = User.query.get(user_id).username
+#         now = int(time())
+#         expire = now + (app.config.get('ONLINE_LAST_MINUTES') * 60) + 10
+#         key = 'online/%d' % (now // 60)
+#         pipe = r.pipeline()
+#         pipe.sadd(key, username)
+#         pipe.expireat(key, expire)
+#         pipe.execute()
 
-    # no current user to mark online
-    except (TypeError, AttributeError):
-        pass
-
-
-def mark_offline(user_id):
-    ''' '''
-    username = User.query.get(user_id).username
-    now = int(time()) // 60
-    minutes = xrange(app.config.get('ONLINE_LAST_MINUTES'))
-    pipe = r.pipeline()
-
-    for key in ['online/%d' % (now - x) for x in minutes]:
-        pipe.srem(key, username)
-
-    pipe.execute()
+#     # no current user to mark online
+#     except (TypeError, AttributeError):
+#         pass
 
 
-def get_online_users():
-    ''' '''
-    now = int(time()) // 60
-    minutes = xrange(app.config.get('ONLINE_LAST_MINUTES'))
-    online_users = r.sunion(['online/%d' % (now - x) for x in minutes])
+# def mark_offline(user_id):
+#     ''' '''
+#     username = User.query.get(user_id).username
+#     now = int(time()) // 60
+#     minutes = xrange(app.config.get('ONLINE_LAST_MINUTES'))
+#     pipe = r.pipeline()
 
-    return online_users
+#     for key in ['online/%d' % (now - x) for x in minutes]:
+#         pipe.srem(key, username)
+
+#     pipe.execute()
+
+
+# def get_online_users():
+#     ''' '''
+#     now = int(time()) // 60
+#     minutes = xrange(app.config.get('ONLINE_LAST_MINUTES'))
+#     online_users = r.sunion(['online/%d' % (now - x) for x in minutes])
+
+#     return online_users
 
 
 # Views -----------------------------------------------------------------------
@@ -763,10 +763,10 @@ def renew_session():
     session.modified = True
 
 
-@app.before_request
-def mark_current_user_online():
-    ''' '''
-    mark_online(session.get('current_user', 0))
+# @app.before_request
+# def mark_current_user_online():
+#     ''' '''
+#     mark_online(session.get('current_user', 0))
 
 
 def login_required(x):
@@ -804,7 +804,7 @@ def check_password(user, password):
 @login_required
 def main_view():
     ''' '''
-    online_users = ', '.join(list(get_online_users()))
+    # online_users = ', '.join(list(get_online_users()))
     docs = load_docs()
     users = load_annotators()
 
@@ -812,7 +812,7 @@ def main_view():
         'index.html',
         docs=docs,
         users=users,
-        online_users=online_users,
+        # online_users=online_users,
         )
 
 
@@ -1081,7 +1081,7 @@ def login_view():
 @login_required
 def logout_view():
     ''' '''
-    mark_offline(session.get('current_user'))
+    # mark_offline(session.get('current_user'))
     session.pop('current_user')
     session.pop('is_admin')
 
