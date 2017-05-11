@@ -182,7 +182,7 @@ class Doc(db.Model):
         ''' '''
         return bool(self.youtube_id)
 
-    def generate_base_csv(self):  # TODO - optimize
+    def generate_base_csv(self):
         ''' '''
         # extract metrical tree table
         with open('./inaugural/%s.csv' % self.title, 'rb') as f:
@@ -237,13 +237,14 @@ class Doc(db.Model):
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
-    def generate_csv(self):  # TODO - simplify
+    def generate_csv(self):
         ''' '''
         try:
             # add annotator columns
             users = [u for u in load_annotators() if self.is_annotated(u.id)]
             headers = reduce(lambda x, y: x + y, [[
                 u.username,
+                u.username + '-norm',  # normalized stress level
                 u.username + '-UB',
                 u.username + '-UF',
                 u.username + '-note',
@@ -264,30 +265,33 @@ class Doc(db.Model):
         for sent in self.sentences:
 
             for user in users:
-                user_peaks = sent.get_peaks(user.id)
-                user_breaks = sent.get_breaks(user.id)
-                peaks = ['' if p.prom is None else p.prom for p in user_peaks]
-                breaks = [int(b.index) for b in user_breaks]
-                UFs = sent.get_utterance_final_ids(
-                    user.id,
-                    peaks=user_peaks,
-                    breaks=user_breaks,
-                    )
+                # get the maximum stress the annotator assigned to the sentence
+                # in order to noramlize the stress annotations
+                max_peak = max(
+                    db.session.query(Peak.prom).join(Token).join(Sentence)
+                    .filter(Sentence.id == sent.id)
+                    .filter(Peak.user == user.id)
+                    .all())[0]
 
+                # get the id of the last annotated token in the sentence
+                last_id = sent.tokens.filter_by(punctuation=False).all()[-1].id
+
+                # get any note the annotator wrote about the sentence
                 try:
                     note = sent.get_note(user.id).note
 
                 except AttributeError:
                     note = ''
 
-                for i, tok in enumerate(sent.tokens):
-                    if not tok.punctuation:
-                        table[n + i].extend([
-                            unicode(peaks[i]).encode('utf-8'),
-                            unicode(1 if tok.index in breaks else 0),
-                            unicode(1 if tok.index in UFs else 0),
-                            unicode(note).encode('utf-8'),
-                            ])
+                for i, t in enumerate(sent.tokens):
+                    if not t.punctuation:
+                        UF = int(t.id == last_id)
+
+                        # [stress, stress-norm, UB, UF, note]
+                        annotation = t.get_annotation_vector(
+                            user.id, max_peak, UF, note)
+
+                        table[n + i].extend(annotation)
 
             n += sent.tokens.count()
 
@@ -350,15 +354,17 @@ class Sentence(db.Model):  # TODO - clean up
 
     def get_note(self, user_id):
         ''' '''
-        return Note.query.filter_by(sentence=self.id, user=user_id).one_or_none()  # noqa
+        return self.notes.filter_by(user=user_id).one_or_none()
 
     def get_peaks(self, user_id):
         ''' '''
-        return [p for t in self.tokens for p in t.peaks if p.user == user_id]
+        return db.session.query(Peak).join(Token).join(Sentence).filter(
+            Sentence.id == self.id).filter(Peak.user == user_id).all()
 
     def get_breaks(self, user_id):
         ''' '''
-        return [b for b in self.breaks if b.user == user_id]
+        return db.session.query(Break).join(Sentence).filter(
+            Sentence.id == self.id).filter(Break.user == user_id).all()
 
     def get_peaks_and_breaks(self, user_id):
         ''' '''
@@ -375,33 +381,9 @@ class Sentence(db.Model):  # TODO - clean up
 
         return pb
 
-    def get_utterance_final_ids(self, user_id, peaks=None, breaks=None):
-        ''' '''
-
-        def is_utterance_final(t):
-            try:
-                return t.id == peaks[-1] or t.index + 0.5 in breaks
-
-            except IndexError:
-                print self.sentence
-                return False
-
-        if peaks is None:
-            peaks = self.get_peaks(user_id)
-
-        if breaks is None:
-            breaks = self.get_breaks(user_id)
-
-        peaks = [p.token for p in peaks[-4:] if not p.p_token.punctuation]
-        breaks = [b.index for b in breaks]
-
-        UFs = [t.index for t in self.tokens if is_utterance_final(t)]
-
-        return UFs
-
     def get_token_count(self):
         ''' '''
-        return sum(1 for t in self.tokens if not t.punctuation)
+        return self.tokens.filter_by(punctuation=False).count()
 
     def delete_breaks(self, user_id):
         ''' '''
@@ -445,7 +427,7 @@ class Sentence(db.Model):  # TODO - clean up
         return self.aeneas_end + Buffer
 
 
-class Token(db.Model):  # TODO - move information theoretic measdures
+class Token(db.Model):  # TODO - move information theoretic measures
     __tablename__ = 'Token'
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.String, nullable=False)
@@ -491,6 +473,22 @@ class Token(db.Model):  # TODO - move information theoretic measdures
         self.index = index
         self.sentence = sentence
         self.punctuation = punctuation
+
+    def get_annotation_vector(self, user_id, max_peak, UF, note):
+        ''' '''
+        try:
+            peak = self.peaks.filter_by(user=user_id).one()
+            prom = peak.prom
+            norm_prom = float(prom) / max_peak
+            UB = int(self.t_sentence.breaks.filter_by(
+                index=self.index + 0.5,
+                user=user_id).count())
+            UF = int(UB or UF)
+
+            return [prom, norm_prom, UB, UF, note]
+
+        except TypeError:
+            return []
 
     @property
     def bigram(self):
