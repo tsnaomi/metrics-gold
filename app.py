@@ -606,7 +606,7 @@ def extract_inaugural_addresses():  # TODO - make extensible to MTree outputs
 
 
 @manager.command
-def generate_base_csv(doc_id=0):  # TODO - delete?
+def generate_base_csv(doc_id=0):
     ''' '''
     try:
         doc = Doc.query.get(int(doc_id))
