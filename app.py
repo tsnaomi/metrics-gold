@@ -28,10 +28,6 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.mutable import MutableDict
 from string import letters, digits
 from random import choice
-# # from redis import Redis
-# from rq import Queue
-# # from time import time
-# from worker import conn
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config.from_pyfile('config.py')
@@ -49,9 +45,6 @@ manager.add_command('db', MigrateCommand)
 csrf = SeaSurf(app)
 flask_bcrypt = Bcrypt(app)
 mail = Mail(app)
-
-# q = Queue(connection=conn)  # set up Redis connection and initialize queue
-# # r = Redis()
 
 
 # Models ----------------------------------------------------------------------
