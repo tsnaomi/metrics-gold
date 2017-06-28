@@ -19,7 +19,7 @@ Metric Gold
         {% for doc in docs %}
         <tr>
             <td>
-                <span class='mail' id='{{ doc.title }}' name='{{ csrf_token() }}'></span>
+                <span class='csv' id='{{ doc.title }}' name='{{ csrf_token() }}'></span>
                 <a href="{{ url_for('doc_view', title=doc.title) }}" class='status {{ doc.annotation_status(session.current_user) }}'> {{ doc }}</a>
             </td>
             {% for user in users %}
@@ -33,11 +33,6 @@ Metric Gold
         {% endfor %}
     </table>
 </div>
-
-<!-- <div class='div20'></div> -->
-
-<!-- online users -->
-<!-- <strong>Online Users</strong>: {{ online_users }} -->
 
 <!-- annotator docs -->
 {% else %}

@@ -28,10 +28,10 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.mutable import MutableDict
 from string import letters, digits
 from random import choice
-# from redis import Redis
-from rq import Queue
-# from time import time
-from worker import conn
+# # from redis import Redis
+# from rq import Queue
+# # from time import time
+# from worker import conn
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config.from_pyfile('config.py')
@@ -48,11 +48,10 @@ manager.add_command('db', MigrateCommand)
 
 csrf = SeaSurf(app)
 flask_bcrypt = Bcrypt(app)
-
 mail = Mail(app)
 
-q = Queue(connection=conn)  # set up Redis connection and initialize queue
-# r = Redis()
+# q = Queue(connection=conn)  # set up Redis connection and initialize queue
+# # r = Redis()
 
 
 # Models ----------------------------------------------------------------------
@@ -606,48 +605,15 @@ def extract_inaugural_addresses():  # TODO - make extensible to MTree outputs
 
 
 @manager.command
-def generate_base_csv(doc_id=0):
+def generate_base_csv():
     ''' '''
-    try:
-        doc = Doc.query.get(int(doc_id))
+    docs = load_docs()
+
+    for doc in docs:
         doc.generate_base_csv()
-
-    except AttributeError:
-        docs = load_docs()
-
-        for doc in docs:
-            doc.generate_base_csv()
 
 
 # Mail ------------------------------------------------------------------------
-
-def mail_csv(title, recipient):
-    ''' '''
-    with app.app_context():
-
-        try:
-            # get doc
-            doc = get_doc(title=title)
-
-            # compose email
-            subject = 'Metric Gold: %s (csv)' % doc.title
-            body = 'This file contains the latest data for %s. ' % title
-            body += 'Enjoy!\n\n'
-            msg = Message(subject=subject, recipients=[recipient], body=body)
-
-            # generate csv
-            doc.generate_csv()
-
-            # attach csv
-            with app.open_resource('./static/csv/%s.csv' % doc.title) as f:
-                msg.attach(doc.title + '.csv', 'text/csv', f.read())
-
-            # send csv
-            mail.send(msg)
-
-        except NoResultFound:
-            pass
-
 
 def mail_new_user(username, password, main_page):
     ''' '''
@@ -709,47 +675,6 @@ def load_annotators():
     return User.query.filter_by(is_admin=False)
 
 
-# Redis -----------------------------------------------------------------------
-
-# def mark_online(user_id):
-#     ''' '''
-#     try:
-#         username = User.query.get(user_id).username
-#         now = int(time())
-#         expire = now + (app.config.get('ONLINE_LAST_MINUTES') * 60) + 10
-#         key = 'online/%d' % (now // 60)
-#         pipe = r.pipeline()
-#         pipe.sadd(key, username)
-#         pipe.expireat(key, expire)
-#         pipe.execute()
-
-#     # no current user to mark online
-#     except (TypeError, AttributeError):
-#         pass
-
-
-# def mark_offline(user_id):
-#     ''' '''
-#     username = User.query.get(user_id).username
-#     now = int(time()) // 60
-#     minutes = xrange(app.config.get('ONLINE_LAST_MINUTES'))
-#     pipe = r.pipeline()
-
-#     for key in ['online/%d' % (now - x) for x in minutes]:
-#         pipe.srem(key, username)
-
-#     pipe.execute()
-
-
-# def get_online_users():
-#     ''' '''
-#     now = int(time()) // 60
-#     minutes = xrange(app.config.get('ONLINE_LAST_MINUTES'))
-#     online_users = r.sunion(['online/%d' % (now - x) for x in minutes])
-
-#     return online_users
-
-
 # Views -----------------------------------------------------------------------
 
 app.jinja_env.globals['isPeak'] = lambda i: hasattr(i, 'prom')
@@ -759,12 +684,6 @@ app.jinja_env.globals['isPeak'] = lambda i: hasattr(i, 'prom')
 def renew_session():
     ''' '''
     session.modified = True
-
-
-# @app.before_request
-# def mark_current_user_online():
-#     ''' '''
-#     mark_online(session.get('current_user', 0))
 
 
 def login_required(x):
@@ -802,16 +721,10 @@ def check_password(user, password):
 @login_required
 def main_view():
     ''' '''
-    # online_users = ', '.join(list(get_online_users()))
     docs = load_docs()
     users = load_annotators()
 
-    return render_template(
-        'index.html',
-        docs=docs,
-        users=users,
-        # online_users=online_users,
-        )
+    return render_template('index.html', docs=docs, users=users)
 
 
 @app.route('/<title>', methods=['GET', ])
@@ -827,7 +740,7 @@ def doc_view(title):
     return render_template('doc.html', doc=doc)
 
 
-@app.route('/<title>/<index>', methods=['GET', 'POST'])  # noqa CLEAN UP
+@app.route('/<title>/<index>', methods=['GET', 'POST'])  # noqa SIMPLIFY
 @login_required
 def annotate_view(title, index):
     ''' '''
@@ -956,17 +869,22 @@ def account_view():
     return render_template('account.html', user=user)
 
 
-@app.route('/mail-csv/<title>', methods=['POST', ])
+@app.route('/csv/<title>', methods=['POST', ])
 @login_required
 @admin_only
-def mail_view(title):
+def csv_view(title):
     ''' '''
-    user = User.query.get(session.get('current_user'))
+    try:
+        # get doc
+        doc = get_doc(title=title)
 
-    # enqueue csv generation and mailing
-    q.enqueue_call(func='app.mail_csv', args=(title, user.email), timeout=1200)
+        # generate csv
+        doc.generate_csv()
 
-    return Response(status=200)
+        return Response(status=200)
+
+    except NoResultFound:
+        abort(404)
 
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -989,12 +907,15 @@ def add_user_view():
                 db.session.add(user)
                 db.session.commit()
 
-                # enqueue peak generation and mailing
-                q.enqueue_call(
-                    func='app.mail_new_user',
-                    args=(username, password, url_for('main_view')),
-                    timeout=10000,
-                    )
+                # email new user
+                mail_new_user(username, password, url_for('main_view'))  # NEW --------------------
+
+                # # enqueue peak generation and mailing  # DELETE ---------------------------------
+                # q.enqueue_call(
+                #     func='app.mail_new_user',
+                #     args=(username, password, url_for('main_view')),
+                #     timeout=10000,
+                #     )
 
                 flash(
                     'Success! <strong>%s</strong> has been added to Metric '
@@ -1079,7 +1000,6 @@ def login_view():
 @login_required
 def logout_view():
     ''' '''
-    # mark_offline(session.get('current_user'))
     session.pop('current_user')
     session.pop('is_admin')
 

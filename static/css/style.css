@@ -134,23 +134,46 @@ textarea {
     color: #83ceff;
 }
 
-.mail:before {
+
+.csv:before {
     color: #C7C7C7;
     font-size: 20px;
     font-family: FontAwesome;
     display: inline-block;
-    content: '\f1d9';
+    content: '\f019';
     padding-right: 20px;
 }
 
-.mail:hover:before {
+.csv:hover:before {
     color: #333;
     cursor: pointer;
 }
 
-.mail.wait:before {
-    color: #333;
-    cursor: wait;
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300%;
+    background: #000;
+    opacity: 0.8;
+}
+
+.loading {
+    border: 16px solid #fff;
+    border-top: 16px solid #80FFBF;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 10%;
+    left: calc(50% - 60px);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /*---- doc.html -------------------------*/

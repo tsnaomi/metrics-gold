@@ -1,37 +1,31 @@
 (function() {
-
     function generage_csv() {
-        $('.mail').on('click', function(event) {
-            var $div = $('.flash-alert');
-            var $mail = $(this);
-            var title = $mail.attr('id');
-            var csrf_token = $mail.attr('name');
-            var csv_view = '/mail-csv/' + title;
-            var msg;
+        $('.csv').on('click', function(event) {
+            var $csv = $(this);
+            var title = $csv.attr('id');
+            var csrf_token = $csv.attr('name');
+            var csv_view = '/csv/' + title;
 
-            // change cursors to spinner
-            $mail.addClass('wait');
-            document.body.style.cursor = 'wait';
+            // display loading overlay
+            var $html = $('html');
+            var $overlay = $('<div class="overlay"><div class="loading"></div></div>');
+            $html.append($overlay);
+
+            // alert user of long wait time
+            alert('Pardon the wait! This csv will take a few minutes to generate. Please stay on this page until the file is downloaded.');
 
             $.post(csv_view, { _csrf_token: csrf_token }, function() {
                 // yea!
-                msg = 'Please check your email in a few minutes!';
-
+                window.location.href = '/static/csv/' + title + '.csv';
             }).fail(function() {
                 // nay!
-                msg = 'Sorry! Something weny awry.';
-
+                alert('Sorry! Something went awry!');
             }).always(function() {
-                alert(msg);
-
-                // restore cursors
-                document.body.style.cursor = 'default';
-                $mail.removeClass('wait');
+                // remove loading overlay
+                $('.overlay').remove();
             });
         });
     }
-
     generage_csv();
-
 })(); 
 
