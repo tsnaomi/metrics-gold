@@ -265,8 +265,13 @@ class Doc(db.Model):
                     .filter(Peak.user == user.id)
                     .all())[0]
 
-                # get the id of the last annotated token in the sentence
-                last_id = sent.tokens.filter_by(punctuation=False).all()[-1].id
+                try:
+                    # get the id of the last annotated token in the sentence
+                    last_id = sent.tokens.filter_by(punctuation=False)[-1].id
+
+                except IndexError:
+                    # if the sentence is entirely punctuation...
+                    pass
 
                 # get any note the annotator wrote about the sentence
                 try:
