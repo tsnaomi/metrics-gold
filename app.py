@@ -484,7 +484,12 @@ class Token(db.Model):  # TODO - move information theoretic measures
         try:
             peak = self.peaks.filter_by(user=user_id).one()
             prom = peak.prom
-            norm_prom = float(prom) / max_peak
+
+            try:
+                norm_prom = float(prom) / max_peak
+            except ZeroDivisionError:
+                norm_prom = float(prom)
+
             UB = int(self.t_sentence.breaks.filter_by(
                 index=self.index + 0.5,
                 user=user_id).count())
