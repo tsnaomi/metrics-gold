@@ -275,7 +275,7 @@ class Doc(db.Model):
 
                 # get any note the annotator wrote about the sentence
                 try:
-                    note = sent.get_note(user.id).note
+                    note = sent.get_note(user.id).note.encode('utf-8')
 
                 except AttributeError:
                     note = ''
