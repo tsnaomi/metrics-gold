@@ -1,14 +1,16 @@
 *.pyc
 
+# ignore config files both locally and on the server
+config.py
+
+# on Naomi's laptop
 export.txt
 dump.rdb
 import.py
 notes.txt
 launch.sh
-
 static/csv/*.csv
 static/csv/base/*.csv
-
 alignment/audio/
 docs/
 import/
