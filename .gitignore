@@ -3,6 +3,10 @@
 # ignore config files both locally and on the server
 config.py
 
+# on the server
+error.log
+metric-gold-env
+
 # on Naomi's laptop
 export.txt
 dump.rdb
