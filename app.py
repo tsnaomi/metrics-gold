@@ -872,6 +872,20 @@ def account_view():
     return render_template('account.html', user=user)
 
 
+@app.route('/download/<title>', methods=['GET', ])
+@login_required
+@admin_only
+def download_view(title):
+    ''' '''
+    try:
+        file = get_doc(title=title)
+
+    except NoResultFound:
+        abort(404)
+
+    return render_template('download.html', file=file)
+
+
 @app.route('/csv/<title>', methods=['POST', ])
 @login_required
 @admin_only
