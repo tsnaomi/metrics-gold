@@ -17,9 +17,9 @@
             $.post(csv_view, { _csrf_token: csrf_token }, function() {
                 // yea!
                 window.location.href = '/static/csv/' + title + '.csv';
-            }).fail(function() {
+            }).fail(function(jqXHR, textStatus, errorThrown) {
                 // nay!
-                alert('Sorry! Something went awry!');
+                alert('Sorry! Something went awry!\n\nError: ' + errorThrown);
             }).always(function() {
                 // remove loading overlay
                 $('.overlay').remove();
