@@ -19,7 +19,7 @@
                 window.location.href = '/static/csv/' + title + '.csv';
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 // nay!
-                alert('Sorry! Something went awry!\n\nError: ' + errorThrown);
+                alert('Sorry! Something went awry!\n\nError: ' + (errorThrown || 'Unknown'));
             }).always(function() {
                 // remove loading overlay
                 $('.overlay').remove();
