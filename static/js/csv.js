@@ -10,7 +10,7 @@
         $.post(csv_view, { _csrf_token: csrf_token }, function() {
             // yea!
             window.location.href = '/static/csv/' + file + '.csv';
-            $text.html('The csv <strong>' + file + '</strong> has successfully download.');
+            $text.html('The csv <strong>' + file + '</strong> has successfully downloaded.');
             $title.text('Download complete!');
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // nay!
