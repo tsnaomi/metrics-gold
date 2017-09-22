@@ -4,9 +4,9 @@
 config.py
 
 # on the server
+*.sh
 error.log
 metric-gold-env
-restart.sh
 
 # on Naomi's laptop
 export.txt
