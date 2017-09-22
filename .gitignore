@@ -6,6 +6,7 @@ config.py
 # on the server
 error.log
 metric-gold-env
+restart.sh
 
 # on Naomi's laptop
 export.txt
