@@ -2,9 +2,12 @@
 
 # ignore config files both locally and on the server
 config.py
+pg_backups/*
 
 # on the server
-*.sh
+stop.sh
+start.sh
+restart.sh
 error.log
 metric-gold-env
 
