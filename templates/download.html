@@ -19,9 +19,9 @@
 
     <body>
         <h1>Metric-Gold</h1>
-        <div class='text' id='{{ file.title }}' name='{{ csrf_token() }}'>
+        <div class='text' id='{{ file }}' name='{{ csrf_token() }}'>
             Pardon the wait!
-            The csv <strong>{{ file.title }}</strong> will take a few minutes to generate.
+            The csv <strong>{{ file }}</strong> will take a few minutes to generate.
             Please keep this page open until the file has downloaded.
         </div>
         <div class='loading'></div>

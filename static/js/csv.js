@@ -9,18 +9,19 @@
         // get the csv via ajax
         $.post(csv_view, { _csrf_token: csrf_token }, function() {
             // yea!
+            $('.loading').remove(); // remove loading overlay
             window.location.href = '/static/csv/' + file + '.csv';
             $text.html('The csv <strong>' + file + '</strong> has successfully downloaded.');
             $title.text('Download complete!');
         }).fail(function(jqXHR, textStatus, errorThrown) {
             // nay!
-            alert('Sorry, something went awry!\n\nError: ' + (errorThrown || 'Unknown'));
-            $text.html('The csv <strong>' + file + '</strong> has failed to download.');
-            $title.text('Download failed.');
-        }).always(function() {
-            // remove loading overlay
-            $('.loading').remove();
+            $('.loading').remove(); // remove loading overlay
+            $title.text('Download failed');
+            $text.html('The csv <strong>' + file + '</strong> has failed to download.<div class="div20"></div>Error:&nbsp;&nbsp;' + (errorThrown || 'Unknown'));
+            setTimeout(function() {
+                alert('Sorry, something went awry!');
+            }, 0);
         });
     }
     generage_csv();
-})(); 
+})();

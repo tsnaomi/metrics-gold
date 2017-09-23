@@ -878,12 +878,12 @@ def account_view():
 def download_view(title):
     ''' '''
     try:
-        file = get_doc(title=title)
+        get_doc(title=title)
 
     except NoResultFound:
         abort(404)
 
-    return render_template('download.html', file=file)
+    return render_template('download.html', file=title)
 
 
 @app.route('/csv/<title>', methods=['POST', ])
