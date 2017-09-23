@@ -3,4 +3,4 @@ find "$(pwd)/pg_backups" -mtime +10 -exec rm {} \;
 
 # back up the metric-gold database
 fn="$(pwd)/pg_backups/metric-gold-$(date +%d%b%Y-%H:%M)"
-pg_dump finnsyll > $fn
+pg_dump metric-gold > $fn
