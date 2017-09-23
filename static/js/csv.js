@@ -1,37 +1,27 @@
 (function() {
-
     function generage_csv() {
-        $('.mail').on('click', function(event) {
-            var $div = $('.flash-alert');
-            var $mail = $(this);
-            var title = $mail.attr('id');
-            var csrf_token = $mail.attr('name');
-            var csv_view = '/mail-csv/' + title;
-            var msg;
+        var $text = $('.text');
+        var $title = $('title');
+        var file = $text.attr('id');
+        var csrf_token = $text.attr('name');
+        var csv_view = '/csv/' + file;
 
-            // change cursors to spinner
-            $mail.addClass('wait');
-            document.body.style.cursor = 'wait';
-
-            $.post(csv_view, { _csrf_token: csrf_token }, function() {
-                // yea!
-                msg = 'Please check your email in a few minutes!';
-
-            }).fail(function() {
-                // nay!
-                msg = 'Sorry! Something weny awry.';
-
-            }).always(function() {
-                alert(msg);
-
-                // restore cursors
-                document.body.style.cursor = 'default';
-                $mail.removeClass('wait');
-            });
+        // get the csv via ajax
+        $.post(csv_view, { _csrf_token: csrf_token }, function() {
+            // yea!
+            $('.loading').remove(); // remove loading overlay
+            window.location.href = '/static/csv/' + file + '.csv';
+            $text.html('The csv <strong>' + file + '</strong> has successfully downloaded.');
+            $title.text('Download complete!');
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            // nay!
+            $('.loading').remove(); // remove loading overlay
+            $title.text('Download failed');
+            $text.html('The csv <strong>' + file + '</strong> has failed to download.<div class="div20"></div>Error:&nbsp;&nbsp;' + (errorThrown || 'Unknown'));
+            setTimeout(function() {
+                alert('Sorry, something went awry!');
+            }, 0);
         });
     }
-
     generage_csv();
-
-})(); 
-
+})();

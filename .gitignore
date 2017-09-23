@@ -1,13 +1,24 @@
 *.pyc
+*.sh
 
+# ignore config files both locally and on the server
+config.py
+
+# ignore database backups both locally and on the server
+pg_backups/
+
+# on the server
+error.log
+metric-gold-env
+
+# on Naomi's laptop
 export.txt
 dump.rdb
 import.py
 notes.txt
 launch.sh
-
 static/csv/*.csv
-
+static/csv/base/*.csv
 alignment/audio/
 docs/
 import/

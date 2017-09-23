@@ -19,7 +19,7 @@ Metric Gold
         {% for doc in docs %}
         <tr>
             <td>
-                <span class='mail' id='{{ doc.title }}' name='{{ csrf_token() }}'></span>
+                <a class='csv' target='_blank' href="{{ url_for('download_view', title=doc.title) }}"></a>
                 <a href="{{ url_for('doc_view', title=doc.title) }}" class='status {{ doc.annotation_status(session.current_user) }}'> {{ doc }}</a>
             </td>
             {% for user in users %}
@@ -34,11 +34,6 @@ Metric Gold
     </table>
 </div>
 
-<!-- <div class='div20'></div> -->
-
-<!-- online users -->
-<!-- <strong>Online Users</strong>: {{ online_users }} -->
-
 <!-- annotator docs -->
 {% else %}
 <ul class='list-group'>
@@ -49,10 +44,5 @@ Metric Gold
     {% endfor %}
 </table>
 {% endif %}
-{% endblock %}
 
-{% if session.is_admin %}
-{% block footer %}
-<script src="{{ url_for('static', filename='js/csv.js') }}"></script>
 {% endblock %}
-{% endif %}

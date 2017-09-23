@@ -134,23 +134,38 @@ textarea {
     color: #83ceff;
 }
 
-.mail:before {
+
+.csv:before {
     color: #C7C7C7;
     font-size: 20px;
     font-family: FontAwesome;
     display: inline-block;
-    content: '\f1d9';
+    content: '\f019';
     padding-right: 20px;
 }
 
-.mail:hover:before {
+.csv:hover:before {
     color: #333;
     cursor: pointer;
 }
 
-.mail.wait:before {
-    color: #333;
-    cursor: wait;
+/*---- download.html --------------------*/
+
+.loading {
+    border: 16px solid #999;
+    border-top: 16px solid #80FFBF;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    left: calc(50% - 60px);
+    margin-top: 120px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /*---- doc.html -------------------------*/

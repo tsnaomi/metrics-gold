@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+    
+    <head>
+        <meta charset='utf-8'/>
+        <title>Downloading...</title>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}"/>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/style.css') }}"/>
+        <link rel='stylesheet' href="{{ url_for('static', filename='fonts/font-awesome/css/font-awesome.min.css') }}"/>
+        {% if config.TESTING %}
+        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon-TEST.png') }}">
+        {% else %}
+        <link rel='icon' type='image/png' href="{{ url_for('static', filename='images/favicon.png') }}">
+        <link rel='apple-touch-icon-precomposed' href="{{ url_for('static', filename='images/favicon.png') }}">
+        {% endif %}
+    </head>
+
+    <body>
+        <h1>Metric-Gold</h1>
+        <div class='text' id='{{ file }}' name='{{ csrf_token() }}'>
+            Pardon the wait!
+            The csv <strong>{{ file }}</strong> will take a few minutes to generate.
+            Please keep this page open until the file has downloaded.
+        </div>
+        <div class='loading'></div>
+    </body>
+
+    <footer>
+        <script src="{{ url_for('static', filename='js/jquery-3.0.0.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/csv.js') }}"></script>
+    </footer>
+
+</html>
