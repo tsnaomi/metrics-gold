@@ -618,7 +618,7 @@ def generate_base_csv():
 
 # Mail ------------------------------------------------------------------------
 
-def mail_new_user(username, password, main_page):
+def mail_new_user(username, password):
     ''' '''
     with app.app_context():
 
@@ -642,8 +642,8 @@ def mail_new_user(username, password, main_page):
                 '<div>password: %s</div>'
                 '<p>Once again, welcome aboard!</p>'
                 ) % (
-                    main_page,
-                    os.environ.get('METRIC_GOLD_DOCS'),
+                    request.url_root,
+                    app.config.get('METRIC_GOLD_DOCS'),
                     username,
                     password,
                 )
@@ -925,14 +925,7 @@ def add_user_view():
                 db.session.commit()
 
                 # email new user
-                mail_new_user(username, password, url_for('main_view'))  # NEW --------------------
-
-                # # enqueue peak generation and mailing  # DELETE ---------------------------------
-                # q.enqueue_call(
-                #     func='app.mail_new_user',
-                #     args=(username, password, url_for('main_view')),
-                #     timeout=10000,
-                #     )
+                mail_new_user(username, password)
 
                 flash(
                     'Success! <strong>%s</strong> has been added to Metric '
