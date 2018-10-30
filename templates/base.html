@@ -37,6 +37,9 @@
                         </li>
                         {% if session.is_admin %}
                         <li>
+                            <a href="{{ url_for('courses_view') }}">Courses</a>
+                        </li>
+                        <li>
                             <a href="{{ url_for('add_user_view') }}">Add User</a>
                         </li>
                         <li>
@@ -54,6 +57,7 @@
         <!-- bootstrap breadcrumbs -->
         {% if docs or doc or sentence %}
         <ol class='breadcrumb'>
+            {% if not session.is_student %}
             <li class='breadcrumb-item {% if docs %} active {% endif %}'>
                 {% if docs %}
                 Inaugural Addresses
@@ -61,10 +65,15 @@
                 <a href="{{ url_for('main_view') }}">Inaugural Addresses</a>
                 {% endif %}
             </li>
+            {% endif %}
             {% if doc %}
             <li class='breadcrumb-item {% if doc and not sentence %} active {% endif %}'>
                 {% if sentence %}
-                <a href="{{ url_for('doc_view', title=doc.title) }}">{{ doc }}</a>
+                    {% if session.is_student %}
+                    <a href="{{ url_for('main_view') }}">{{ doc }}</a>
+                    {% else %}
+                    <a href="{{ url_for('doc_view', title=doc.title) }}">{{ doc }}</a>
+                    {% endif %}
                 {% else %}
                 {{ doc }}
                 {% endif %}
@@ -75,6 +84,17 @@
             </li>
             {% endif %}
             {% endif %}
+        </ol>
+        {% elif courses %}
+        <ol class='breadcrumb'>
+            <li class='breadcrumb-item active'>Courses</li>
+        </ol>
+        {% elif course %}
+        <ol class='breadcrumb'>
+            <li class='breadcrumb-item'>
+                <a href="{{ url_for('courses_view') }}">Courses</a>
+            </li>
+            <li class='breadcrumb-item active'>{{ course.name }}</li>
         </ol>
         {% endif %}
 

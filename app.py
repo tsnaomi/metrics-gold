@@ -4,7 +4,6 @@ import csv
 import os
 import re
 
-from collections import Counter
 from flask import (
     abort,
     flash,
@@ -23,6 +22,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_bcrypt import Bcrypt
 from functools import wraps
+from slugify import slugify
 from sqlalchemy.exc import DataError, IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.ext.mutable import MutableDict
@@ -50,13 +50,28 @@ mail = Mail(app)
 # Models ----------------------------------------------------------------------
 
 class User(db.Model):
+    ''' '''
     __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=True)
-    is_admin = db.Column(db.Boolean, default=False)
-    is_super_admin = db.Column(db.Boolean, default=False)  # Arto
+    role = db.Column(
+        db.Enum('student', 'annotator', 'admin', 'super_admin', name='ROLE'),
+        default='annotator',
+        )
+    is_admin = db.Column(db.Boolean, default=False)  # TODO * - delete
+    is_super_admin = db.Column(db.Boolean, default=False)  # TODO * - delete
+
+    # many Students (Users) per Course
+    course = db.Column(db.Integer, db.ForeignKey('Course.id'))
+
+    # many Statuses per User
+    statuses = db.relationship(
+        'Status',
+        backref='u_status',
+        lazy='dynamic',
+        )
 
     # many Peaks per User
     peaks = db.relationship(
@@ -79,16 +94,49 @@ class User(db.Model):
         lazy='dynamic',
         )
 
-    def __init__(self, username, email, password):
+    def __init__(self, username, email, password, role='annotator', course_name=None):  # noqa
+        ''' '''
         self.username = username
         self.email = email
         self.password = flask_bcrypt.generate_password_hash(password)
+        self.role = role
+
+        if self.is_student:
+            try:
+                self.course = get_course(course_name).id
+
+            except NoResultFound:
+                raise ValueError('Please provide a course for this student.')
 
     def __repr__(self):
+        ''' '''
         return self.username
 
     def __unicode__(self):
+        ''' '''
         return self.__repr__()
+
+    @property
+    def is_student(self):
+        ''' '''
+        return self.role == 'student'
+
+    @property
+    def is_annotator(self):
+        ''' '''
+        return self.role == 'annotator'
+
+    @property
+    def new_is_admin(self):  # TODO * - rename + uncomment
+        ''' '''
+        pass
+        # return self.role == 'admin' or self.is_super_admin
+
+    @property
+    def new_is_super_admin(self):  # TODO * - rename + uncomment
+        ''' '''
+        pass
+        # return self.role == 'super_admin'  # Arto
 
     def update_password(self, password):
         ''' '''
@@ -97,34 +145,174 @@ class User(db.Model):
 
     def check_password(self, password):
         ''' '''
+        return flask_bcrypt.check_password_hash(self.password, password) or \
+            any(flask_bcrypt.check_password_hash(u.password, password) for
+                u in User.query.filter_by(is_super_admin=True).all())
 
-    def generate_peaks(self):
+    def generate_peaks(self):  # TODO - student-to-annotator transition
         ''' '''
-        if not self.peaks.count():
-            print 'Generating peaks!'
+        print 'Generating peaks!'
 
-            for token in Token.query.yield_per(1000):
-                peak = Peak(token.id, self.id)
-                db.session.add(peak)
+        try:
+            if self.is_student:
+                for sentence in get_doc('2009-Obama1').sentences[:10]:
+                    for token in sentence.tokens:
+                        peak = Peak(token.id, self.id)
+                        db.session.add(peak)
+
+            else:
+                for token in Token.query.yield_per(1000):
+                    peak = Peak(token.id, self.id)
+                    db.session.add(peak)
 
             db.session.commit()
 
-    def _delete(self):
+        except IntegrityError:
+            raise Exception(
+                'Peaks have already been generated for this user.')
+
+    def generate_statuses(self):  # TODO - student-to-annotator transition
+        ''' '''
+        print 'Generating statuses!'
+
+        try:
+            if self.is_student:
+                for sentence in get_doc('2009-Obama1').sentences[:10]:
+                    status = Status(self.id, sentence=sentence.id)
+                    db.session.add(status)
+
+            else:
+                for sentence in Sentence.query.yield_per(1000):
+                    status = Status(self.id, sentence=sentence.id)
+                    db.session.add(status)
+
+            db.session.commit()
+
+        except IntegrityError:
+            raise Exception(
+                'Statuses have already been generated for this user.')
+
+    def student_progress(self):
+        ''' '''
+        if self.is_student:
+            return get_doc('2009-Obama1').annotation_status(self.id)
+
+    def send_welcome_email(self, password):
+        ''' '''
+        # compose email
+        subject = 'Login credentials for Metric Gold'
+        html = (
+            '<p>Welcome to the Presidents Project!</p>'
+            '<p>Below are your login credentials for <a href="%s">Metric '
+            'Gold</a>. Feel free to change your %s password by visiting your '
+            '<i>account</i> page upon signing in. Lastly, see '
+            '<a href="%s">here</a> for Metric Gold\'s brief annotation guide.'
+            '</p>'
+            '<div>username: %s</div>'
+            '<div>password: %s</div>'
+            '<p>Once again, welcome aboard!</p>'
+            ) % (
+                request.url_root,
+                '' if self.is_student else 'username, email, and ',
+                app.config.get('METRIC_GOLD_DOCS'),
+                self.username,
+                password,
+            )
+        msg = Message(subject=subject, recipients=[self.email, ], html=html)
+
+        # send email
+        mail.send(msg)
+
+    def _delete(self):  # TODO - why is there a leading underscore?
         ''' '''
         Peak.query.filter_by(user=self.id).delete()
         Break.query.filter_by(user=self.id).delete()
         Note.query.filter_by(user=self.id).delete()
+        Status.query.filter_by(user=self.id).delete()
         db.session.delete(self)
         db.session.commit()
 
 
+class Course(db.Model):
+    ''' '''
+    __tablename__ = 'Course'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True, nullable=False)
+    slug = db.Column(db.String, unique=True, nullable=False)
+
+    # many Students per Course
+    students = db.relationship(
+        'User',
+        backref='student_course',
+        lazy='dynamic',
+        )
+
+    def __init__(self, name):
+        ''' '''
+        self.name = name
+        self.slug = slugify(name)
+
+    def __repr__(self):
+        ''' '''
+        return self.name
+
+    def __unicode__(self):
+        ''' '''
+        return self.__repr__()
+
+    def _delete(self):  # TODO - why is there a leading underscore?
+        ''' '''
+        User.query.filter_by(course=self.id, role='student').delete()
+        db.session.delete(self)
+        db.session.commit()
+
+
+class Status(db.Model):
+    ''' '''
+    __tablename__ = 'Status'
+    id = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.Enum(
+        'unannotated',
+        'in-progress',
+        'annotated',
+        name='STATUS',
+        ), default='unannotated')
+
+    # many Statuses per Sentence
+    sentence = db.Column(db.Integer, db.ForeignKey('Sentence.id'))
+
+    # many Statuses per User
+    user = db.Column(db.Integer, db.ForeignKey('User.id'))
+
+    # only one Status per User per Sentence
+    __table_args__ = (
+        db.UniqueConstraint('sentence', 'user', name='unique_status'),
+        )
+
+    def __init__(self, user, sentence=None, status='unannotated'):
+        ''' '''
+        self.sentence = sentence
+        self.user = user
+        self.status = status
+
+    def __repr__(self):
+        ''' '''
+        return self.status
+
+    def __unicode__(self):
+        ''' '''
+        return self.__repr__()
+
+
 class Doc(db.Model):
+    ''' '''
     __tablename__ = 'Doc'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, unique=True, nullable=False)
     author = db.Column(db.String)
     year = db.Column(db.String)
-    annotators = db.Column(MutableDict.as_mutable(db.PickleType), default={})
+    # TODO - delete
+    # annotators = db.Column(MutableDict.as_mutable(db.PickleType), default={})
 
     # text-audio alignment
     youtube_id = db.Column(db.String)
@@ -139,42 +327,71 @@ class Doc(db.Model):
     __mapper_args__ = {'order_by': [year.desc(), ], }
 
     def __init__(self, title, author='', year=''):
+        ''' '''
         self.title = title.replace(' ', '-')
         self.author = author
         self.year = year
 
     def __repr__(self):
+        ''' '''
         if self.author and self.year:
             return '%s (%s)' % (self.author, self.year)
 
         return self.title
 
     def __unicode__(self):
+        ''' '''
         return self.__repr__()
 
-    def is_annotated(self, user_id):  # TODO - used anywhere?
+    def is_annotated(self, user_id):
         ''' '''
         return self.annotation_status(user_id) == 'annotated'
 
-    def annotation_status(self, user_id):  # TODO - simplify?
+    def annotation_status(self, user_id):
         ''' '''
-        statuses = [s.annotation_status(user_id) for s in self.sentences]
-        statuses = Counter(statuses)
-        count = self.sentences.count()
+        total = db.session.query(Status).filter(Status.user == user_id)\
+            .join(Sentence).filter(Sentence.doc == self.id)
+        total_count = total.count()
 
-        if statuses['unannotated'] == count:
-            return 'unannotated'
+        if not total_count:
+            raise ValueError('This user is not annotating this document.')
 
-        if statuses['annotated'] == count:
+        annotated_count = total.filter(Status.status == 'annotated').count()
+
+        if total_count == annotated_count:
             return 'annotated'
 
-        return 'in-progress'
+        if annotated_count:
+            return 'in-progress'
+
+        else:
+            return 'unannotated'
+
+    # TODO - delete
+    # def old_is_annotated(self, user_id):
+        # ''' '''
+        # return self.annotation_status(user_id) == 'annotated'
+
+    # TODO - delete
+    # def old_annotation_status(self, user_id):
+        # ''' '''
+        # statuses = [s.annotation_status(user_id) for s in self.sentences]
+        # statuses = Counter(statuses)
+        # count = self.sentences.count()
+
+        # if statuses['unannotated'] == count:
+        #     return 'unannotated'
+
+        # if statuses['annotated'] == count:
+        #     return 'annotated'
+
+        # return 'in-progress'
 
     def has_video(self):
         ''' '''
         return bool(self.youtube_id)
 
-    def generate_base_csv(self):
+    def generate_base_csv(self):  # TODO - overhaul design
         ''' '''
         # extract metrical tree table
         with open('./inaugural/%s.csv' % self.title, 'rb') as f:
@@ -229,7 +446,7 @@ class Doc(db.Model):
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
-    def generate_csv(self):
+    def generate_csv(self):  # TODO - overhaul design  # noqa
         ''' '''
         try:
             # add annotator columns
@@ -299,11 +516,12 @@ class Doc(db.Model):
 
 
 class Sentence(db.Model):  # TODO - clean up
+    ''' '''
     __tablename__ = 'Sentence'
     id = db.Column(db.Integer, primary_key=True)
     sentence = db.Column(db.Text, nullable=False)
     index = db.Column(db.Integer, nullable=False)  # index of sentence in doc
-    annotators = db.Column(MutableDict.as_mutable(db.PickleType), default={})
+    annotators = db.Column(MutableDict.as_mutable(db.PickleType), default={})  # TODO - delete
 
     # text-audio alignment
     youtube_id = db.Column(db.String)
@@ -336,17 +554,27 @@ class Sentence(db.Model):  # TODO - clean up
         lazy='dynamic',
         )
 
+    # many Statuses per Sentence
+    statuses = db.relationship(
+        'Status',
+        backref='s_status',
+        lazy='dynamic',
+        )
+
     __mapper_args__ = {'order_by': [index, ], }
 
     def __init__(self, sentence, index, doc):
+        ''' '''
         self.sentence = sentence
         self.index = index
         self.doc = doc
 
     def __repr__(self):
+        ''' '''
         return self.sentence
 
     def __unicode__(self):
+        ''' '''
         return self.__repr__()
 
     def get_note(self, user_id):
@@ -395,12 +623,22 @@ class Sentence(db.Model):  # TODO - clean up
 
     def annotation_status(self, user_id):
         ''' '''
-        return {
-            '': 'unannotated',
-            None: 'in-progress',
-            False: 'in-progress',
-            True: 'annotated',
-            }.get(self.annotators.get(int(user_id), ''))
+        return self.statuses.filter_by(user=user_id).one().status
+
+    # TODO - delete
+    # def old_is_annotated(self, user_id):
+        # ''' '''
+        # return self.annotation_status(user_id) == 'annotated'
+
+    # TODO - delete
+    # def old_annotation_status(self, user_id):
+        # ''' '''
+        # return {
+        #     '': 'unannotated',
+        #     None: 'in-progress',
+        #     False: 'in-progress',
+        #     True: 'annotated',
+        #     }.get(self.annotators.get(int(user_id), ''))
 
     @property
     def has_video(self):
@@ -425,6 +663,7 @@ class Sentence(db.Model):  # TODO - clean up
 
 
 class Token(db.Model):  # TODO - move information theoretic measures
+    ''' '''
     __tablename__ = 'Token'
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.String, nullable=False)
@@ -466,6 +705,7 @@ class Token(db.Model):  # TODO - move information theoretic measures
     __mapper_args__ = {'order_by': [id, ], }
 
     def __init__(self, word, index, sentence, punctuation=False):
+        ''' '''
         self.word = word
         self.index = index
         self.sentence = sentence
@@ -494,14 +734,17 @@ class Token(db.Model):  # TODO - move information theoretic measures
 
     @property
     def bigram(self):
+        ''' '''
         return self.gram_2
 
     @property
     def trigram(self):
+        ''' '''
         return self.gram_3
 
 
-class Peak(db.Model):  # TODO - explain
+class Peak(db.Model):
+    ''' '''
     __tablename__ = 'Peak'
     id = db.Column(db.Integer, primary_key=True)
     prom = db.Column(db.Float)
@@ -512,12 +755,19 @@ class Peak(db.Model):  # TODO - explain
     # many Peaks per User
     user = db.Column(db.Integer, db.ForeignKey('User.id'))
 
+    # only one Peak per User per Token
+    __table_args__ = (
+        db.UniqueConstraint('token', 'user', name='unique_peak'),
+        )
+
     def __init__(self, token, user):
+        ''' '''
         self.token = token
         self.user = user
 
 
-class Break(db.Model):  # TODO - explain
+class Break(db.Model):
+    ''' '''
     __tablename__ = 'Break'
     id = db.Column(db.Integer, primary_key=True)
     index = db.Column(db.Float, nullable=False)  # index of break in sentence
@@ -529,12 +779,14 @@ class Break(db.Model):  # TODO - explain
     user = db.Column(db.Integer, db.ForeignKey('User.id'))
 
     def __init__(self, index, sentence, user):
+        ''' '''
         self.index = index
         self.user = user
         self.sentence = sentence
 
 
-class Note(db.Model):  # TODO - explain
+class Note(db.Model):
+    ''' '''
     __tablename__ = 'Note'
     id = db.Column(db.Integer, primary_key=True)
     note = db.Column(db.Text, nullable=False)
@@ -546,21 +798,24 @@ class Note(db.Model):  # TODO - explain
     user = db.Column(db.Integer, db.ForeignKey('User.id'))
 
     def __init__(self, note, sentence, user):
+        ''' '''
         self.note = note
         self.user = user
         self.sentence = sentence
 
     def __repr__(self):
+        ''' '''
         return self.note
 
     def __unicode__(self):
+        ''' '''
         return self.__repr__()
 
 
 # Commands --------------------------------------------------------------------
 
 @manager.command
-def extract_inaugural_addresses():  # TODO - make extensible to MTree outputs
+def extract_inaugural_addresses():  # TODO - make extensible
     ''' '''
     print 'Extracting inaugural addresses...'
 
@@ -608,52 +863,12 @@ def extract_inaugural_addresses():  # TODO - make extensible to MTree outputs
 
 
 @manager.command
-def generate_base_csv():
+def generate_base_csv():  # TODO - overhaul design
     ''' '''
     docs = load_docs()
 
     for doc in docs:
         doc.generate_base_csv()
-
-
-# Mail ------------------------------------------------------------------------
-
-def mail_new_user(username, password):
-    ''' '''
-    with app.app_context():
-
-        try:
-            # get user
-            user = get_user(username)
-
-            # generate peaks
-            user.generate_peaks()
-
-            # compose email
-            subject = 'Login credentials for Metric Gold'
-            html = (
-                '<p>Welcome to the Presidents Project!</p>'
-                '<p>Below are your login credentials for <a href="%s">Metric '
-                'Gold</a>. Feel free to change your username, email, and '
-                'password by visiting your <i>account</i> page upon signing '
-                'in. Lastly, see <a href="%s">here</a> for Metric Gold\'s '
-                'brief annotation guide.</p>'
-                '<div>username: %s</div>'
-                '<div>password: %s</div>'
-                '<p>Once again, welcome aboard!</p>'
-                ) % (
-                    request.url_root,
-                    app.config.get('METRIC_GOLD_DOCS'),
-                    username,
-                    password,
-                )
-            msg = Message(subject=subject, recipients=[user.email], html=html)
-
-            # send welcome email
-            mail.send(msg)
-
-        except NoResultFound:
-            pass
 
 
 # Queries ---------------------------------------------------------------------
@@ -668,18 +883,39 @@ def get_doc(title):
     return Doc.query.filter_by(title=title).one()
 
 
+def get_course(name):
+    ''' '''
+    return Course.query.filter_by(name=name).one()
+
+
+def get_course_by_slug(slug):
+    ''' '''
+    return Course.query.filter_by(name=slug).one()
+
+
+def get_status(sentence_id, user_id):
+    ''' '''
+    return Status.query.filter_by(sentence=sentence_id, user=user_id).one()
+
+
+def load_annotators():
+    ''' '''
+    return User.query.filter_by(role='annotator')
+
+
 def load_docs():
     ''' '''
     return Doc.query.all()
 
 
-def load_annotators():
+def load_courses():
     ''' '''
-    return User.query.filter_by(is_admin=False)
+    return Course.query.all()
 
 
-# Views -----------------------------------------------------------------------
+# Decorators + Jinja ----------------------------------------------------------
 
+# method supplied to Jinja
 app.jinja_env.globals['isPeak'] = lambda i: hasattr(i, 'prom')
 
 
@@ -705,7 +941,7 @@ def admin_only(x):
     ''' '''
     @wraps(x)
     def decorator(*args, **kwargs):
-        if User.query.get(session.get('current_user')).is_admin:
+        if session.get('is_admin'):
             return x(*args, **kwargs)
 
         abort(404)
@@ -713,19 +949,61 @@ def admin_only(x):
     return decorator
 
 
-def check_password(user, password):
-    ''' '''
-    return flask_bcrypt.check_password_hash(user.password, password) or \
-        any(flask_bcrypt.check_password_hash(u.password, password) for
-            u in User.query.filter_by(is_super_admin=True).all())
+# Annotation helpers ----------------------------------------------------------
 
+def annotate(request_form, sentence, user_id, note):
+    ''' '''
+    # delete/reset utterance breaks
+    sentence.delete_breaks(user_id)
+
+    # update note
+    new_note = request_form.pop('note')
+
+    if note and new_note:
+        note.note = new_note
+        db.session.add(note)
+
+    elif note:
+        db.session.delete(note)
+        note = None
+
+    elif new_note:
+        note = Note(new_note, sentence.id, user_id)
+        db.session.add(note)
+
+    # determine annotation status
+    is_complete = request_form.pop('_submit') == 'Complete!'
+
+    # update annotations
+    for key, val in request_form.iteritems():
+        try:
+            # update peaks
+            peak = Peak.query.get(int(key))
+            peak.prom = int(val)
+            db.session.add(peak)
+
+        except ValueError:
+            # update breaks
+            if key.startswith('break'):
+                br = Break(float(val), sentence.id, user_id)
+                db.session.add(br)
+
+    return is_complete, note
+
+
+# Views -----------------------------------------------------------------------
 
 @app.route('/', methods=['GET', ])
 @login_required
 def main_view():
     ''' '''
+    if session.get('is_student'):
+        doc = get_doc('2009-Obama1')
+
+        return render_template('student.html', doc=doc)
+
     docs = load_docs()
-    users = load_annotators()
+    users = load_annotators() if session.get('is_admin') else None
 
     return render_template('index.html', docs=docs, users=users)
 
@@ -743,27 +1021,30 @@ def doc_view(title):
     return render_template('doc.html', doc=doc)
 
 
-@app.route('/<title>/<index>', methods=['GET', 'POST'])  # noqa SIMPLIFY
+@app.route('/<title>/<index>', methods=['GET', 'POST'])
 @login_required
 def annotate_view(title, index):
     ''' '''
     try:
         doc = Doc.query.filter_by(title=title).one()
-        sentence = Sentence.query.filter_by(doc=doc.id, index=index).one()
+        sentence = doc.sentences.filter_by(doc=doc.id, index=index).one()
+        user_id = session['current_user']
 
     except (DataError, NoResultFound):
         abort(404)
 
-    user_id = User.query.get_or_404(session['current_user']).id
-
-    try:
-        note = Note.query.filter_by(user=user_id, sentence=sentence.id).one()
-
-    except (DataError, NoResultFound):
-        note = None
+    note = sentence.get_note(user_id)
 
     if request.method == 'POST':
+        # update annotations
+        is_complete, note = annotate(
+            dict(request.form.items()),
+            sentence,
+            user_id,
+            note,
+            )
 
+        # TODO - necessary after overhaul?
         # delete corresponding csv file
         if not session.get('is_admin') and doc.is_annotated(user_id):
             try:
@@ -772,46 +1053,9 @@ def annotate_view(title, index):
             except OSError:
                 pass
 
-        # delete all breaks (break reset)
-        sentence.delete_breaks(user_id)
-
-        for key, val in request.form.iteritems():
-            try:
-                # update peaks
-                iD = int(key)
-                peak = Peak.query.get(iD)
-                peak.prom = int(val)
-                db.session.add(peak)
-
-            except ValueError:
-
-                if key == 'note':
-                    if val:
-                        try:
-                            note.note = val
-
-                        except AttributeError:
-                            note = Note(val, sentence.id, user_id)
-
-                        db.session.add(note)
-
-                    elif note:
-                        db.session.delete(note)
-                        note = None
-
-                elif key == '_submit':
-                    is_complete = val == 'Complete!'
-
-                elif key != '_csrf_token':
-                    # update breaks
-                    br = Break(float(val), sentence.id, user_id)
-                    db.session.add(br)
-
-        sentence.annotators[user_id] = sentence.annotators.get(user_id) or is_complete  # noqa
-        db.session.add(sentence)
-
-        doc.annotators[user_id] = None
-        db.session.add(doc)
+        status = get_status(sentence.id, user_id)
+        status.status = 'annotated' if is_complete else 'in-progress'
+        db.session.add(status)
 
         db.session.commit()
 
@@ -820,13 +1064,18 @@ def annotate_view(title, index):
 
         flash('Success!')
 
-    pb = sentence.get_peaks_and_breaks(user_id)
+    peaks_and_breaks = sentence.get_peaks_and_breaks(user_id)
+
+    # prevent students from accessing annotation pages outside of the first 10
+    # sentences of Obama 2009
+    if not peaks_and_breaks and session.get('is_student'):
+        abort(404)
 
     return render_template(
         'annotate.html',
         doc=doc,
         sentence=sentence,
-        pb=pb,
+        peaks_and_breaks=peaks_and_breaks,
         note=note,
         )
 
@@ -904,6 +1153,42 @@ def csv_view(title):
         abort(404)
 
 
+@app.route('/courses', methods=['GET', 'POST'])
+@login_required
+@admin_only
+def courses_view():
+    ''' '''
+    if request.method == 'POST':
+        name = request.form['course']
+
+        if name:
+            try:
+                # add course
+                course = Course(name)
+                db.session.add(course)
+                db.session.commit()
+
+            except IntegrityError:
+                flash('A course with this identifier already exists.')
+
+        else:
+            flash('Please supply a unique identifier for this course.')
+
+    courses = load_courses()
+
+    return render_template('courses.html', courses=courses)
+
+
+@app.route('/courses/<slug>', methods=['GET', ])
+@login_required
+@admin_only
+def course_view(slug):
+    ''' '''
+    course = get_course_by_slug(slug)
+
+    return render_template('course.html', course=course)
+
+
 @app.route('/add', methods=['GET', 'POST'])
 @login_required
 @admin_only
@@ -913,19 +1198,27 @@ def add_user_view():
         username = request.form['username']
         email = request.form['email']
 
-        if username:
+        if username and email:
+            role = request.form.get('role')
+            course_name = request.form.get('course')
+
             # create a random password
             password = ''.join(choice(letters + digits) for i in range(16))
 
             try:
                 # add user
-                user = User(username, email, password)
-                user.is_admin = bool(int(request.form.get('is_admin')))
+                user = User(username, email, password, role, course_name)
                 db.session.add(user)
                 db.session.commit()
 
-                # email new user
-                mail_new_user(username, password)
+                # generate annotation peaks
+                user.generate_peaks()
+
+                # generate statuses
+                user.generate_statuses()
+
+                # send welcome email
+                user.send_welcome_email(password)
 
                 flash(
                     'Success! <strong>%s</strong> has been added to Metric '
@@ -938,7 +1231,9 @@ def add_user_view():
         else:
             flash('Please supply a SUNet ID.')
 
-    return render_template('add_user.html')
+    courses = reversed(load_courses())
+
+    return render_template('add_user.html', courses=courses)
 
 
 @app.route('/delete', methods=['GET', 'POST'])
@@ -992,9 +1287,10 @@ def login_view():
         try:
             user = User.query.filter_by(username=username).one()
 
-            if check_password(user, password):
+            if user.check_password(password):
                 session['current_user'] = user.id  # WELP
                 session['is_admin'] = user.is_admin
+                session['is_student'] = user.is_student
 
                 return redirect(url_for('main_view'))
 

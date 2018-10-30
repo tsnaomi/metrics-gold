@@ -27,7 +27,7 @@
     <div class='annotation-container'>
         <table>
             <tr>
-            {% for item in pb %}
+            {% for item in peaks_and_breaks %}
                 {% if isPeak(item) %}
                     <td>
                         {% if not item.p_token.punctuation %}
@@ -43,7 +43,7 @@
                         {% endif %}
                         <div class='word'>{{ item.p_token.word }}</div>
                     </td>
-                    {% if not loop.last and not item.p_token.punctuation and loop.length != loop.index + 1 and isPeak(pb[loop.index]) %}
+                    {% if not loop.last and not item.p_token.punctuation and loop.length != loop.index + 1 and isPeak(peaks_and_breaks[loop.index]) %}
                     {% set UB = item.p_token.index + 0.5 %}
                     <td class='UB-box' title='Utterance Break'>
                         <div class='UB-indicator' style='display: none;'></div>

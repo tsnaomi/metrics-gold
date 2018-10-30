@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Metric Gold | Courses
+{% endblock %}
+
+{% block body %}
+<!-- description -->
+<div class='well'>
+    <p>This page allows you ....</p>
+</div>
+
+<br>
+
+<div class='container'>
+    <div class='row'>
+
+        <!-- list courses -->
+        <div class='col-sm-12 col-md-8'>
+            <ul class='list-group'>
+                {% for course in courses %}
+                <li class='list-group-item'>
+                    <a href="{{ url_for('course_view', slug=course.slug) }}"> {{ course.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class='div20'></div>
+        </div>
+
+        <!-- add course form -->
+        <div class='col-sm-12 col-md-4'>
+            <form class='form' method='POST'>
+                <input type='hidden' name='_csrf_token' value='{{ csrf_token() }}'/>
+                <div class='form-group'>
+                    <label>Add a Course</label>
+                    <div>Give the course a unique name or identifier.</div>
+                    <div class='div10'></div>
+                    <input class='form-control' type='text' name='course' placeholder='e.g., ling110-aut2018' required/>
+                </div>
+                <button type='submit' class='btn btn-default form-control'>Submit</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div class='div20'></div>
+
+<!-- flash messages -->
+{% include 'flash.html' %}
+{% endblock %}

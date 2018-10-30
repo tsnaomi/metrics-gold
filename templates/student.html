@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Metric Gold
+{% endblock %}
+
+{% block body %}
+
+<h2>Obama 2009</h2>
+
+<table class='sentences'>
+    {% for sentence in doc.sentences[:10] %}
+    <tr>
+        <td class='index'> 
+            <span class='index'>{{ sentence.index }}</span>
+        </td>
+        <td>
+            <a href="{{ url_for('annotate_view', title=doc.title, index=sentence.index) }}" class='status {{ sentence.annotation_status(session.current_user) }}'>{{ sentence.sentence }}</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

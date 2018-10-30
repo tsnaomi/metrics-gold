@@ -16,29 +16,36 @@ Metric Gold | Add User
 
 <!-- add user form -->
 <form class='form' method='POST'>
-    <input type='hidden' name='_csrf_token' value='{{ csrf_token() }}'>
+    <input type='hidden' name='_csrf_token' value='{{ csrf_token() }}'/>
     <div class='form-group'>
         <label>Username</label>
-        <input class='form-control' type='text' name='username' placeholder='e.g., SUNetID' required>
+        <input class='form-control' type='text' name='username' placeholder='e.g., SUNetID' required/>
     </div>
     <div class='form-group'>
         <label>Email</label>
-        <input class='form-control' type='text' name='email' placeholder='e.g., SUNetID@stanford.edu' required>
-    </div>
+        <input class='form-control' type='text' name='email' placeholder='e.g., SUNetID@stanford.edu' required/>
+    </div>   
+    <div class='div10'></div>
     <div class='form-group'>
         <div class='radio'>
-            <label>
-                <input type='radio' name='is_admin' value='0' checked>
-                Annotator
-            </label>
+            <input type='radio' name='role' value='student' id='student-radio' checked>Student</input>
         </div>
         <div class='radio'>
-            <label>
-                <input type='radio' name='is_admin' value='1'>
-                Administrator
-            </label>
+            <input type='radio' name='role' value='annotator'>Annotator</input>
+        </div>
+        <div class='radio'>
+            <input type='radio' name='role' value='admin'>Administrator</input>
+        </div>
+        <div id='courses'>
+            <label>Course</label>
+            <select class='form-control' name='course'>
+                {% for course in courses %}
+                <option>{{ course.name }}</option>
+                {% endfor %}
+            </select> 
         </div>
     </div>
+    <div class='div20'></div>
     <button type='submit' class='btn btn-default form-control'>Create User</button>
 </form>
 
@@ -46,4 +53,8 @@ Metric Gold | Add User
 
 <!-- flash messages -->
 {% include 'flash.html' %}
+{% endblock %}
+
+{% block footer %}
+<script src="{{ url_for('static', filename='js/add_user.js') }}"></script>
 {% endblock %}

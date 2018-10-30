@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Metric Gold | {{ course.name }}
+{% endblock %}
+
+{% block body %}
+
+<div class='container'>
+    <div class='row'>
+
+        <!-- list students -->
+        <div class='col-xs-12 col-sm-6'>
+            <ul class='list-group'>
+                {% for student in course.students %}
+                <li class='list-group-item {{ student.student_progress() }}'>{{ student.username }}</li>
+                {% endfor %}
+            </ul>
+            <div class='div20'></div>
+        </div>
+
+        <div class='col-xs-12 col-sm-6'></div>
+
+    </div>
+</div>
+
+<!-- flash messages -->
+{% include 'flash.html' %}
+{% endblock %}

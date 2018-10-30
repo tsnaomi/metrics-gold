@@ -10,12 +10,12 @@ Metric Gold | Account
     <input type='hidden' name='_csrf_token' value='{{ csrf_token() }}'>
     <div class='form-group'>
         <label>Username</label>
-        <input class='form-control' type='text' name='username' placeholder='username' value='{{ user.username }}'>
+        <input class='form-control' type='text' name='username' placeholder='username' value='{{ user.username }}' {% if session.is_student %}disabled{% endif %}>
     </div>
     <br>
     <div class='form-group'>
         <label>Email</label>
-        <input class='form-control' type='text' name='email' placeholder='email' value='{{ user.email }}'>
+        <input class='form-control' type='text' name='email' placeholder='email' value='{{ user.email }}' {% if session.is_student %}disabled{% endif %}>
     </div>
     <br>
     <div class='form-group'>
