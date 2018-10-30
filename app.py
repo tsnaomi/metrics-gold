@@ -25,7 +25,6 @@ from functools import wraps
 from slugify import slugify
 from sqlalchemy.exc import DataError, IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
-from sqlalchemy.ext.mutable import MutableDict
 from string import letters, digits
 from random import choice
 
@@ -60,8 +59,6 @@ class User(db.Model):
         db.Enum('student', 'annotator', 'admin', 'super_admin', name='ROLE'),
         default='annotator',
         )
-    is_admin = db.Column(db.Boolean, default=False)  # TODO * - delete
-    is_super_admin = db.Column(db.Boolean, default=False)  # TODO * - delete
 
     # many Students (Users) per Course
     course = db.Column(db.Integer, db.ForeignKey('Course.id'))
@@ -127,16 +124,14 @@ class User(db.Model):
         return self.role == 'annotator'
 
     @property
-    def new_is_admin(self):  # TODO * - rename + uncomment
+    def is_admin(self):
         ''' '''
-        pass
-        # return self.role == 'admin' or self.is_super_admin
+        return self.role == 'admin' or self.is_super_admin
 
     @property
-    def new_is_super_admin(self):  # TODO * - rename + uncomment
+    def is_super_admin(self):
         ''' '''
-        pass
-        # return self.role == 'super_admin'  # Arto
+        return self.role == 'super_admin'  # Arto
 
     def update_password(self, password):
         ''' '''
@@ -311,8 +306,6 @@ class Doc(db.Model):
     title = db.Column(db.String, unique=True, nullable=False)
     author = db.Column(db.String)
     year = db.Column(db.String)
-    # TODO - delete
-    # annotators = db.Column(MutableDict.as_mutable(db.PickleType), default={})
 
     # text-audio alignment
     youtube_id = db.Column(db.String)
@@ -353,39 +346,17 @@ class Doc(db.Model):
             .join(Sentence).filter(Sentence.doc == self.id)
         total_count = total.count()
 
-        if not total_count:
-            raise ValueError('This user is not annotating this document.')
-
         annotated_count = total.filter(Status.status == 'annotated').count()
+        in_progress = total.filter(Status.status == 'in-progress').count()
 
-        if total_count == annotated_count:
+        if total_count and total_count == annotated_count:
             return 'annotated'
 
-        if annotated_count:
+        if annotated_count or in_progress:
             return 'in-progress'
 
         else:
             return 'unannotated'
-
-    # TODO - delete
-    # def old_is_annotated(self, user_id):
-        # ''' '''
-        # return self.annotation_status(user_id) == 'annotated'
-
-    # TODO - delete
-    # def old_annotation_status(self, user_id):
-        # ''' '''
-        # statuses = [s.annotation_status(user_id) for s in self.sentences]
-        # statuses = Counter(statuses)
-        # count = self.sentences.count()
-
-        # if statuses['unannotated'] == count:
-        #     return 'unannotated'
-
-        # if statuses['annotated'] == count:
-        #     return 'annotated'
-
-        # return 'in-progress'
 
     def has_video(self):
         ''' '''
@@ -521,7 +492,6 @@ class Sentence(db.Model):  # TODO - clean up
     id = db.Column(db.Integer, primary_key=True)
     sentence = db.Column(db.Text, nullable=False)
     index = db.Column(db.Integer, nullable=False)  # index of sentence in doc
-    annotators = db.Column(MutableDict.as_mutable(db.PickleType), default={})  # TODO - delete
 
     # text-audio alignment
     youtube_id = db.Column(db.String)
@@ -581,12 +551,12 @@ class Sentence(db.Model):  # TODO - clean up
         ''' '''
         return self.notes.filter_by(user=user_id).one_or_none()
 
-    def get_peaks(self, user_id):
+    def get_peaks(self, user_id):  # TODO - revise query
         ''' '''
         return db.session.query(Peak).join(Token).join(Sentence).filter(
             Sentence.id == self.id).filter(Peak.user == user_id).all()
 
-    def get_breaks(self, user_id):
+    def get_breaks(self, user_id):  # TODO - revise query
         ''' '''
         return db.session.query(Break).join(Sentence).filter(
             Sentence.id == self.id).filter(Break.user == user_id).all()
@@ -624,21 +594,6 @@ class Sentence(db.Model):  # TODO - clean up
     def annotation_status(self, user_id):
         ''' '''
         return self.statuses.filter_by(user=user_id).one().status
-
-    # TODO - delete
-    # def old_is_annotated(self, user_id):
-        # ''' '''
-        # return self.annotation_status(user_id) == 'annotated'
-
-    # TODO - delete
-    # def old_annotation_status(self, user_id):
-        # ''' '''
-        # return {
-        #     '': 'unannotated',
-        #     None: 'in-progress',
-        #     False: 'in-progress',
-        #     True: 'annotated',
-        #     }.get(self.annotators.get(int(user_id), ''))
 
     @property
     def has_video(self):
@@ -949,7 +904,7 @@ def admin_only(x):
     return decorator
 
 
-# Annotation helpers ----------------------------------------------------------
+# Annotation helper -----------------------------------------------------------
 
 def annotate(request_form, sentence, user_id, note):
     ''' '''
@@ -1060,7 +1015,11 @@ def annotate_view(title, index):
         db.session.commit()
 
         if is_complete:
-            return redirect(url_for('doc_view', title=doc.title))
+            if session.get('is_student'):
+                return redirect(url_for('main_view'))
+
+            else:
+                return redirect(url_for('doc_view', title=doc.title))
 
         flash('Success!')
 
