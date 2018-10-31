@@ -19,7 +19,7 @@ Metric Gold
         {% for doc in docs %}
         <tr>
             <td>
-                <a class='csv' target='_blank' href="{{ url_for('download_view', title=doc.title) }}"></a>
+                <a class='csv' target='_blank' href="{{ url_for('download_view', slug=doc.title) }}"></a>
                 <a href="{{ url_for('doc_view', title=doc.title) }}" class='status {{ doc.annotation_status(session.current_user) }}'> {{ doc }}</a>
             </td>
             {% for user in users %}

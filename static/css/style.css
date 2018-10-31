@@ -149,6 +149,22 @@ textarea {
     cursor: pointer;
 }
 
+/*---- courses.html ----------------------*/
+
+.courses-csv:before {
+    /*font-size: 34px;*/
+    line-height: normal;
+    padding-top: 5px;
+}
+
+/*---- course.html ----------------------*/
+
+.course-csv:before {
+    font-size: 100px;
+    line-height: normal;
+    padding: 0px;
+}
+
 /*---- download.html --------------------*/
 
 .loading {

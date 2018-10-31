@@ -6,7 +6,7 @@ Metric Gold | {{ course.name }}
 
 {% block body %}
 <div class='well'>
-    <p>This page allows you to track the annotation progess of the students in this course, listed below. If a student's name is highlighted in <span class='status in-progress'>green</span>, they have begun to annotate the first 10 sentence of <i>Obama 2009</i>. If their name is highlighted in <span class='status annotated'>blue</span>, their annotation is complete.</p>
+    <p>This page allows you to track the annotation progess of the students in this course, listed below. If a student's name is highlighted in <span class='status in-progress'>green</span>, they have begun to annotate the first 10 sentence of <i>Obama 2009</i>. If their name is highlighted in <span class='status annotated'>blue</span>, they have completed their annotations.</p>
 </div>
 
 <div class='container'>
@@ -28,7 +28,14 @@ Metric Gold | {{ course.name }}
         <p>Head over to the <a href="{{ url_for('add_user_view') }}"><u>Add User</u></a> page to add users to this course.</p>
         {% endif %}
 
-        <div class='col-xs-12 col-sm-6'></div>
+        <div class='col-xs-12 col-sm-6' style='text-align:center'>
+            <div class='div20'></div>
+            <label>Download Course Data</label>
+            <div class='div10'></div>
+            <div>
+                <a class='csv course-csv' target='_blank' href="{{ url_for('download_view', slug=course.slug) }}"></a>
+            </div>
+        </div>
 
     </div>
 </div>

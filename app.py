@@ -261,37 +261,6 @@ class Course(db.Model):
         ''' '''
         doc = get_doc('2009-Obama1')
         doc.generate_csv(course=self)
-        # doc = get_doc('2009-Obama1')
-        # base_csv_fn = './static/csv/base/2009-Obama1.csv'
-
-        # # create base csv if it does not already exist
-        # if not os.path.isfile(base_csv_fn):
-        #     doc.generate_base_csv()
-
-        # # extract base table
-        # with open(base_csv_fn, 'rb') as f:
-        #     base_table = [i for i in csv.reader(f, delimiter=',')]
-
-        # table, base_table = [base_table[0], ], base_table[1:]
-        # students = [u for u in self.students if doc.is_annotated(u.id)]
-
-        # # create annotator column header
-        # table[0].insert(0, 'annotator')
-
-        # # accrue annotations
-        # for user in students:
-        #     annotations = []
-
-        #     for i, sent in enumerate(doc.sentences[:10]):
-        #         annotations.extend(sent.get_annotations(user))
-
-        #     annotations = zip(base_table, annotations)
-        #     table.extend(([user.username, ] + b + a for b, a in annotations))
-
-        # # create csv file
-        # with open('./static/csv/course/%s.csv' % self.slug, 'wb') as f:
-        #     writer = csv.writer(f, delimiter=',')
-        #     writer.writerows(table)
 
     def _delete(self):
         ''' '''
@@ -1085,19 +1054,9 @@ def annotate_view(title, index):
             note,
             )
 
-        # TODO - necessary after overhaul?
-        # delete corresponding csv file
-        if not session.get('is_admin') and doc.is_annotated(user_id):
-            try:
-                os.remove('static/csv/' + title + '.csv')
-
-            except OSError:
-                pass
-
         status = get_status(sentence.id, user_id)
         status.status = 'annotated' if is_complete else 'in-progress'
         db.session.add(status)
-
         db.session.commit()
 
         if is_complete:
@@ -1166,36 +1125,51 @@ def account_view():
     return render_template('account.html', user=user)
 
 
-@app.route('/download/<title>', methods=['GET', ])
+@app.route('/download/<slug>', methods=['GET', ])
 @login_required
 @admin_only
-def download_view(title):
-    ''' '''
-    try:
-        get_doc(title=title)
-
-    except NoResultFound:
-        abort(404)
-
-    return render_template('download.html', file=title)
-
-
-@app.route('/csv/<title>', methods=['POST', ])
-@login_required
-@admin_only
-def csv_view(title):
+def download_view(slug):
     ''' '''
     try:
         # get doc
-        doc = get_doc(title=title)
-
-        # generate csv
-        doc.generate_csv()
-
-        return Response(status=200)
+        get_doc(title=slug)
+        directory = ''
 
     except NoResultFound:
-        abort(404)
+
+        try:
+            # get course
+            get_course_by_slug(slug)
+            directory = 'course/'
+
+        except NoResultFound:
+            abort(404)
+
+    return render_template('download.html', file=slug, dir=directory)
+
+
+@app.route('/csv/<slug>', methods=['POST', ])
+@login_required
+@admin_only
+def csv_view(slug):
+    ''' '''
+    try:
+        # get doc
+        item = get_doc(title=slug)
+
+    except NoResultFound:
+
+        try:
+            # get course
+            item = get_course_by_slug(slug=slug)
+
+        except NoResultFound:
+            abort(404)
+
+    # generate_csv
+    item.generate_csv()
+
+    return Response(status=200)
 
 
 @app.route('/courses', methods=['GET', 'POST'])

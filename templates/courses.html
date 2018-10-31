@@ -22,6 +22,7 @@ Metric Gold | Courses
             <ul class='list-group'>
                 {% for course in courses %}
                 <li class='list-group-item'>
+                    <a class='csv' target='_blank' href="{{ url_for('download_view', slug=course.slug) }}"></a>
                     <a href="{{ url_for('course_view', slug=course.slug) }}"> {{ course.name }}</a>
                 </li>
                 {% endfor %}
