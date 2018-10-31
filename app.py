@@ -218,7 +218,7 @@ class User(db.Model):
         # send email
         mail.send(msg)
 
-    def _delete(self):  # TODO - why is there a leading underscore?
+    def _delete(self):
         ''' '''
         Peak.query.filter_by(user=self.id).delete()
         Break.query.filter_by(user=self.id).delete()
@@ -255,9 +255,11 @@ class Course(db.Model):
         ''' '''
         return self.__repr__()
 
-    def _delete(self):  # TODO - why is there a leading underscore?
+    def _delete(self):
         ''' '''
-        User.query.filter_by(course=self.id, role='student').delete()
+        for user in User.query.filter_by(course=self.id, role='student'):
+            user._delete()
+
         db.session.delete(self)
         db.session.commit()
 
