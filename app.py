@@ -208,7 +208,7 @@ class User(db.Model):
             '<p>Once again, welcome aboard!</p>'
             ) % (
                 request.url_root,
-                'email' if self.is_student else 'username, email,',
+                'email' if self.is_student else 'username, email, and ',
                 app.config.get('METRIC_GOLD_DOCS'),
                 self.username,
                 password,
@@ -362,35 +362,52 @@ class Doc(db.Model):
         ''' '''
         return bool(self.youtube_id)
 
-    def generate_base_csv(self):  # TODO - overhaul design
+    def generate_base_csv(self):
         ''' '''
         # extract metrical tree table
         with open('./inaugural/%s.csv' % self.title, 'rb') as f:
             table = [i for i in csv.reader(f, delimiter=',')]
 
-        # add non-annotation headers to table
+        # create (additional) headers
         table[0].extend([
             # doc-level
             'doc-freq',
-            'd-cp-1', 'd-cp-2', 'd-cp-3', 'd-inform-2', 'd-inform-3',
+            'd-cp-1',
+            'd-cp-2',
+            'd-cp-3',
+            'd-inform-2',
+            'd-inform-3',
 
             # corpus-level
             'corpus-freq',
-            'c-cp-1', 'c-cp-2', 'c-cp-3', 'c-inform-2', 'c-inform-3',
+            'c-cp-1',
+            'c-cp-2',
+            'c-cp-3',
+            'c-inform-2',
+            'c-inform-3',
 
-            # ngrams strings
-            'bigram', 'trigram',
+            # ngrams
+            'bigram',
+            'trigram',
+
+            # annotation headers
+            'annotator',
+            'prom',
+            'norm',
+            'UB',
+            'UF',
+            'note',
             ])
 
-        x = 0
+        i = 0
 
         # add non-annotation data
         for sent in self.sentences:
             for tok in sent.tokens:
-                x += 1
+                i += 1
 
                 if not tok.punctuation:
-                    table[x].extend([
+                    table[i].extend([
                         # doc-level
                         tok.doc_freq,
                         tok.doc_posterior_1,
@@ -417,71 +434,25 @@ class Doc(db.Model):
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
-    def generate_csv(self):  # TODO - overhaul design  # noqa
+    def generate_csv(self):
         ''' '''
-        try:
-            # add annotator columns
-            users = [u for u in load_annotators() if self.is_annotated(u.id)]
-            headers = reduce(lambda x, y: x + y, [[
-                u.username,
-                u.username + '-norm',  # normalized stress level
-                u.username + '-UB',
-                u.username + '-UF',
-                u.username + '-note',
-                ] for u in users])
-
-        except TypeError:
-            pass
-
         # extract base table
         with open('./static/csv/base/%s.csv' % self.title, 'rb') as f:
-            table = [i for i in csv.reader(f, delimiter=',')]
+            base_table = [i for i in csv.reader(f, delimiter=',')]
 
-        # add annotator columns to the table
-        table[0].extend(headers)
+        table, base_table = [base_table[0], ], base_table[1:]
+        users = [u for u in load_annotators() if self.is_annotated(u.id)]
 
-        n = 1
+        for user in users:
+            annotations = []
 
-        for sent in self.sentences:
+            for sent in self.sentences:
+                annotations.extend(sent.get_annotations(user))
 
-            for user in users:
-                # get the maximum stress the annotator assigned to the sentence
-                # in order to noramlize the stress annotations
-                max_peak = max(
-                    db.session.query(Peak.prom).join(Token).join(Sentence)
-                    .filter(Sentence.id == sent.id)
-                    .filter(Peak.user == user.id)
-                    .all())[0]
-
-                try:
-                    # get the id of the last annotated token in the sentence
-                    last_id = sent.tokens.filter_by(punctuation=False)[-1].id
-
-                except IndexError:
-                    # if the sentence is entirely punctuation...
-                    pass
-
-                # get any note the annotator wrote about the sentence
-                try:
-                    note = sent.get_note(user.id).note.encode('utf-8')
-
-                except AttributeError:
-                    note = ''
-
-                for i, t in enumerate(sent.tokens):
-                    if not t.punctuation:
-                        UF = int(t.id == last_id)
-
-                        # [stress, stress-norm, UB, UF, note]
-                        annotation = t.get_annotation_vector(
-                            user.id, max_peak, UF, note)
-
-                        table[n + i].extend(annotation)
-
-            n += sent.tokens.count()
+            table.extend((b + a for b, a in zip(base_table, annotations)))
 
         # create csv file
-        with open('./static/csv/%s.csv' % self.title, 'wb') as f:
+        with open('./static/csv/%s-testing.csv' % self.title, 'wb') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
@@ -551,12 +522,12 @@ class Sentence(db.Model):  # TODO - clean up
         ''' '''
         return self.notes.filter_by(user=user_id).one_or_none()
 
-    def get_peaks(self, user_id):  # TODO - revise query
+    def get_peaks(self, user_id):  # TODO - optimize query
         ''' '''
         return db.session.query(Peak).join(Token).join(Sentence).filter(
             Sentence.id == self.id).filter(Peak.user == user_id).all()
 
-    def get_breaks(self, user_id):  # TODO - revise query
+    def get_breaks(self, user_id):  # TODO - optimize query
         ''' '''
         return db.session.query(Break).join(Sentence).filter(
             Sentence.id == self.id).filter(Break.user == user_id).all()
@@ -580,13 +551,6 @@ class Sentence(db.Model):  # TODO - clean up
         ''' '''
         return self.tokens.filter_by(punctuation=False).count()
 
-    def delete_breaks(self, user_id):
-        ''' '''
-        breaks = self.get_breaks(user_id)
-
-        for br in breaks:
-            db.session.delete(br)
-
     def is_annotated(self, user_id):
         ''' '''
         return self.annotation_status(user_id) == 'annotated'
@@ -594,6 +558,56 @@ class Sentence(db.Model):  # TODO - clean up
     def annotation_status(self, user_id):
         ''' '''
         return self.statuses.filter_by(user=user_id).one().status
+
+    def get_annotations(self, user):
+        ''' '''
+        # TODO - optimize
+        # get the maximum stress the annotator assigned to the sentence
+        # in order to noramlize the stress annotations
+        max_peak = max(
+            db.session.query(Peak.prom).join(Token).join(Sentence)
+            .filter(Sentence.id == self.id)
+            .filter(Peak.user == user.id)
+            .all())[0]
+
+        try:
+            # get the id of the last annotated token in the sentence
+            last_tok_id = self.tokens.filter_by(punctuation=False)[-1].id
+
+        except IndexError:
+            # if the sentence is entirely punctuation...
+            pass
+
+        try:
+            # get any note the annotator wrote about the sentence
+            note = self.get_note(user.id).note.encode('utf-8')
+
+        except AttributeError:
+            note = ''
+
+        annotations = []
+        breaks = self.breaks.filter_by(user=user.id)
+
+        for i, tok in enumerate(self.tokens):
+
+            if not tok.punctuation:
+                row = [user.username, ]
+                UF = int(tok.id == last_tok_id)
+
+                try:
+                    peak = tok.peaks.filter_by(user=user.id).one()
+                    prom = float(peak.prom)
+                    norm_prom = prom / max_peak if prom != 0 else prom
+                    UB = int(breaks.filter_by(index=tok.index + 0.5).count())
+                    UF = int(UB or UF)
+                    row.extend([prom, norm_prom, UB, UF, note])
+
+                except TypeError:
+                    pass
+
+                annotations.append(row)
+
+        return annotations
 
     @property
     def has_video(self):
@@ -615,6 +629,13 @@ class Sentence(db.Model):  # TODO - clean up
             return self.manual_end
 
         return self.aeneas_end + Buffer
+
+    def delete_breaks(self, user_id):
+        ''' '''
+        breaks = self.get_breaks(user_id)
+
+        for br in breaks:
+            db.session.delete(br)
 
 
 class Token(db.Model):  # TODO - move information theoretic measures
