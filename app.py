@@ -199,8 +199,8 @@ class User(db.Model):
         html = (
             '<p>Welcome to the Presidents Project!</p>'
             '<p>Below are your login credentials for <a href="%s">Metric '
-            'Gold</a>. Feel free to change your %s password by visiting your '
-            '<i>account</i> page upon signing in. Lastly, see '
+            'Gold</a>. Feel free to change your %s and password by visiting '
+            'your <i>account</i> page upon signing in. Lastly, see '
             '<a href="%s">here</a> for Metric Gold\'s brief annotation guide.'
             '</p>'
             '<div>username: %s</div>'
@@ -208,7 +208,7 @@ class User(db.Model):
             '<p>Once again, welcome aboard!</p>'
             ) % (
                 request.url_root,
-                '' if self.is_student else 'username, email, and ',
+                'email' if self.is_student else 'username, email,',
                 app.config.get('METRIC_GOLD_DOCS'),
                 self.username,
                 password,
@@ -845,7 +845,7 @@ def get_course(name):
 
 def get_course_by_slug(slug):
     ''' '''
-    return Course.query.filter_by(name=slug).one()
+    return Course.query.filter_by(slug=slug).one()
 
 
 def get_status(sentence_id, user_id):
@@ -1120,22 +1120,28 @@ def courses_view():
     if request.method == 'POST':
         name = request.form['course']
 
-        if name:
-            try:
-                # add course
-                course = Course(name)
-                db.session.add(course)
-                db.session.commit()
+        try:
+            # add course
+            course = Course(name)
+            db.session.add(course)
+            db.session.commit()
+            name = None
 
-            except IntegrityError:
-                flash('A course with this identifier already exists.')
+            flash(
+                'Success! The course <strong>%s</strong> has been created!'
+                % course.name
+                )
 
-        else:
-            flash('Please supply a unique identifier for this course.')
+        except IntegrityError:
+            db.session.rollback()
+            flash('A course with this identifier already exists.')
+
+    else:
+        name = None
 
     courses = load_courses()
 
-    return render_template('courses.html', courses=courses)
+    return render_template('courses.html', courses=courses, course_name=name)
 
 
 @app.route('/courses/<slug>', methods=['GET', ])

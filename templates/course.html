@@ -9,6 +9,7 @@ Metric Gold | {{ course.name }}
 <div class='container'>
     <div class='row'>
 
+        {% if course.students.count() > 0 %}
         <!-- list students -->
         <div class='col-xs-12 col-sm-6'>
             <ul class='list-group'>
@@ -18,6 +19,11 @@ Metric Gold | {{ course.name }}
             </ul>
             <div class='div20'></div>
         </div>
+        {% else %}
+        <!-- no students -->
+        <p><i>Uh oh!</i> There are no students yet...</i></p>
+        <p>Head over to the <a href="{{ url_for('add_user_view') }}"><u>Add User</u></a> page to add users to this course.</p>
+        {% endif %}
 
         <div class='col-xs-12 col-sm-6'></div>
 
