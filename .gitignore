@@ -1,5 +1,6 @@
 *.pyc
 *.sh
+*.DS_Store
 
 # ignore config files both locally and on the server
 config.py
