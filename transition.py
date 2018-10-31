@@ -2,8 +2,11 @@
 
 from app import db, get_status, Sentence, User
 
+# [classroom bc8d584]
 # python app.py db upgrade c2936ba298a0
 # python transition.py
+# [current]
+# python app.py db upgrade 8752f86d1e89
 
 for user in User.query.all():
 
