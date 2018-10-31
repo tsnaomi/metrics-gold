@@ -163,6 +163,7 @@ class User(db.Model):
             db.session.commit()
 
         except IntegrityError:
+            db.session.rollback()
             raise Exception(
                 'Peaks have already been generated for this user.')
 
@@ -184,6 +185,7 @@ class User(db.Model):
             db.session.commit()
 
         except IntegrityError:
+            db.session.rollback()
             raise Exception(
                 'Statuses have already been generated for this user.')
 
@@ -254,6 +256,42 @@ class Course(db.Model):
     def __unicode__(self):
         ''' '''
         return self.__repr__()
+
+    def generate_csv(self):
+        ''' '''
+        doc = get_doc('2009-Obama1')
+        doc.generate_csv(course=self)
+        # doc = get_doc('2009-Obama1')
+        # base_csv_fn = './static/csv/base/2009-Obama1.csv'
+
+        # # create base csv if it does not already exist
+        # if not os.path.isfile(base_csv_fn):
+        #     doc.generate_base_csv()
+
+        # # extract base table
+        # with open(base_csv_fn, 'rb') as f:
+        #     base_table = [i for i in csv.reader(f, delimiter=',')]
+
+        # table, base_table = [base_table[0], ], base_table[1:]
+        # students = [u for u in self.students if doc.is_annotated(u.id)]
+
+        # # create annotator column header
+        # table[0].insert(0, 'annotator')
+
+        # # accrue annotations
+        # for user in students:
+        #     annotations = []
+
+        #     for i, sent in enumerate(doc.sentences[:10]):
+        #         annotations.extend(sent.get_annotations(user))
+
+        #     annotations = zip(base_table, annotations)
+        #     table.extend(([user.username, ] + b + a for b, a in annotations))
+
+        # # create csv file
+        # with open('./static/csv/course/%s.csv' % self.slug, 'wb') as f:
+        #     writer = csv.writer(f, delimiter=',')
+        #     writer.writerows(table)
 
     def _delete(self):
         ''' '''
@@ -368,7 +406,7 @@ class Doc(db.Model):
         ''' '''
         # extract metrical tree table
         with open('./inaugural/%s.csv' % self.title, 'rb') as f:
-            table = [i for i in csv.reader(f, delimiter=',')]
+            table = [row for row in csv.reader(f, delimiter=',')]
 
         # create (additional) headers
         table[0].extend([
@@ -392,8 +430,7 @@ class Doc(db.Model):
             'bigram',
             'trigram',
 
-            # annotation headers
-            'annotator',
+            # annotations
             'prom',
             'norm',
             'UB',
@@ -431,30 +468,50 @@ class Doc(db.Model):
                         tok.trigram,
                         ])
 
-        # create csv file
+        # create csv
         with open('./static/csv/base/%s.csv' % self.title, 'wb') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
-    def generate_csv(self):
+    def generate_csv(self, course=None):
         ''' '''
+        base_csv_fn = './static/csv/base/%s.csv' % self.title
+
+        # create base csv if it does not already exist
+        if not os.path.isfile(base_csv_fn):
+            self.generate_base_csv()
+
         # extract base table
-        with open('./static/csv/base/%s.csv' % self.title, 'rb') as f:
+        with open(base_csv_fn, 'rb') as f:
             base_table = [i for i in csv.reader(f, delimiter=',')]
 
         table, base_table = [base_table[0], ], base_table[1:]
-        users = [u for u in load_annotators() if self.is_annotated(u.id)]
+        table[0].insert(0, 'annotator')  # create annotator column header
 
+        # if course/student csv...
+        if course:
+            csv_fn = './static/csv/course/%s.csv' % course.slug
+            sentences = self.sentences[:10]
+            users = [u for u in course.students if self.is_annotated(u.id)]
+
+        # if main csv...
+        else:
+            csv_fn = './static/csv/%s.csv' % self.title
+            sentences = self.sentences
+            users = [u for u in load_annotators() if self.is_annotated(u.id)]
+
+        # accrue annotations
         for user in users:
             annotations = []
 
-            for sent in self.sentences:
+            for sent in sentences:
                 annotations.extend(sent.get_annotations(user))
 
-            table.extend((b + a for b, a in zip(base_table, annotations)))
+            annotations = zip(base_table, annotations)
+            table.extend(([user.username, ] + b + a for b, a in annotations))
 
-        # create csv file
-        with open('./static/csv/%s-testing.csv' % self.title, 'wb') as f:
+        # create csv
+        with open(csv_fn, 'wb') as f:
             writer = csv.writer(f, delimiter=',')
             writer.writerows(table)
 
@@ -593,7 +650,6 @@ class Sentence(db.Model):  # TODO - clean up
         for i, tok in enumerate(self.tokens):
 
             if not tok.punctuation:
-                row = [user.username, ]
                 UF = int(tok.id == last_tok_id)
 
                 try:
@@ -602,12 +658,14 @@ class Sentence(db.Model):  # TODO - clean up
                     norm_prom = prom / max_peak if prom != 0 else prom
                     UB = int(breaks.filter_by(index=tok.index + 0.5).count())
                     UF = int(UB or UF)
-                    row.extend([prom, norm_prom, UB, UF, note])
+                    annotations.append([prom, norm_prom, UB, UF, note])
+
+                    continue
 
                 except TypeError:
                     pass
 
-                annotations.append(row)
+            annotations.append([])
 
         return annotations
 
@@ -841,7 +899,7 @@ def extract_inaugural_addresses():  # TODO - make extensible
 
 
 @manager.command
-def generate_base_csv():  # TODO - overhaul design
+def generate_base_csv():
     ''' '''
     docs = load_docs()
 
@@ -879,6 +937,11 @@ def get_status(sentence_id, user_id):
 def load_annotators():
     ''' '''
     return User.query.filter_by(role='annotator')
+
+
+def load_students():
+    ''' '''
+    return User.query.filter_by(role='student')
 
 
 def load_docs():
@@ -1214,6 +1277,7 @@ def add_user_view():
                     )
 
             except IntegrityError:
+                db.session.rollback()
                 flash('An account with this username already exists.')
 
         else:
