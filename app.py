@@ -1221,7 +1221,7 @@ def add_user_view():
 
     courses = reversed(load_courses())
 
-    return render_template('add_user.html', courses=courses)
+    return render_template('add_user.html', course_options=courses)
 
 
 @app.route('/delete', methods=['GET', 'POST'])

@@ -39,7 +39,7 @@ Metric Gold | Add User
         <div id='courses'>
             <label>Course</label>
             <select class='form-control' name='course'>
-                {% for course in courses %}
+                {% for course in course_options %}
                 <option>{{ course.name }}</option>
                 {% endfor %}
             </select> 
