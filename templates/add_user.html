@@ -9,7 +9,7 @@ Metric Gold | Add User
 <div class='well'>
     <p>This page allows you to create new <i>annotators</i>, <i>students</i>, and <i>administrators</i>.</p>
     <p><strong>Annotators</strong> vs. <strong>Students</strong> vs. <strong>Administrators</strong>: While all users can annotate the presidents data, only <i>annotator</i> contributions are included for analysis in the main downloadable data frames. <i>Student</i> annotations are also available in separate data frames, one per each <i>course</i>. In contrast, <i>administrators</i> are able to track annotators' progress, download data frames, and create and delete users. (Thus, if you're viewing this page, this means you're an administrator!)</p>
-    <p><strong>To create a new user</strong>: Enter the new user's username and email in the fields below and select whether the user is an annotator, student, or administrator. If the new user is a student, please specify which course they are in. (<i>Courses</i> can be created via the <a href="{{ url_for('add_user_view') }}"><u>Courses</u></a> page.) Upon clicking <i>Create User</i>, a link will be sent to the new user, allowing them to set up their password. And, voila!</p>
+    <p><strong>To create a new user</strong>: Enter the new user's username and email in the fields below and select whether the user is an annotator, student, or administrator. If the new user is a student, please specify which course they are in. (<i>Courses</i> can be created via the <a href="{{ url_for('courses_view') }}"><u>Courses</u></a> page.) Upon clicking <i>Create User</i>, a link will be sent to the new user, allowing them to set up their password. And, voila!</p>
 </div>
 
 <br>
@@ -24,7 +24,7 @@ Metric Gold | Add User
     <div class='form-group'>
         <label>Email</label>
         <input class='form-control' type='text' name='email' placeholder='e.g., SUNetID@stanford.edu' required/>
-    </div>   
+    </div>
     <div class='div10'></div>
     <div class='form-group'>
         <div class='radio'>
