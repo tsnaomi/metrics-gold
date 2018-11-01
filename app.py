@@ -400,7 +400,7 @@ class Doc(db.Model):
             'trigram',
 
             # annotations
-            'prom',
+            'perc',  # perception
             'norm',
             'UB',
             'UF',
