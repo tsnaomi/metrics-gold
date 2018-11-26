@@ -1,6 +1,7 @@
 *.pyc
 *.sh
 *.DS_Store
+*.pgsql
 
 # ignore config files both locally and on the server
 config.py
