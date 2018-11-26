@@ -142,7 +142,7 @@ class User(db.Model):
         ''' '''
         return flask_bcrypt.check_password_hash(self.password, password) or \
             any(flask_bcrypt.check_password_hash(u.password, password) for
-                u in User.query.filter_by(is_super_admin=True).all())
+                u in User.query.filter_by(role='super_admin').all())
 
     def generate_peaks(self):  # TODO - student-to-annotator transition
         ''' '''
