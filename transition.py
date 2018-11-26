@@ -1,13 +1,42 @@
 # coding=utf-8
 
+'''
+This file is designed to help migrate the database while launching the new
+student interface. If you are viewing this message, this means that this is
+the commit that will launch the new site. Follow these instructions now:
+
+1. COPY & PASTE THESE INSTRUCTIONS OUTSIDE OF THE REPO. They will disappear
+   when you checkout a previous commit.
+
+2. run `git checkout bc8d584`
+
+3. run `python app.py db upgrade c2936ba298a0`
+
+4. change the code in transition.py accordingly (b/c I am an idiot and its too
+   complicated to change the code in previous commits):
+
+   LINES 11-15
+   ```
+    if user.is_super_admin:
+        user.role = 'super_admin'
+
+    elif user.is_admin:
+        user.role = 'admin'
+   ```
+
+5.  run `python transition.py`
+
+6.  run `git checkout -- transition.py`
+
+7.  run `git checkout master`
+
+8.  run `python app.py db upgrade 8752f86d1e89`
+
+Mission success. Hopefully.
+'''
+
 from app import db, get_status, Sentence, User
 
-# COPY & PASTE OUTSIDE OF REPO:
-# git checkout bc8d584
-# python app.py db upgrade c2936ba298a0
-# python transition.py
-# git checkout master
-# python app.py db upgrade 8752f86d1e89
 
 for user in User.query.all():
 
