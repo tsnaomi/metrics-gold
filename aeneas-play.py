@@ -338,14 +338,14 @@ if __name__ == '__main__':
     # fix_all()
 
     # Bush 1989
-    align('1989-Bush')
+    # align('1989-Bush')
     update('1989-Bush')
 
     # Clinton 1993
-    align('1993-Clinton1')
+    # align('1993-Clinton1')
     update('1993-Clinton1')
     fix_clinton_1993()
 
     # Clinton 1997
-    align('1997-Clinton2')
+    # align('1997-Clinton2')
     update('1997-Clinton2')
