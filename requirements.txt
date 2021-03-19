@@ -15,7 +15,7 @@ Flask-SeaSurf==0.2.2
 Flask-SQLAlchemy==2.1
 gunicorn==19.6.0
 itsdangerous==0.24
-Jinja2==2.8
+Jinja2==2.11.3
 lxml==3.6.0
 Mako==1.0.4
 MarkupSafe==0.23
